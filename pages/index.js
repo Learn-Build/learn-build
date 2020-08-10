@@ -64,12 +64,12 @@ export default function Home({builds, users, tags}) {
 }
 
 // TODO(Renzo): handle promises once data fetching returns actual data
-// TODO(Renzo): use getStaticProps or getServerSideProps
-// re: https://nextjs.org/docs/api-reference/data-fetching/getInitialProps
-Home.getInitialProps = async () => {
+export async function getStaticProps() {
   return {
-    builds: await fetchBuilds(),
-    users: await fetchUsers(),
-    tags: await fetchTags()
+    props: {
+      builds: await fetchBuilds(),
+      users: await fetchUsers(),
+      tags: await fetchTags()
+    }
   };
 }
