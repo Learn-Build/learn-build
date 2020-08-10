@@ -1,6 +1,6 @@
 import { Box, Button } from '@chakra-ui/core';
 
-export default function NavigationButton({ show, children }) {
+function NavigationButton({ show, children }) {
   return (
     <Box
       display={{ sm: show ? "block" : "none", md: "block" }}
@@ -13,3 +13,5 @@ export default function NavigationButton({ show, children }) {
     </Box>
   );
 }
+
+export default NavigationButton;

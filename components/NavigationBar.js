@@ -51,7 +51,6 @@ function NavigationBar(props) {
           About
         </NavigationItem>
         <NavigationItem href="/search">Search</NavigationItem>
-        <NavigationItem href="/">Builds</NavigationItem>
         <NavigationItem href="/">Tags</NavigationItem>
       </Box>
 
