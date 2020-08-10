@@ -2,11 +2,11 @@ import Link from 'next/link';
 import { Heading, List, ListItem } from '@chakra-ui/core';
 import NavigationBar from '../components/NavigationBar';
 import Container from '../components/Container';
-import { fetchBuilds, fetchUsers, fetchTags } from './api/client';
+import { fetchBuilds, fetchUsers } from './api/client';
 
 // TODO(Renzo): Implement navigation in navbar
 
-export default function Home({builds, users, tags}) {
+export default function Home({builds, users}) {
   return (
     <div>
       <NavigationBar />
@@ -32,17 +32,7 @@ export default function Home({builds, users, tags}) {
             </ListItem>
           ))}
         </List>
-
-        <Heading as="h2">Tags</Heading>
-        <List styleType="none">
-          {tags.map(tag => (
-            <ListItem key={tag.id} textAlign="center">
-              <Link href="/tag/[tag]" as={`/tag/${tag.name}`}>
-                <a>{tag.name}</a>
-              </Link>
-            </ListItem>
-          ))}
-        </List>
+        
       </Container>
     </div>
   );
@@ -54,7 +44,6 @@ export async function getStaticProps() {
     props: {
       builds: await fetchBuilds(),
       users: await fetchUsers(),
-      tags: await fetchTags()
     }
   };
 }
