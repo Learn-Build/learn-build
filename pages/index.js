@@ -9,20 +9,6 @@ export default function Home({builds, users, tags}) {
   return (
     <div>
       <NavigationBar />
-      
-      <Heading as="h2">Nav Bar</Heading>
-      <List styleType="disc">
-        <ListItem>
-          <Link href="/about">
-            <a>About</a>
-          </Link>
-        </ListItem>
-        <ListItem>
-          <Link href="/search">
-            <a>Search</a>
-          </Link>
-        </ListItem>
-      </List>
 
       <Heading as="h2">Builds</Heading>
       <List styleType="disc">
@@ -47,7 +33,7 @@ export default function Home({builds, users, tags}) {
       </List>
 
       <Heading as="h2">Tags</Heading>
-      <List>
+      <List styleType="disc">
         {tags.map(tag => (
           <ListItem key={tag.id}>
             <Link href="/tag/[tag]" as={`/tag/${tag.name}`}>

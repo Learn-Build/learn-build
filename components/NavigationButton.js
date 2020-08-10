@@ -1,6 +1,6 @@
 import { Box, Button } from '@chakra-ui/core';
 
-export default function HeaderButton({ show, children }) {
+export default function NavigationButton({ show, children }) {
   return (
     <Box
       display={{ sm: show ? "block" : "none", md: "block" }}

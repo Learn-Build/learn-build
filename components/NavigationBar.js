@@ -1,14 +1,8 @@
 import { useState } from 'react';
-import { Box, Heading, Flex, Text } from '@chakra-ui/core';
+import Link from 'next/link';
+import { Box, Heading, Flex } from '@chakra-ui/core';
 import NavigationButton from './NavigationButton';
-
-function HeaderItem({ children }) {
-  return (
-    <Text mt={{ base: 4, md: 0 }} mr={6} display="block" >
-      {children}
-    </Text>
-  );
-}
+import NavigationItem from './NavigationItem';
 
 // Taken and modified from here:
 // https://chakra-ui.com/recipes#responsive-header-with-chakra-ui
@@ -51,9 +45,12 @@ function Header(props) {
         alignItems="center"
         flexGrow={1}
       >
-        <HeaderItem>About</HeaderItem>
-        <HeaderItem>Builds</HeaderItem>
-        <HeaderItem>Tags</HeaderItem>
+        <NavigationItem href="/about">
+          About
+        </NavigationItem>
+        <NavigationItem href="/search">Search</NavigationItem>
+        <NavigationItem href="/">Builds</NavigationItem>
+        <NavigationItem href="/">Tags</NavigationItem>
       </Box>
 
       <NavigationButton show={show}>Log in</NavigationButton>
