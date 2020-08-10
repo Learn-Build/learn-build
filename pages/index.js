@@ -1,65 +1,75 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Link from 'next/link';
+import { fetchBuilds, fetchUsers, fetchTags } from './api/client';
 
-export default function Home() {
+// TODO(Renzo): Implement properly styled nav bar
+
+export default function Home({builds, users, tags}) {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
+    <div>
+      <Link href="/">
+        <a>
+          <h1>Learn Build</h1>
         </a>
-      </footer>
+      </Link>
+
+      <h2>Nav Bar</h2>
+      <ul>
+        <li>
+          <Link href="/about">
+            <a>About</a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/search">
+            <a>Search</a>
+          </Link>
+        </li>
+      </ul>
+
+      <h2>Builds</h2>
+      <ul>
+        {builds.map(build => (
+          <li key={build.id}>
+            <Link href="/build/[name]" as={`/build/${build.name}`}>
+              <a>{build.name}</a>
+            </Link>
+          </li>
+        ))}
+      </ul>
+
+      <h2>Users</h2>
+      <ul>
+        {users.map(user => (
+          <li key={user.id}>
+            <Link href="/[user]" as={`/${user.name}`}>
+              <a>{user.name}</a>
+            </Link>
+          </li>
+        ))}
+      </ul>
+
+      <h2>Tags</h2>
+      <ul>
+        {tags.map(tag => (
+          <li key={tag.id}>
+            <Link href="/tag/[tag]" as={`/tag/${tag.name}`}>
+              <a>{tag.name}</a>
+            </Link>
+          </li>
+        ))}
+      </ul>
+
     </div>
-  )
+  );
+}
+
+// TODO(Renzo): handle promises once data fetching returns actual data
+// TODO(Renzo): use getStaticProps or getServerSideProps
+// re: https://nextjs.org/docs/api-reference/data-fetching/getInitialProps
+Home.getInitialProps = async () => {
+  return {
+    builds: await fetchBuilds(),
+    users: await fetchUsers(),
+    tags: await fetchTags()
+  };
 }
