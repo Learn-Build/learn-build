@@ -1,11 +1,12 @@
 import { useState } from 'react';
+import Link from 'next/link';
 import { Box, Heading, Flex } from '@chakra-ui/core';
 import NavigationButton from './NavigationButton';
 import NavigationItem from './NavigationItem';
 
 // Taken and modified from here:
 // https://chakra-ui.com/recipes#responsive-header-with-chakra-ui
-function Header(props) {
+function NavigationBar(props) {
   const [show, setShow] = useState(false);
   const handleToggle = () => setShow(!show);
 
@@ -22,7 +23,9 @@ function Header(props) {
     >
       <Flex align="center" mr={5}>
         <Heading as="h1" size="lg">
-          Learn Build
+          <Link href="/">
+            <a>Learn Build</a>
+          </Link>
         </Heading>
       </Flex>
 
@@ -59,4 +62,4 @@ function Header(props) {
   );
 }
 
-export default Header;
+export default NavigationBar;

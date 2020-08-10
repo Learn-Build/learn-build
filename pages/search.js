@@ -1,5 +1,14 @@
+import { Heading } from '@chakra-ui/core';
+import Container from '../components/Container';
+import NavigationBar from '../components/NavigationBar';
+
 export default function Search() {
   return (
-    <h1>Search</h1>
+    <div>
+      <NavigationBar />
+      <Container>
+        <Heading>Search</Heading>
+      </Container>
+    </div>
   );
 }

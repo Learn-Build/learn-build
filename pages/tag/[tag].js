@@ -1,11 +1,17 @@
+import { Heading, Text } from '@chakra-ui/core';
+import Container from '../../components/Container';
+import NavigationBar from '../../components/NavigationBar';
 import { fetchTags } from '../api/client';
 
 export default function Tag({id, name, description}) {
   return (
     <div>
-      <h1>{name}</h1>
-      <h2>Tag ID: {id}</h2>
-      <p>{description}</p>
+      <NavigationBar />
+      <Container>
+        <Heading>{name}</Heading>
+        <Text>{`Tag ID: ${id}`}</Text>
+        <Text>{description}</Text>
+      </Container>
     </div>
   );
 }

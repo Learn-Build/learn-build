@@ -1,11 +1,17 @@
+import { Heading, Text } from '@chakra-ui/core';
+import Container from '../../components/Container';
+import NavigationBar from '../../components/NavigationBar';
 import { fetchBuilds } from '../api/client';
 
 export default function Build({id, name, description}) {
   return (
     <div>
-      <h1>{name}</h1>
-      <h2>{`Build ID: ${id}`}</h2>
-      <p>{description}</p>
+      <NavigationBar />
+      <Container>
+        <Heading>{name}</Heading>
+        <Text>{`Build ID: ${id}`}</Text>
+        <Text>{description}</Text>
+      </Container>
     </div>
   );
 }

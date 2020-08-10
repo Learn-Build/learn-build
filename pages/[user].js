@@ -1,5 +1,6 @@
 import Container from '../components/Container';
 import NavigationBar from '../components/NavigationBar';
+import { Heading, Text } from '@chakra-ui/core';
 import { fetchUsers } from './api/client';
 
 export default function User({id, name, email}) {
@@ -7,9 +8,9 @@ export default function User({id, name, email}) {
     <div>
       <NavigationBar />
       <Container>
-        <h1>{`${name}'s Page`}</h1>
-        <h2>{email}</h2>
-        <p>User ID: {id}</p>
+        <Heading>{`${name}'s Page`}</Heading>
+        <Text>{email}</Text>
+        <Text>User ID: {id}</Text>
       </Container>
     </div>
   )
