@@ -1,18 +1,15 @@
 import Link from 'next/link';
 import { Heading, List, ListItem } from '@chakra-ui/core';
+import NavigationBar from '../components/NavigationBar';
 import { fetchBuilds, fetchUsers, fetchTags } from './api/client';
 
-// TODO(Renzo): Implement properly styled nav bar
+// TODO(Renzo): Implement navigation in navbar
 
 export default function Home({builds, users, tags}) {
   return (
     <div>
-      <Link href="/">
-        <a>
-          <Heading as="h1" size="2xl">Learn Build</Heading>
-        </a>
-      </Link>
-
+      <NavigationBar />
+      
       <Heading as="h2">Nav Bar</Heading>
       <List styleType="disc">
         <ListItem>
