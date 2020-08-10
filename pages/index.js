@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Heading, List, ListItem } from '@chakra-ui/core';
 import { fetchBuilds, fetchUsers, fetchTags } from './api/client';
 
 // TODO(Renzo): Implement properly styled nav bar
@@ -8,56 +9,56 @@ export default function Home({builds, users, tags}) {
     <div>
       <Link href="/">
         <a>
-          <h1>Learn Build</h1>
+          <Heading as="h1" size="2xl">Learn Build</Heading>
         </a>
       </Link>
 
-      <h2>Nav Bar</h2>
-      <ul>
-        <li>
+      <Heading as="h2">Nav Bar</Heading>
+      <List styleType="disc">
+        <ListItem>
           <Link href="/about">
             <a>About</a>
           </Link>
-        </li>
-        <li>
+        </ListItem>
+        <ListItem>
           <Link href="/search">
             <a>Search</a>
           </Link>
-        </li>
-      </ul>
+        </ListItem>
+      </List>
 
-      <h2>Builds</h2>
-      <ul>
+      <Heading as="h2">Builds</Heading>
+      <List styleType="disc">
         {builds.map(build => (
-          <li key={build.id}>
+          <ListItem key={build.id}>
             <Link href="/build/[name]" as={`/build/${build.name}`}>
               <a>{build.name}</a>
             </Link>
-          </li>
+          </ListItem>
         ))}
-      </ul>
+      </List>
 
-      <h2>Users</h2>
-      <ul>
+      <Heading as="h2">Users</Heading>
+      <List styleType="disc">
         {users.map(user => (
-          <li key={user.id}>
+          <ListItem key={user.id}>
             <Link href="/[user]" as={`/${user.name}`}>
               <a>{user.name}</a>
             </Link>
-          </li>
+          </ListItem>
         ))}
-      </ul>
+      </List>
 
-      <h2>Tags</h2>
-      <ul>
+      <Heading as="h2">Tags</Heading>
+      <List>
         {tags.map(tag => (
-          <li key={tag.id}>
+          <ListItem key={tag.id}>
             <Link href="/tag/[tag]" as={`/tag/${tag.name}`}>
               <a>{tag.name}</a>
             </Link>
-          </li>
+          </ListItem>
         ))}
-      </ul>
+      </List>
 
     </div>
   );
