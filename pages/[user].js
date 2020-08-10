@@ -1,7 +1,24 @@
-import { useRouter } from 'next/router';
+import { fetchUsers } from './api/client';
 
-export default function User() {
-  const router = useRouter();
-  const { user } = router.query;
-  return <h1>{`${user}'s page`}</h1>
+export default function User({id, name, email}) {
+  return (
+    <div>
+      <h1>{`${name}'s Page`}</h1>
+      <h2>{email}</h2>
+      <p>User ID: {id}</p>
+    </div>
+  )
+}
+
+export async function getStaticPaths() {
+  const users = await fetchUsers();
+  const paths = users.map(user => `/${user.name}`);
+  return { paths, fallback: false }
+}
+
+export async function getStaticProps(context) {
+  const userName = context.params.user;
+  const users = await fetchUsers();
+  const userData = users.find(t => t.name === userName);
+  return {props: userData};
 }
