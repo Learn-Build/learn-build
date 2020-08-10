@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Link from 'next/link';
 import { Box, Heading, Flex } from '@chakra-ui/core';
 import NavigationButton from './NavigationButton';
 import NavigationItem from './NavigationItem';
@@ -17,7 +16,7 @@ function Header(props) {
       justify="space-between"
       wrap="wrap"
       padding="1.5rem"
-      bg="#8A3D7E"  // TODO(Renzo) put this in global theme
+      bg="pink.700"
       color="white"
       {...props}
     >

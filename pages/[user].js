@@ -1,11 +1,16 @@
+import Container from '../components/Container';
+import NavigationBar from '../components/NavigationBar';
 import { fetchUsers } from './api/client';
 
 export default function User({id, name, email}) {
   return (
     <div>
-      <h1>{`${name}'s Page`}</h1>
-      <h2>{email}</h2>
-      <p>User ID: {id}</p>
+      <NavigationBar />
+      <Container>
+        <h1>{`${name}'s Page`}</h1>
+        <h2>{email}</h2>
+        <p>User ID: {id}</p>
+      </Container>
     </div>
   )
 }
