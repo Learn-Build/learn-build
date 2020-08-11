@@ -1,5 +1,4 @@
-import { ThemeProvider, CSSReset } from '@chakra-ui/core';
-import { theme } from '@chakra-ui/core'
+import { ThemeProvider, CSSReset, theme } from '@chakra-ui/core';
 
 const customIcons = {
   logo: {

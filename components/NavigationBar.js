@@ -13,6 +13,8 @@ function NavigationBar(props) {
   const [show, setShow] = useState(false);
   const handleToggle = () => setShow(!show);
 
+  const display = show ? 'block' : 'none';
+
   return (
     <Flex
       as="nav"
@@ -20,7 +22,7 @@ function NavigationBar(props) {
       justify="space-between"
       wrap="wrap"
       py="0.8rem"
-      px="2rem"
+      px={{ base: '0.9rem', sm: '4rem' }}
       bg="pink.700"
       color="white"
       {...props}
@@ -32,11 +34,11 @@ function NavigationBar(props) {
               name="logo" 
               size="50px" 
               mr={2}
-              color="pink.200"
+              color="pink.300"
               focusable
             />  
           </Link>
-          <Heading as="h1" size="lg" alignSelf="center">
+          <Heading as="h1" size="md" alignSelf="center">
             <Link href="/">
               <a>Learn Build</a>
             </Link>
@@ -57,7 +59,7 @@ function NavigationBar(props) {
       </Box>
 
       <Box
-        display={{ sm: show ? "block" : "none", md: "flex" }}
+        display={[display, display, 'flex', 'flex']}
         width={{ sm: "full", md: "auto" }}
         alignItems="center"
         flexGrow={1}
@@ -69,9 +71,14 @@ function NavigationBar(props) {
         <NavigationItem href="/tags">Tags</NavigationItem>
       </Box>
 
-      <NavigationButton show={show}>Log in</NavigationButton>
-      <NavigationButton show={show}>Sign up</NavigationButton>
-
+      {/* FIXME(Renzo): Setting display to "flex" causes issues in mobile */}
+      <Stack
+        display={['none', 'none', 'flex', 'flex']}
+        isInline
+      >
+        <NavigationButton show={show}>Log in</NavigationButton>
+        <NavigationButton show={show}>Sign up</NavigationButton>
+      </Stack>
     </Flex>
   );
 }
