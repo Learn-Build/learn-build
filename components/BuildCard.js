@@ -1,9 +1,8 @@
-import { Badge, Box, Grid, Image, Stack, Icon } from "@chakra-ui/core";
+import { Badge, Box, Grid, Image, Stack, IconButton } from "@chakra-ui/core";
 
 // TODO(Renzo): Add better image handling
 
 function BuildCard({ build, tagNames }) {
-  console.log(tagNames);
   return (
     <Box 
       borderWidth="1px" 
@@ -11,6 +10,7 @@ function BuildCard({ build, tagNames }) {
       p={5} 
       my={5}
       mr={5}
+      boxShadow="md"
     >
       <Grid templateColumns="13% 87%">
         <Image 
@@ -37,6 +37,21 @@ function BuildCard({ build, tagNames }) {
           <Box>
             {build.description}  
           </Box>
+
+          <Stack isInline isReversed>
+            <IconButton 
+              isRound
+              size="xs"
+              icon="add"
+              onClick={() => console.log('Added')}
+            />
+            <IconButton 
+              isRound
+              size="xs"
+              icon="star"
+              onClick={() => console.log('Favorited')}
+            />
+          </Stack>
         </Box>  
       </Grid>
 

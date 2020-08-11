@@ -11,7 +11,6 @@ function Builds({ builds, tags }) {
       const foundTag = tags.find((tag) => tag.id === id);
       return foundTag.name;
     });
-    console.log('tagNames', tagNames)
     return tagNames;
   }
 
