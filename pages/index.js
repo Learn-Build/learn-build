@@ -1,40 +1,48 @@
 import Link from "next/link";
-import { Heading, List, ListItem } from "@chakra-ui/core";
+import { Box, Grid, Heading, List, ListItem } from "@chakra-ui/core";
 import NavigationBar from "../components/NavigationBar";
 import Hero from "../components/Hero";
-import Container from "../components/Container";
-import { fetchBuilds, fetchUsers } from "../clients";
+import Builds from '../components/Builds';
+import { fetchBuilds, fetchUsers, fetchTags } from "../clients";
 
 // TODO(Renzo): Create components for displaying builds and users
 
-export default function Home({ builds, users }) {
+export default function Home({ builds, users, tags }) {
+
+  const desktopWidth = '85%';
+  const fullWidth = '95%';
+  const responsiveWidth = [fullWidth, fullWidth, desktopWidth, desktopWidth];
+
+  const splitColumns = '60% 40%';
+  const oneColumn = '100%';
+  const responsiveColumns = [oneColumn, oneColumn, oneColumn, splitColumns];
+  
   return (
     <div>
       <NavigationBar />
       <Hero heroText={'Self-teaching done right.'} />
-      <Container>
-        <Heading as="h2">Builds</Heading>
-        <List styleType="none">
-          {builds.map((build) => (
-            <ListItem key={build.id} textAlign="center">
-              <Link href="/build/[name]" as={`/build/${build.name}`}>
-                <a>{build.name}</a>
-              </Link>
-            </ListItem>
-          ))}
-        </List>
-
-        <Heading as="h2">Users</Heading>
-        <List styleType="none">
-          {users.map((user) => (
-            <ListItem key={user.id} textAlign="center">
-              <Link href="/[user]" as={`/${user.name}`}>
-                <a>{user.name}</a>
-              </Link>
-            </ListItem>
-          ))}
-        </List>
-      </Container>
+      <Grid 
+        margin="auto"
+        templateColumns={responsiveColumns} 
+        width={responsiveWidth}
+      >
+        <Box>
+          <Builds builds={builds} tags={tags} />
+        </Box>
+        
+        <Box>
+          <Heading as="h2">Users</Heading>
+          <List styleType="none">
+            {users.map((user) => (
+              <ListItem key={user.id} textAlign="left">
+                <Link href="/[user]" as={`/${user.name}`}>
+                  <a>{user.name}</a>
+                </Link>
+              </ListItem>
+            ))}
+          </List>
+        </Box>
+      </Grid>
     </div>
   );
 }
@@ -45,6 +53,7 @@ export async function getStaticProps() {
     props: {
       builds: await fetchBuilds(),
       users: await fetchUsers(),
+      tags: await fetchTags()
     },
   };
 }
