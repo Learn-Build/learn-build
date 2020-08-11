@@ -4,7 +4,6 @@ import { Box, Heading, Flex, Icon, Stack } from '@chakra-ui/core';
 import NavigationButton from './NavigationButton';
 import NavigationItem from './NavigationItem';
 
-// TODO(Renzo): add logo to navbar
 // TODO(Renzo): replace search with search bar or move elsewhere
 
 // Taken and modified from here:
@@ -30,13 +29,15 @@ function NavigationBar(props) {
       <Flex align="center" mr={5}>
         <Stack isInline>
           <Link href="/">
-            <Icon 
-              name="logo" 
-              size="50px" 
-              mr={2}
-              color="pink.300"
-              focusable
-            />  
+            <a>
+              <Icon 
+                name="logo" 
+                size="50px" 
+                mr={2}
+                color="pink.300"
+                focusable
+              />  
+            </a>
           </Link>
           <Heading as="h1" size="md" alignSelf="center">
             <Link href="/">

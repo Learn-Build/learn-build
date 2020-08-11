@@ -1,16 +1,17 @@
 import Link from "next/link";
 import { Heading, List, ListItem } from "@chakra-ui/core";
 import NavigationBar from "../components/NavigationBar";
+import Hero from "../components/Hero";
 import Container from "../components/Container";
 import { fetchBuilds, fetchUsers } from "../clients";
 
-// TODO(Renzo): Create hero
 // TODO(Renzo): Create components for displaying builds and users
 
 export default function Home({ builds, users }) {
   return (
     <div>
       <NavigationBar />
+      <Hero heroText={'Self-teaching done right.'} />
       <Container>
         <Heading as="h2">Builds</Heading>
         <List styleType="none">
