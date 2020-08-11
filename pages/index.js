@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Heading, List, ListItem } from "@chakra-ui/core";
 import NavigationBar from "../components/NavigationBar";
 import Container from "../components/Container";
-import { fetchBuilds, fetchUsers } from "../clients/client";
+import { fetchBuilds, fetchUsers } from "../clients";
 
 // TODO(Renzo): Create hero
 // TODO(Renzo): Create components for displaying builds and users

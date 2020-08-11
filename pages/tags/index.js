@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Heading, List, ListItem } from "@chakra-ui/core";
 import Container from "../../components/Container";
 import NavigationBar from "../../components/NavigationBar";
-import { fetchTags } from "../../clients/client";
+import { fetchTags } from "../../clients";
 
 export default function Tags({ tags }) {
   return (
