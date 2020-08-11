@@ -19,7 +19,8 @@ function NavigationBar(props) {
       align="center"
       justify="space-between"
       wrap="wrap"
-      padding="1.5rem"
+      py="0.8rem"
+      px="2rem"
       bg="pink.700"
       color="white"
       {...props}
@@ -27,13 +28,19 @@ function NavigationBar(props) {
       <Flex align="center" mr={5}>
         <Stack isInline>
           <Link href="/">
-            <Icon name="settings" size="30px" mr={2} />  
+            <Icon 
+              name="logo" 
+              size="50px" 
+              mr={2}
+              color="pink.200"
+              focusable
+            />  
           </Link>
-          <Link href="/">
-            <Heading as="h1" size="lg">
+          <Heading as="h1" size="lg" alignSelf="center">
+            <Link href="/">
               <a>Learn Build</a>
-            </Heading>
-          </Link>
+            </Link>
+          </Heading>
         </Stack>
       </Flex>
 
