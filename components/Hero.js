@@ -1,4 +1,4 @@
-import { Heading, Grid, Image } from "@chakra-ui/core";
+import { Box, Heading, Grid, Image } from "@chakra-ui/core";
 
 function Hero({ heroText }) {
 
@@ -6,9 +6,13 @@ function Hero({ heroText }) {
   const stackGrid = '100%'
   const responsiveGrid = [stackGrid, stackGrid, horizontalGrid, horizontalGrid];
 
-  const largeScreenFont = '6vw';
-  const mobileScreenFont = '10vw';
-  const responsiveFontSize = [mobileScreenFont, mobileScreenFont, largeScreenFont, largeScreenFont];
+  const h1DesktopFont = '6vw';
+  const h1MobileFont = '10vw';
+  const h1FontSize = [h1MobileFont, h1MobileFont, h1DesktopFont, h1DesktopFont];
+
+  const h2DesktopFont = '2vw';
+  const h2MobileFont = '4vw';
+  const h2FontSize = [h2MobileFont, h2MobileFont, h2DesktopFont, h2DesktopFont];
 
   // Constants for responsiveness
   // Padding horizontal/vertical large/small
@@ -19,18 +23,33 @@ function Hero({ heroText }) {
 
   return (
     <Grid templateColumns={responsiveGrid}>
-      <Heading 
-        as="h1" 
-        fontSize={responsiveFontSize}
+      <Box 
         alignSelf="center"
-        pl={[phSm, phSm, phLg, phLg]}
-        pr={[phSm, phSm, 0, 0]}
-        pt={[pvSm, pvSm, 0, 0]}
-        pb={[pvLg, pvLg, 0, 0]}
         textAlign={['center', 'center', 'right', 'right']}
       >
-        {heroText}
-      </Heading>
+        <Heading 
+          as="h1" 
+          fontSize={h1FontSize}
+          pl={[phSm, phSm, phLg, phLg]}
+          pr={[phSm, phSm, 0, 0]}
+          pt={[pvSm, pvSm, 0, 0]}
+          pb={[0, 0, 0, 0]}
+        >
+          {heroText}
+        </Heading>
+        <Heading
+          as="h2"
+          fontSize={h2FontSize}
+          fontWeight="normal"
+          pl={[phSm, phSm, phLg, phLg]}
+          pr={[phSm, phSm, 0, 0]}
+          pt={[pvSm, pvSm, 2, 2]}
+          pb={[pvLg, pvLg, 0, 0]}
+        >
+          Start building your way to learn.
+        </Heading>
+      </Box>
+      
       <Image 
         pr={30} 
         src="/assets/student_studying_mini.jpg" alt="Student learning online"
