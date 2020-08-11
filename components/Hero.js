@@ -31,7 +31,12 @@ function Hero() {
       >
         Self-teaching done right.
       </Heading>
-      <Image pr={30} src="/assets/student_studying_small.jpg" />
+      <Image 
+        pr={30} 
+        src="/assets/student_studying_mini.jpg" alt="Student learning online"
+        htmlWidth={4735}
+        htmlHeight={3757}
+      />
     </Grid>
   );
 }
