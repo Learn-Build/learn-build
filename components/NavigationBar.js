@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import Link from 'next/link';
-import { Box, Heading, Flex } from '@chakra-ui/core';
+import { Box, Heading, Flex, Icon, Stack } from '@chakra-ui/core';
 import NavigationButton from './NavigationButton';
 import NavigationItem from './NavigationItem';
+
+// TODO(Renzo): add logo to navbar
+// TODO(Renzo): replace search with search bar or move elsewhere
 
 // Taken and modified from here:
 // https://chakra-ui.com/recipes#responsive-header-with-chakra-ui
@@ -10,23 +13,37 @@ function NavigationBar(props) {
   const [show, setShow] = useState(false);
   const handleToggle = () => setShow(!show);
 
+  const display = show ? 'block' : 'none';
+
   return (
     <Flex
       as="nav"
       align="center"
       justify="space-between"
       wrap="wrap"
-      padding="1.5rem"
+      py="0.8rem"
+      px={{ base: '0.9rem', sm: '4rem' }}
       bg="pink.700"
       color="white"
       {...props}
     >
       <Flex align="center" mr={5}>
-        <Heading as="h1" size="lg">
+        <Stack isInline>
           <Link href="/">
-            <a>Learn Build</a>
+            <Icon 
+              name="logo" 
+              size="50px" 
+              mr={2}
+              color="pink.300"
+              focusable
+            />  
           </Link>
-        </Heading>
+          <Heading as="h1" size="md" alignSelf="center">
+            <Link href="/">
+              <a>Learn Build</a>
+            </Link>
+          </Heading>
+        </Stack>
       </Flex>
 
       <Box display={{ base: "block", md: "none" }} onClick={handleToggle}>
@@ -42,7 +59,7 @@ function NavigationBar(props) {
       </Box>
 
       <Box
-        display={{ sm: show ? "block" : "none", md: "flex" }}
+        display={[display, display, 'flex', 'flex']}
         width={{ sm: "full", md: "auto" }}
         alignItems="center"
         flexGrow={1}
@@ -54,9 +71,14 @@ function NavigationBar(props) {
         <NavigationItem href="/tags">Tags</NavigationItem>
       </Box>
 
-      <NavigationButton show={show}>Log in</NavigationButton>
-      <NavigationButton show={show}>Sign up</NavigationButton>
-
+      {/* FIXME(Renzo): Setting display to "flex" causes issues in mobile */}
+      <Stack
+        display={['none', 'none', 'flex', 'flex']}
+        isInline
+      >
+        <NavigationButton show={show}>Log in</NavigationButton>
+        <NavigationButton show={show}>Sign up</NavigationButton>
+      </Stack>
     </Flex>
   );
 }

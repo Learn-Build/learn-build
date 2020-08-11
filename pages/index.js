@@ -4,7 +4,8 @@ import NavigationBar from '../components/NavigationBar';
 import Container from '../components/Container';
 import { fetchBuilds, fetchUsers } from './api/client';
 
-// TODO(Renzo): Implement navigation in navbar
+// TODO(Renzo): Create hero
+// TODO(Renzo): Create components for displaying builds and users
 
 export default function Home({builds, users}) {
   return (
