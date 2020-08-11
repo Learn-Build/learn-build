@@ -11,7 +11,7 @@ export default function Home({ builds, users }) {
   return (
     <div>
       <NavigationBar />
-      <Hero />
+      <Hero heroText={'Self-teaching done right.'} />
       <Container>
         <Heading as="h2">Builds</Heading>
         <List styleType="none">

@@ -1,6 +1,6 @@
 import { Heading, Grid, Image } from "@chakra-ui/core";
 
-function Hero() {
+function Hero({ heroText }) {
 
   const horizontalGrid = '45% 55%';
   const stackGrid = '100%'
@@ -29,7 +29,7 @@ function Hero() {
         pb={[pvLg, pvLg, 0, 0]}
         textAlign={['center', 'center', 'right', 'right']}
       >
-        Self-teaching done right.
+        {heroText}
       </Heading>
       <Image 
         pr={30} 
