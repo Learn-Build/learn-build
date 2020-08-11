@@ -10,6 +10,7 @@ import {
   useToast
 } from "@chakra-ui/core";
 import LinkWrapper from "./LinkWrapper";
+import CardComponent from "./CardComponent";
 
 // TODO(Renzo): Add better image handling
 
@@ -35,14 +36,7 @@ function BuildCard({ build, tagNames }) {
   const bodyFontSize = ['xs', 'xs', 'sm', 'sm'];
 
   return (
-    <Box 
-      borderWidth="1px" 
-      rounded="lg" 
-      p={[3, 3, 3, 5]} 
-      my={5}
-      mr={[0, 0, 0, 5]}
-      boxShadow="md"
-    >
+    <CardComponent>
       <Grid templateColumns={responsiveCardColumns}>
         <LinkWrapper href={linkHref} as={linkAs}>
           <Image
@@ -107,7 +101,7 @@ function BuildCard({ build, tagNames }) {
           </Stack>
         </Stack>  
       </Grid>
-    </Box>
+    </CardComponent>
   );
 }
 
