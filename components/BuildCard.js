@@ -1,12 +1,30 @@
-import { Badge, Box, Grid, Image, Stack, IconButton, Text } from "@chakra-ui/core";
+import { 
+  Badge, 
+  Box, 
+  Grid, 
+  Image, 
+  Stack, 
+  IconButton, 
+  Text,
+  useToast
+} from "@chakra-ui/core";
 import LinkWrapper from "./LinkWrapper";
 
 // TODO(Renzo): Add better image handling
 
 function BuildCard({ build, tagNames }) {
 
+  const toast = useToast();
+  const toastOptions = {
+    title: 'Build saved!',
+    description: 'You can find it in your saved builds.',
+    status: 'success',
+    duration: 3000,
+    isClosable: true
+  };
+
   const linkHref = '/build/[name]';
-  const linkAs = `/build/${build.name}`; 
+  const linkAs = `/build/${build.name}`;
 
   return (
     <Box 
@@ -68,7 +86,7 @@ function BuildCard({ build, tagNames }) {
               isRound
               size="xs"
               icon="add"
-              onClick={() => console.log('Added')}
+              onClick={() => toast(toastOptions)}
             />
             <Text fontSize="xs" alignSelf="center">
               Save
