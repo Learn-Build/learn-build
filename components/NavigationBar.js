@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
-import { Box, Heading, Flex } from '@chakra-ui/core';
+import { Box, Heading, Flex, Icon, Stack } from '@chakra-ui/core';
 import NavigationButton from './NavigationButton';
 import NavigationItem from './NavigationItem';
 
@@ -25,11 +25,16 @@ function NavigationBar(props) {
       {...props}
     >
       <Flex align="center" mr={5}>
-        <Heading as="h1" size="lg">
+        <Stack isInline>
           <Link href="/">
-            <a>Learn Build</a>
+            <Icon name="settings" size="30px" mr={2} />  
           </Link>
-        </Heading>
+          <Link href="/">
+            <Heading as="h1" size="lg">
+              <a>Learn Build</a>
+            </Heading>
+          </Link>
+        </Stack>
       </Flex>
 
       <Box display={{ base: "block", md: "none" }} onClick={handleToggle}>
