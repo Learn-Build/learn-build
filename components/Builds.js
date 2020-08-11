@@ -1,10 +1,9 @@
-import Link from "next/link";
 import { Heading } from "@chakra-ui/core";
 import BuildCard from "./BuildCard";
 
 function Builds({ builds, tags }) {
 
-  // FIXME(Renzo): there must be a better way to do this...
+  // FIXME(Renzo): change this when data fetching actually pulls data?
   function getTagNames(build, tags) {
     const { tagIds } = build;
     const tagNames = tagIds.map((id) => {
@@ -23,15 +22,11 @@ function Builds({ builds, tags }) {
         Builds
       </Heading>
       {builds.map((build) => (
-        <Link href="/build/[name]" as={`/build/${build.name}`}>
-          <a>
-            <BuildCard 
-              key={build.id} 
-              build={build} 
-              tagNames={getTagNames(build, tags)} 
-            />
-          </a>
-        </Link>
+        <BuildCard 
+          key={build.id} 
+          build={build} 
+          tagNames={getTagNames(build, tags)} 
+        />
       ))}
     </div>
   );

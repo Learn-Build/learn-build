@@ -1,8 +1,13 @@
 import { Badge, Box, Grid, Image, Stack, IconButton } from "@chakra-ui/core";
+import LinkWrapper from "./LinkWrapper";
 
 // TODO(Renzo): Add better image handling
 
 function BuildCard({ build, tagNames }) {
+
+  const linkHref = '/build/[name]';
+  const linkAs = `/build/${build.name}`; 
+
   return (
     <Box 
       borderWidth="1px" 
@@ -12,33 +17,40 @@ function BuildCard({ build, tagNames }) {
       mr={5}
       boxShadow="md"
     >
-      <Grid templateColumns="13% 87%">
-        <Image 
-          src={build.imageUrl}
-          fallbackSrc="assets/learn_build_logo.svg" 
-          alignSelf="center"
-          pr={3} 
-        />
-        <Box>
-          <Stack isInline>
-            {tagNames.map((tag) => (
-              <Badge>{tag}</Badge>
-            ))}
-          </Stack>
+      <Grid templateColumns="15% 80% 5%">
+        <LinkWrapper href={linkHref} as={linkAs}>
+          <Image 
+            src={build.imageUrl}
+            fallbackSrc="assets/learn_build_logo.svg" 
+            alignSelf="center"
+            pr={3}
+          />
+        </LinkWrapper>
 
-          <Box as="h3" fontSize="xl" fontWeight="bold">
-            {build.name}
-          </Box>
-
-          <Box fontSize="sm" color="gray.500">
-            {build.builder}
-          </Box>
-
+        <LinkWrapper href={linkHref} as={linkAs}>
           <Box>
-            {build.description}  
-          </Box>
+            <Stack isInline>
+              {tagNames.map((tag) => (
+                <Badge>{tag}</Badge>
+              ))}
+            </Stack>
 
-          <Stack isInline isReversed>
+            <Box as="h3" fontSize="xl" fontWeight="bold">
+              {build.name}
+            </Box>
+
+            <Box fontSize="sm" color="gray.500">
+              {build.builder}
+            </Box>
+
+            <Box>
+              {build.description}  
+            </Box>
+
+          </Box>
+        </LinkWrapper>
+
+        <Stack>
             <IconButton 
               isRound
               size="xs"
@@ -51,10 +63,8 @@ function BuildCard({ build, tagNames }) {
               icon="star"
               onClick={() => console.log('Favorited')}
             />
-          </Stack>
-        </Box>  
+          </Stack>  
       </Grid>
-
     </Box>
   );
 }
