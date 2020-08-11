@@ -15,7 +15,7 @@ export const BUILDS = [
       "5",
       "6"
     ],
-    likes: 54
+    likeCount: 54
   },
   {
     id: "1",
@@ -29,7 +29,7 @@ export const BUILDS = [
       "8",
       "9"
     ],
-    likes: 32
+    likeCount: 32
   },
   {
     id: "2",
@@ -42,7 +42,7 @@ export const BUILDS = [
       "11",
       "12"
     ],
-    likes: 78
+    likeCount: 78
   },
   {
     id: "3",
@@ -55,6 +55,6 @@ export const BUILDS = [
       "14",
       "15"
     ],
-    likes: 54
+    likeCount: 54
   },
 ];

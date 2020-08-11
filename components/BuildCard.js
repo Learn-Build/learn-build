@@ -1,4 +1,4 @@
-import { Badge, Box, Grid, Image, Stack, IconButton } from "@chakra-ui/core";
+import { Badge, Box, Grid, Image, Stack, IconButton, Text } from "@chakra-ui/core";
 import LinkWrapper from "./LinkWrapper";
 
 // TODO(Renzo): Add better image handling
@@ -17,7 +17,7 @@ function BuildCard({ build, tagNames }) {
       mr={5}
       boxShadow="md"
     >
-      <Grid templateColumns="15% 80% 5%">
+      <Grid templateColumns="15% 75% 10%">
         <LinkWrapper href={linkHref} as={linkAs}>
           <Image 
             src={build.imageUrl}
@@ -51,19 +51,30 @@ function BuildCard({ build, tagNames }) {
         </LinkWrapper>
 
         <Stack>
-            <IconButton 
-              isRound
-              size="xs"
-              icon="add"
-              onClick={() => console.log('Added')}
-            />
+          <Stack isInline>
             <IconButton 
               isRound
               size="xs"
               icon="star"
               onClick={() => console.log('Favorited')}
             />
-          </Stack>  
+            <Text fontSize="xs" alignSelf="center">
+              {build.likeCount}
+            </Text>
+          </Stack>
+          
+          <Stack isInline>
+            <IconButton 
+              isRound
+              size="xs"
+              icon="add"
+              onClick={() => console.log('Added')}
+            />
+            <Text fontSize="xs" alignSelf="center">
+              Save
+            </Text>
+          </Stack>
+        </Stack>  
       </Grid>
     </Box>
   );
