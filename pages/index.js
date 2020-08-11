@@ -3,11 +3,11 @@ import { Box, Grid, Heading, List, ListItem } from "@chakra-ui/core";
 import NavigationBar from "../components/NavigationBar";
 import Hero from "../components/Hero";
 import Builds from '../components/Builds';
-import { fetchBuilds, fetchUsers } from "../clients";
+import { fetchBuilds, fetchUsers, fetchTags } from "../clients";
 
 // TODO(Renzo): Create components for displaying builds and users
 
-export default function Home({ builds, users }) {
+export default function Home({ builds, users, tags }) {
   return (
     <div>
       <NavigationBar />
@@ -15,10 +15,10 @@ export default function Home({ builds, users }) {
       <Grid 
         margin="auto"
         templateColumns={'60% 40%'} 
-        width="70%"
+        width="80%"
       >
         <Box>
-          <Builds builds={builds} />
+          <Builds builds={builds} tags={tags} />
         </Box>
         
         <Box>
@@ -44,6 +44,7 @@ export async function getStaticProps() {
     props: {
       builds: await fetchBuilds(),
       users: await fetchUsers(),
+      tags: await fetchTags()
     },
   };
 }
