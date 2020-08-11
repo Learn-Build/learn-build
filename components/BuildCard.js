@@ -28,7 +28,7 @@ function BuildCard({ build, tagNames }) {
   const linkAs = `/build/${build.name}`;
 
   const desktopColumns = '15% 75% 10%';
-  const mobileColumns = '10% 75% 15%';
+  const mobileColumns = '13% 72% 15%';
   const responsiveCardColumns = [mobileColumns, mobileColumns, mobileColumns, desktopColumns];
 
   const headerFontSize = ['md', 'md', 'lg', 'xl'];
@@ -49,7 +49,7 @@ function BuildCard({ build, tagNames }) {
             src={build.imageUrl}
             fallbackSrc="assets/learn_build_logo.svg" 
             alignSelf="center"
-            verticalAlign="middle"
+            my="20%"
             pr={3}
           />
         </LinkWrapper>
@@ -58,7 +58,7 @@ function BuildCard({ build, tagNames }) {
           <Box>
             <Flex flexDir="row" wrap="wrap">
               {tagNames.map((tag) => (
-                <Badge mr={1}>{tag}</Badge>
+                <Badge mr={1} mt={1}>{tag}</Badge>
               ))}
             </Flex>
 
