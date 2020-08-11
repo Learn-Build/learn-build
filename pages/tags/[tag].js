@@ -1,9 +1,9 @@
-import { Heading, Text } from '@chakra-ui/core';
-import Container from '../../components/Container';
-import NavigationBar from '../../components/NavigationBar';
-import { fetchTags } from '../api/client';
+import { Heading, Text } from "@chakra-ui/core";
+import Container from "../../components/Container";
+import NavigationBar from "../../components/NavigationBar";
+import { fetchTags } from "../../clients";
 
-export default function Tag({id, name, description}) {
+export default function Tag({ id, name, description }) {
   return (
     <div>
       <NavigationBar />
@@ -18,13 +18,13 @@ export default function Tag({id, name, description}) {
 
 export async function getStaticPaths() {
   const tags = await fetchTags();
-  const paths = tags.map(tag => `/tags/${tag.name}`);
-  return { paths, fallback: false }
+  const paths = tags.map((tag) => `/tags/${tag.name}`);
+  return { paths, fallback: false };
 }
 
 export async function getStaticProps(context) {
   const tagName = context.params.tag;
   const tags = await fetchTags();
-  const tagData = tags.find(t => t.name === tagName);
-  return {props: tagData};
+  const tagData = tags.find((t) => t.name === tagName);
+  return { props: tagData };
 }
