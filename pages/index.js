@@ -5,7 +5,6 @@ import Hero from "../components/Hero";
 import Container from "../components/Container";
 import { fetchBuilds, fetchUsers } from "../clients";
 
-// TODO(Renzo): Create hero
 // TODO(Renzo): Create components for displaying builds and users
 
 export default function Home({ builds, users }) {
