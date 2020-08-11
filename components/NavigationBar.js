@@ -4,6 +4,9 @@ import { Box, Heading, Flex } from '@chakra-ui/core';
 import NavigationButton from './NavigationButton';
 import NavigationItem from './NavigationItem';
 
+// TODO(Renzo): add logo to navbar
+// TODO(Renzo): replace search with search bar or move elsewhere
+
 // Taken and modified from here:
 // https://chakra-ui.com/recipes#responsive-header-with-chakra-ui
 function NavigationBar(props) {
