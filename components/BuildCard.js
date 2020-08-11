@@ -1,6 +1,7 @@
 import { 
   Badge, 
-  Box, 
+  Box,
+  Flex,
   Grid, 
   Image, 
   Stack, 
@@ -47,11 +48,11 @@ function BuildCard({ build, tagNames }) {
 
         <LinkWrapper href={linkHref} as={linkAs}>
           <Box>
-            <Stack isInline>
+            <Flex flexDir="row" wrap="wrap">
               {tagNames.map((tag) => (
-                <Badge>{tag}</Badge>
+                <Badge mr={1}>{tag}</Badge>
               ))}
-            </Stack>
+            </Flex>
 
             <Box as="h3" fontSize="xl" fontWeight="bold">
               {build.name}

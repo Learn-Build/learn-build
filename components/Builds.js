@@ -13,11 +13,14 @@ function Builds({ builds, tags }) {
     return tagNames;
   }
 
+  const responsiveAlign = ['center', 'center', 'left', 'left'];
+
   return (
     <div>
       <Heading 
         as="h2"
         mb={2}
+        textAlign={responsiveAlign}
       >
         Builds
       </Heading>

@@ -12,7 +12,7 @@ export default function Home({ builds, users, tags }) {
   const splitColumns = '60% 40%';
   const oneColumn = '100%';
   const responsiveColumns = [oneColumn, oneColumn, oneColumn, splitColumns];
-
+  
   return (
     <div>
       <NavigationBar />
