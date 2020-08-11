@@ -27,21 +27,26 @@ function BuildCard({ build, tagNames }) {
   const linkHref = '/build/[name]';
   const linkAs = `/build/${build.name}`;
 
+  const desktopColumns = '15% 75% 10%';
+  const mobileColumns = '10% 75% 15%';
+  const responsiveCardColumns = [mobileColumns, mobileColumns, mobileColumns, desktopColumns];
+
   return (
     <Box 
       borderWidth="1px" 
       rounded="lg" 
-      p={5} 
+      p={[3, 3, 3, 5]} 
       my={5}
-      mr={5}
+      mr={[0, 0, 0, 5]}
       boxShadow="md"
     >
-      <Grid templateColumns="15% 75% 10%">
+      <Grid templateColumns={responsiveCardColumns}>
         <LinkWrapper href={linkHref} as={linkAs}>
-          <Image 
+          <Image
             src={build.imageUrl}
             fallbackSrc="assets/learn_build_logo.svg" 
             alignSelf="center"
+            verticalAlign="middle"
             pr={3}
           />
         </LinkWrapper>

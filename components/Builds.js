@@ -13,7 +13,7 @@ function Builds({ builds, tags }) {
     return tagNames;
   }
 
-  const responsiveAlign = ['center', 'center', 'left', 'left'];
+  const responsiveAlign = ['center', 'center', 'center', 'left'];
 
   return (
     <div>
