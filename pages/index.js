@@ -9,6 +9,10 @@ import { fetchBuilds, fetchUsers, fetchTags } from "../clients";
 
 export default function Home({ builds, users, tags }) {
 
+  const desktopWidth = '85%';
+  const fullWidth = '95%';
+  const responsiveWidth = [fullWidth, fullWidth, desktopWidth, desktopWidth];
+
   const splitColumns = '60% 40%';
   const oneColumn = '100%';
   const responsiveColumns = [oneColumn, oneColumn, oneColumn, splitColumns];
@@ -20,7 +24,7 @@ export default function Home({ builds, users, tags }) {
       <Grid 
         margin="auto"
         templateColumns={responsiveColumns} 
-        width="80%"
+        width={responsiveWidth}
       >
         <Box>
           <Builds builds={builds} tags={tags} />

@@ -31,6 +31,9 @@ function BuildCard({ build, tagNames }) {
   const mobileColumns = '10% 75% 15%';
   const responsiveCardColumns = [mobileColumns, mobileColumns, mobileColumns, desktopColumns];
 
+  const headerFontSize = ['md', 'md', 'lg', 'xl'];
+  const bodyFontSize = ['xs', 'xs', 'sm', 'sm'];
+
   return (
     <Box 
       borderWidth="1px" 
@@ -59,15 +62,15 @@ function BuildCard({ build, tagNames }) {
               ))}
             </Flex>
 
-            <Box as="h3" fontSize="xl" fontWeight="bold">
+            <Box as="h3" fontSize={headerFontSize} fontWeight="bold">
               {build.name}
             </Box>
 
-            <Box fontSize="sm" color="gray.500">
+            <Box as="h2" fontSize={bodyFontSize} color="gray.500">
               {build.builder}
             </Box>
 
-            <Box>
+            <Box as="p" fontSize={bodyFontSize}>
               {build.description}  
             </Box>
 
@@ -94,7 +97,11 @@ function BuildCard({ build, tagNames }) {
               icon="add"
               onClick={() => toast(toastOptions)}
             />
-            <Text fontSize="xs" alignSelf="center">
+            <Text 
+              fontSize="xs"
+              alignSelf="center"
+              display={['none', 'block', 'block', 'block']}
+            >
               Save
             </Text>
           </Stack>
