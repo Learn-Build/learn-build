@@ -1,7 +1,10 @@
 import { Box, Flex, Heading, Image } from "@chakra-ui/core";
 import NavigationBar from "../../components/NavigationBar";
 import Builds from "../../components/Builds";
+import TogglableButton from "../../components/TogglableButton";
 import { fetchBuilds, fetchTags } from "../../clients";
+
+// TODO(Renzo): Determine if user is following tag initially
 
 export default function Tag({ builds, tags, id, name, description, imageUrl }) {
   return (
@@ -37,6 +40,16 @@ export default function Tag({ builds, tags, id, name, description, imageUrl }) {
             >
               {description}
             </Heading>
+
+            <TogglableButton 
+              enabledText={'Following'}
+              disabledText={'Follow'}
+              initialState={false}
+              size="lg"
+              fontSize="lg"
+              variantColor="white"
+              props={{ mt: 8 }}
+            />
           </Flex>
           <Box
             width={['95%', '70%']}
