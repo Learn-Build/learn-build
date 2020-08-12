@@ -1,14 +1,19 @@
-import Link from "next/link";
-import { Box, Grid, Heading, List, ListItem } from "@chakra-ui/core";
+import { Box } from "@chakra-ui/core";
 import NavigationBar from "../components/NavigationBar";
 import Hero from "../components/Hero";
 import Container from "../components/Container";
 import Builds from "../components/Builds";
-import { fetchBuilds, fetchUsers, fetchTags } from "../clients";
+import Tags from "../components/Tags";
+import { fetchBuilds, fetchTags } from "../clients";
 
-// TODO(Renzo): Create components for displaying builds and users
+// TODO(Renzo): Add footer and another image somewhere
 
-export default function Home({ builds, users, tags }) {
+export default function Home({ builds, tags }) {
+
+  // TODO(Renzo): Limit the amount of builds shown
+  // TODO(Renzo): Limit the amount of tags shown - trending tags?
+  const tagsToShow = 5;
+
   return (
     <div>
       <NavigationBar />
@@ -18,20 +23,19 @@ export default function Home({ builds, users, tags }) {
       />
       <Container>
         <Box>
-          <Builds builds={builds} tags={tags} />
+          <Builds
+            header={'Popular Builds'}
+            builds={builds}
+            tags={tags}
+          />
         </Box>
         
         <Box>
-          <Heading as="h2">Users</Heading>
-          <List styleType="none">
-            {users.map((user) => (
-              <ListItem key={user.id} textAlign="left">
-                <Link href="/[user]" as={`/${user.name}`}>
-                  <a>{user.name}</a>
-                </Link>
-              </ListItem>
-            ))}
-          </List>
+          <Tags
+            header={'Trending Tags'}
+            tags={tags.slice(0, tagsToShow)}
+            showDescription={false}
+          />
         </Box>
       </Container>
     </div>
@@ -43,7 +47,6 @@ export async function getStaticProps() {
   return {
     props: {
       builds: await fetchBuilds(),
-      users: await fetchUsers(),
       tags: await fetchTags()
     },
   };
