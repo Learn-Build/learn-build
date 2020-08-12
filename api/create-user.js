@@ -1,4 +1,4 @@
-const User = require("../models/User");
+const User = require('../models/User');
 
 module.exports = (req, res) => {
   const userData = req.body;

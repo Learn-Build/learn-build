@@ -1,7 +1,8 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import connect from '../db/connect';
 
-import connect from "../db/connect";
+const mongoose = require('mongoose');
+
+const { Schema } = mongoose;
 
 const UserSchema = new Schema({
   email: {
@@ -22,4 +23,4 @@ const UserSchema = new Schema({
   },
 });
 
-module.exports = connect().model("User", UserSchema);
+module.exports = connect().model('User', UserSchema);

@@ -1,8 +1,7 @@
-import ResponsiveHeading from "./ResponsiveHeading";
-import BuildCard from "./BuildCard";
+import ResponsiveHeading from './ResponsiveHeading';
+import BuildCard from './BuildCard';
 
-function Builds({ builds, tags, header="Builds" }) {
-
+function Builds({ builds, tags, header = 'Builds' }) {
   // FIXME(Renzo): change this when data fetching actually pulls data?
   function getTagNames(build, tags) {
     const { tagIds } = build;
@@ -15,14 +14,12 @@ function Builds({ builds, tags, header="Builds" }) {
 
   return (
     <div>
-      <ResponsiveHeading>
-        {header}
-      </ResponsiveHeading>
+      <ResponsiveHeading>{header}</ResponsiveHeading>
       {builds.map((build) => (
-        <BuildCard 
-          key={build.id} 
-          build={build} 
-          tagNames={getTagNames(build, tags)} 
+        <BuildCard
+          key={build.id}
+          build={build}
+          tagNames={getTagNames(build, tags)}
         />
       ))}
     </div>

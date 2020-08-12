@@ -1,7 +1,12 @@
 import { Grid } from '@chakra-ui/core';
 
-function Container({ desktopWidth=85, mobileWidth=95, leftColumn=60, rightColumn=40, children }) {
-
+function Container({
+  desktopWidth = 85,
+  mobileWidth = 95,
+  leftColumn = 60,
+  rightColumn = 40,
+  children,
+}) {
   const desktop = `${desktopWidth}%`;
   const mobile = `${mobileWidth}%`;
   const responsiveWidth = [mobile, mobile, desktop, desktop];
@@ -11,9 +16,9 @@ function Container({ desktopWidth=85, mobileWidth=95, leftColumn=60, rightColumn
   const responsiveColumns = [oneColumn, oneColumn, oneColumn, splitColumns];
 
   return (
-    <Grid 
+    <Grid
       margin="auto"
-      templateColumns={responsiveColumns} 
+      templateColumns={responsiveColumns}
       width={responsiveWidth}
     >
       {children}
