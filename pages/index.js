@@ -20,7 +20,10 @@ export default function Home({ builds, users, tags }) {
   return (
     <div>
       <NavigationBar />
-      <Hero heroText={'Self-teaching done right.'} />
+      <Hero 
+        headerText={'Self-teaching done right.'}
+        subText={'Start building your way to learn.'}  
+      />
       <Grid 
         margin="auto"
         templateColumns={responsiveColumns} 

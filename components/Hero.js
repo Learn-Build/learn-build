@@ -1,6 +1,6 @@
 import { Box, Heading, Grid, Image } from "@chakra-ui/core";
 
-function Hero({ heroText }) {
+function Hero({ headerText, subText }) {
 
   const horizontalGrid = '45% 55%';
   const stackGrid = '100%'
@@ -35,7 +35,7 @@ function Hero({ heroText }) {
           pt={[pvSm, pvSm, 0, 0]}
           pb={[0, 0, 0, 0]}
         >
-          {heroText}
+          {headerText}
         </Heading>
         <Heading
           as="h2"
@@ -46,7 +46,7 @@ function Hero({ heroText }) {
           pt={[pvSm, pvSm, 2, 2]}
           pb={[pvLg, pvLg, 0, 0]}
         >
-          Start building your way to learn.
+          {subText}
         </Heading>
       </Box>
       

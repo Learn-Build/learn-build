@@ -12,12 +12,10 @@ import {
 import LinkWrapper from "./LinkWrapper";
 import CardComponent from "./CardComponent";
 
-// TODO(Renzo): Add better image handling
-
 function BuildCard({ build, tagNames }) {
 
   const toast = useToast();
-  const toastOptions = {
+  const savedToastOptions = {
     title: 'Build saved!',
     description: 'You can find it in your saved builds.',
     status: 'success',
@@ -39,6 +37,7 @@ function BuildCard({ build, tagNames }) {
     <CardComponent>
       <Grid templateColumns={responsiveCardColumns}>
         <LinkWrapper href={linkHref} as={linkAs}>
+          {/* FIXME: Needs to be vertically centered but not sure how? */}
           <Image
             src={build.imageUrl}
             fallbackSrc="assets/learn_build_logo.svg" 
@@ -52,7 +51,7 @@ function BuildCard({ build, tagNames }) {
           <Box>
             <Flex flexDir="row" wrap="wrap">
               {tagNames.map((tag) => (
-                <Badge mr={1} mt={1}>{tag}</Badge>
+                <Badge key={tag} mr={1} mt={1}>{tag}</Badge>
               ))}
             </Flex>
 
@@ -89,7 +88,7 @@ function BuildCard({ build, tagNames }) {
               isRound
               size="xs"
               icon="add"
-              onClick={() => toast(toastOptions)}
+              onClick={() => toast(savedToastOptions)}
             />
             <Text 
               fontSize="xs"
