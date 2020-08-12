@@ -44,10 +44,10 @@ export default function Tag({ builds, tags, id, name, description, imageUrl }) {
             <TogglableButton 
               enabledText={'Following'}
               disabledText={'Follow'}
+              disabledVariant="outilne"
               initialState={false}
               size="lg"
-              fontSize="lg"
-              variantColor="white"
+              fontSize="xl"
               props={{ mt: 8 }}
             />
           </Flex>

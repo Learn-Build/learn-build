@@ -4,6 +4,8 @@ import { Button } from "@chakra-ui/core";
 function TogglableButton({
   enabledText="Following",
   disabledText="Follow",
+  enabledVariant="solid",
+  disabledVariant="outline",
   initialState=false,
   size=['xs', 'xs', 'sm', 'md'],
   fontSize=['xs', 'sm'],
@@ -21,7 +23,7 @@ function TogglableButton({
         setEnabled(!enabled);
         onClick();
       }}
-      variant={enabled ? 'solid' : 'outline'}
+      variant={enabled ? enabledVariant : disabledVariant}
       variantColor={variantColor}
       size={size}
       fontSize={fontSize}
