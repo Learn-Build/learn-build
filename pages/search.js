@@ -1,15 +1,17 @@
 import { useState } from "react";
-import { Icon, Input, InputGroup, Box, InputLeftElement } from "@chakra-ui/core";
+import { Icon, Input, InputGroup, Box, InputLeftElement, Stack } from "@chakra-ui/core";
 import NavigationBar from "../components/NavigationBar";
 import Container from "../components/Container";
 import CardComponent from "../components/CardComponent";
 import ResponsiveHeading from "../components/ResponsiveHeading";
 import Builds from "../components/Builds";
+import TagFilterButton from "../components/TagFilterButton";
 import { fetchBuilds, fetchTags } from "../clients"
 
 export default function Search({ builds, tags }) {
   const [nameQuery, setNameQuery] = useState('');
   const [builderQuery, setBuilderQuery] = useState('');
+  const [tagFilters, setTagFilters] = useState([]);
 
   function handleNameQueryChange(event) {
     setNameQuery(event.target.value);
@@ -19,12 +21,29 @@ export default function Search({ builds, tags }) {
     setBuilderQuery(event.target.value);
   }
 
+  function handleTagFilterChange(tagId) {
+    if (tagFilters.includes(tagId)) {
+      setTagFilters(tagFilters.filter((tagFilter) => (
+        tagFilter !== tagId
+      )));
+    } else {
+      setTagFilters([...tagFilters, tagId]);
+    }
+    console.log(tagFilters);
+  }
+
   function filterBuilds() {
-    return builds.filter(build => (
+    return builds.filter((build) => (
       build.name.toLowerCase().includes(nameQuery)
-    )).filter(build => (
+    )).filter((build) => (
       build.builder.toLowerCase().includes(builderQuery)
-    ));
+    )).filter((build) => {
+      for (let tag of tagFilters) {
+        if (!build.tagIds.some((tagId) => (tagId === tag)))
+          return false;
+      }
+      return true;
+    });
   }
 
   return (
@@ -56,8 +75,17 @@ export default function Search({ builds, tags }) {
               as={'h4'}
               size={'md'}
             >
-              Filter by topic
+              Filter by tag
             </ResponsiveHeading>
+            <Stack>
+              {tags.map(tag => (
+                <TagFilterButton
+                  key={tag.id} 
+                  tag={tag}
+                  handleChange={handleTagFilterChange}
+                />
+              ))}
+            </Stack>
             
           </CardComponent>
         </Box>
