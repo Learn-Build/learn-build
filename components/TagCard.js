@@ -1,18 +1,19 @@
 import { Box } from "@chakra-ui/core";
 import CardComponent from "./CardComponent";
-import Link from "next/link";
+import LinkWrapper from "./LinkWrapper";
 
 function TagCard({ tag }) {
   return (
-    <CardComponent>
-      <Link href="/tags/[tag]" as={`/tags/${tag.name}`}>
-        <a>
-          <Box as="h1">
-            {tag.name}
-          </Box>
-        </a>
-      </Link>
-    </CardComponent>
+    <LinkWrapper href="/tags/[tag]" as={`/tags/${tag.name}`}>
+      <CardComponent>
+        <Box as="h1" fontWeight="normal">
+          {tag.name}
+        </Box>
+        <Box as="h2" fontWeight="light">
+          {tag.description}
+        </Box>
+      </CardComponent>
+    </LinkWrapper>
   );
 }
 
