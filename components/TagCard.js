@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { Box, Grid, Text, Button, useTheme } from "@chakra-ui/core";
+import { Box, Grid, Text, Button } from "@chakra-ui/core";
 import CardComponent from "./CardComponent";
 import LinkWrapper from "./LinkWrapper";
 
 // TODO(Renzo): Add logic for checking if user already follows tag
 
-function TagCard({ tag }) {
-  const theme = useTheme();
+function TagCard({ tag, showDescription=true }) {
   const [following, setFollowing] = useState(false);
 
   const desktopColumns = '80% 20%';
@@ -27,6 +26,7 @@ function TagCard({ tag }) {
               {tag.name}
             </Text>
 
+            {showDescription && (
             <Text 
               as="h2" 
               fontWeight="normal"
@@ -34,7 +34,7 @@ function TagCard({ tag }) {
               isTruncated
             >
               {tag.description}
-            </Text>
+            </Text>)}
           </Box>
         </LinkWrapper>
 
