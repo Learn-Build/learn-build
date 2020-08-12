@@ -42,7 +42,7 @@ function BuildCard({ build, tagNames }) {
           {/* FIXME: Needs to be vertically centered but not sure how? */}
           <Image
             src={build.imageUrl}
-            fallbackSrc="assets/learn_build_logo.svg" 
+            fallbackSrc="/assets/learn_build_logo.svg" 
             alignSelf="center"
             my="20%"
             pr={3}
