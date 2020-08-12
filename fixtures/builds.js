@@ -38,6 +38,7 @@ export const BUILDS = [
       "The best free video tutorials on getting into UI/UX design as a software engineer.",
     builder: "John Doe",
     tagIds: [
+      "7",
       "10",
       "11",
       "12"
