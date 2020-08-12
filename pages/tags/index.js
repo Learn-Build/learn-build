@@ -1,4 +1,4 @@
-import { Heading, Box } from "@chakra-ui/core";
+import { Box, Image } from "@chakra-ui/core";
 import Container from "../../components/Container";
 import ResponsiveHeading from "../../components/ResponsiveHeading";
 import NavigationBar from "../../components/NavigationBar";
@@ -11,11 +11,16 @@ export default function Tags({ tags }) {
       <NavigationBar />
       <Container desktopWidth={70}>
         <Box>
-        <ResponsiveHeading>Tags</ResponsiveHeading>
+          <ResponsiveHeading>Tags</ResponsiveHeading>
           {tags.map((tag) => (
             <TagCard tag={tag} key={tag.id} />
           ))}
         </Box>
+        <Image
+          src="/assets/checking_list.jpg"
+          alt="Student checking off list"
+          mt={35}
+        />
       </Container>
     </div>
   );

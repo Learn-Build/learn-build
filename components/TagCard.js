@@ -1,9 +1,12 @@
 import { useState } from 'react';
-import { Box, Grid, Text, Button } from "@chakra-ui/core";
+import { Box, Grid, Text, Button, useTheme } from "@chakra-ui/core";
 import CardComponent from "./CardComponent";
 import LinkWrapper from "./LinkWrapper";
 
+// TODO(Renzo): Add logic for checking if user already follows tag
+
 function TagCard({ tag }) {
+  const theme = useTheme();
   const [following, setFollowing] = useState(false);
 
   const desktopColumns = '80% 20%';
@@ -34,15 +37,17 @@ function TagCard({ tag }) {
             </Text>
           </Box>
         </LinkWrapper>
-          <Button
-            rightIcon={following ? 'check' : 'small-add'}
-            onClick={() => setFollowing(!following)}
-            variant={following ? 'solid' : 'outline'}
-            variantColor="pink"
-            size={['xs', 'xs', 'sm', 'md']}
-          >
-            {following ? 'Following' : 'Follow'}
-          </Button>
+
+        <Button
+          rightIcon={following ? 'check' : 'small-add'}
+          onClick={() => setFollowing(!following)}
+          variant={following ? 'solid' : 'outline'}
+          variantColor="pink"
+          size={['xs', 'xs', 'sm', 'md']}
+          fontSize={['xs', 'sm']}
+        >
+          {following ? 'Following' : 'Follow'}
+        </Button>
       </Grid>
     </CardComponent>
   );
