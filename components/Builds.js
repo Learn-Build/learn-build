@@ -1,4 +1,5 @@
 import { Heading } from "@chakra-ui/core";
+import ResponsiveHeading from "./ResponsiveHeading";
 import BuildCard from "./BuildCard";
 
 function Builds({ builds, tags }) {
@@ -13,17 +14,11 @@ function Builds({ builds, tags }) {
     return tagNames;
   }
 
-  const responsiveAlign = ['center', 'center', 'center', 'left'];
-
   return (
     <div>
-      <Heading 
-        as="h2"
-        mb={2}
-        textAlign={responsiveAlign}
-      >
+      <ResponsiveHeading>
         Builds
-      </Heading>
+      </ResponsiveHeading>
       {builds.map((build) => (
         <BuildCard 
           key={build.id} 

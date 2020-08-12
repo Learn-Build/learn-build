@@ -10,13 +10,12 @@ import {
   useToast
 } from "@chakra-ui/core";
 import LinkWrapper from "./LinkWrapper";
-
-// TODO(Renzo): Add better image handling
+import CardComponent from "./CardComponent";
 
 function BuildCard({ build, tagNames }) {
 
   const toast = useToast();
-  const toastOptions = {
+  const savedToastOptions = {
     title: 'Build saved!',
     description: 'You can find it in your saved builds.',
     status: 'success',
@@ -35,16 +34,10 @@ function BuildCard({ build, tagNames }) {
   const bodyFontSize = ['xs', 'xs', 'sm', 'sm'];
 
   return (
-    <Box 
-      borderWidth="1px" 
-      rounded="lg" 
-      p={[3, 3, 3, 5]} 
-      my={5}
-      mr={[0, 0, 0, 5]}
-      boxShadow="md"
-    >
+    <CardComponent>
       <Grid templateColumns={responsiveCardColumns}>
         <LinkWrapper href={linkHref} as={linkAs}>
+          {/* FIXME: Needs to be vertically centered but not sure how? */}
           <Image
             src={build.imageUrl}
             fallbackSrc="assets/learn_build_logo.svg" 
@@ -54,11 +47,12 @@ function BuildCard({ build, tagNames }) {
           />
         </LinkWrapper>
 
+        {/* TODO(Renzo): Make tag badges link to tag page */}
         <LinkWrapper href={linkHref} as={linkAs}>
           <Box>
             <Flex flexDir="row" wrap="wrap">
               {tagNames.map((tag) => (
-                <Badge mr={1} mt={1}>{tag}</Badge>
+                <Badge key={tag} mr={1} mt={1}>{tag}</Badge>
               ))}
             </Flex>
 
@@ -95,7 +89,7 @@ function BuildCard({ build, tagNames }) {
               isRound
               size="xs"
               icon="add"
-              onClick={() => toast(toastOptions)}
+              onClick={() => toast(savedToastOptions)}
             />
             <Text 
               fontSize="xs"
@@ -107,7 +101,7 @@ function BuildCard({ build, tagNames }) {
           </Stack>
         </Stack>  
       </Grid>
-    </Box>
+    </CardComponent>
   );
 }
 

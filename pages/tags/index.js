@@ -1,24 +1,26 @@
-import Link from "next/link";
-import { Heading, List, ListItem } from "@chakra-ui/core";
+import { Box, Image } from "@chakra-ui/core";
 import Container from "../../components/Container";
+import ResponsiveHeading from "../../components/ResponsiveHeading";
 import NavigationBar from "../../components/NavigationBar";
+import TagCard from "../../components/TagCard";
 import { fetchTags } from "../../clients";
 
 export default function Tags({ tags }) {
   return (
     <div>
       <NavigationBar />
-      <Container>
-        <Heading as="h2">Tags</Heading>
-        <List styleType="none">
+      <Container desktopWidth={70}>
+        <Box>
+          <ResponsiveHeading>Tags</ResponsiveHeading>
           {tags.map((tag) => (
-            <ListItem key={tag.id} textAlign="center">
-              <Link href="/tags/[tag]" as={`/tags/${tag.name}`}>
-                <a>{tag.name}</a>
-              </Link>
-            </ListItem>
+            <TagCard tag={tag} key={tag.id} />
           ))}
-        </List>
+        </Box>
+        <Image
+          src="/assets/checking_list.jpg"
+          alt="Student checking off list"
+          mt={35}
+        />
       </Container>
     </div>
   );
