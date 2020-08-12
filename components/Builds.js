@@ -1,8 +1,7 @@
-import { Heading } from "@chakra-ui/core";
 import ResponsiveHeading from "./ResponsiveHeading";
 import BuildCard from "./BuildCard";
 
-function Builds({ builds, tags }) {
+function Builds({ builds, tags, header="Builds" }) {
 
   // FIXME(Renzo): change this when data fetching actually pulls data?
   function getTagNames(build, tags) {
@@ -17,7 +16,7 @@ function Builds({ builds, tags }) {
   return (
     <div>
       <ResponsiveHeading>
-        Builds
+        {header}
       </ResponsiveHeading>
       {builds.map((build) => (
         <BuildCard 
