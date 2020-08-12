@@ -12,6 +12,8 @@ import {
 import LinkWrapper from "./LinkWrapper";
 import CardComponent from "./CardComponent";
 
+// TODO(Renzo): Add state to card for interacting with buttons
+
 function BuildCard({ build, tagNames }) {
 
   const toast = useToast();
@@ -59,7 +61,8 @@ function BuildCard({ build, tagNames }) {
             <Box as="h3" fontSize={headerFontSize} fontWeight="bold">
               {build.name}
             </Box>
-
+            
+            {/* TODO(Renzo): Make username link to user's page */}
             <Box as="h2" fontSize={bodyFontSize} color="gray.500">
               {build.builder}
             </Box>
