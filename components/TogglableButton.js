@@ -1,19 +1,18 @@
-import { useState } from "react";
-import { Button } from "@chakra-ui/core";
+import { useState } from 'react';
+import { Button } from '@chakra-ui/core';
 
 function TogglableButton({
-  enabledText="Following",
-  disabledText="Follow",
-  enabledVariant="solid",
-  disabledVariant="outline",
-  initialState=false,
-  size=['xs', 'xs', 'sm', 'md'],
-  fontSize=['xs', 'sm'],
-  variantColor="pink",
+  enabledText = 'Following',
+  disabledText = 'Follow',
+  enabledVariant = 'solid',
+  disabledVariant = 'outline',
+  initialState = false,
+  size = ['xs', 'xs', 'sm', 'md'],
+  fontSize = ['xs', 'sm'],
+  variantColor = 'pink',
   onClick = () => {},
-  props
+  props,
 }) {
-
   const [enabled, setEnabled] = useState(initialState);
 
   return (

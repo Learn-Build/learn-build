@@ -1,9 +1,9 @@
-import { Box, Heading, Grid, Image } from "@chakra-ui/core";
+import React from 'react';
+import { Box, Heading, Grid, Image } from '@chakra-ui/core';
 
 function Hero({ headerText, subText }) {
-
   const horizontalGrid = '45% 55%';
-  const stackGrid = '100%'
+  const stackGrid = '100%';
   const responsiveGrid = [stackGrid, stackGrid, horizontalGrid, horizontalGrid];
 
   const h1DesktopFont = '6vw';
@@ -23,12 +23,12 @@ function Hero({ headerText, subText }) {
 
   return (
     <Grid templateColumns={responsiveGrid}>
-      <Box 
+      <Box
         alignSelf="center"
         textAlign={['center', 'center', 'right', 'right']}
       >
-        <Heading 
-          as="h1" 
+        <Heading
+          as="h1"
           fontSize={h1FontSize}
           pl={[phSm, phSm, phLg, phLg]}
           pr={[phSm, phSm, 0, 0]}
@@ -49,10 +49,11 @@ function Hero({ headerText, subText }) {
           {subText}
         </Heading>
       </Box>
-      
-      <Image 
-        pr={30} 
-        src="/assets/student_studying_mini.jpg" alt="Student learning online"
+
+      <Image
+        pr={30}
+        src="/assets/student_studying_mini.jpg"
+        alt="Student learning online"
         htmlWidth={4735}
         htmlHeight={3757}
       />

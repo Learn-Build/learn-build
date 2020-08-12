@@ -3,7 +3,7 @@ import { Box, Button } from '@chakra-ui/core';
 function NavigationButton({ show, children }) {
   return (
     <Box
-      display={{ sm: show ? "block" : "none", md: "block" }}
+      display={{ sm: show ? 'block' : 'none', md: 'block' }}
       mt={{ base: 4, md: 0 }}
       mr={2}
     >

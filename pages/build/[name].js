@@ -1,7 +1,7 @@
-import { Heading, Text } from "@chakra-ui/core";
-import Container from "../../components/Container";
-import NavigationBar from "../../components/NavigationBar";
-import { fetchBuilds } from "../../clients";
+import { Heading, Text } from '@chakra-ui/core';
+import Container from '../../components/Container';
+import NavigationBar from '../../components/NavigationBar';
+import { fetchBuilds } from '../../clients';
 
 export default function Build({ id, name, description }) {
   return (

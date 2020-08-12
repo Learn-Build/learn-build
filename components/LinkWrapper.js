@@ -1,11 +1,9 @@
-import Link from "next/link";
+import Link from 'next/link';
 
 function LinkWrapper({ href, as, children }) {
   return (
     <Link href={href} as={as}>
-      <a>
-        {children}
-      </a>
+      <a>{children}</a>
     </Link>
   );
 }

@@ -1,11 +1,11 @@
-import { useState } from "react";
-import { Button } from "@chakra-ui/core";
+import { useState } from 'react';
+import { Button } from '@chakra-ui/core';
 
 function TagFilterButton({ tag, handleChange }) {
   const [selected, setSelected] = useState(false);
 
   return (
-    <Button 
+    <Button
       key={tag.id}
       onClick={() => {
         setSelected(!selected);

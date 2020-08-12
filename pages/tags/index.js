@@ -1,8 +1,9 @@
-import { Box, Image } from "@chakra-ui/core";
-import Container from "../../components/Container";
-import NavigationBar from "../../components/NavigationBar";
-import Tags from "../../components/Tags";
-import { fetchTags } from "../../clients";
+import React from 'react';
+import { Box, Image } from '@chakra-ui/core';
+import Container from '../../components/Container';
+import NavigationBar from '../../components/NavigationBar';
+import Tags from '../../components/Tags';
+import { fetchTags } from '../../clients';
 
 export default function TagsPage({ tags }) {
   return (

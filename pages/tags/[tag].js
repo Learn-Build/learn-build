@@ -1,8 +1,9 @@
-import { Box, Flex, Heading, Image } from "@chakra-ui/core";
-import NavigationBar from "../../components/NavigationBar";
-import Builds from "../../components/Builds";
-import TogglableButton from "../../components/TogglableButton";
-import { fetchBuilds, fetchTags } from "../../clients";
+import React from 'react';
+import { Box, Flex, Heading, Image } from '@chakra-ui/core';
+import NavigationBar from '../../components/NavigationBar';
+import Builds from '../../components/Builds';
+import TogglableButton from '../../components/TogglableButton';
+import { fetchBuilds, fetchTags } from '../../clients';
 
 // TODO(Renzo): Determine if user is following tag initially
 
@@ -10,68 +11,54 @@ export default function Tag({ builds, tags, id, name, description, imageUrl }) {
   return (
     <div>
       <NavigationBar />
-        <Flex flexDir="column" alignItems="center">
-          <Flex 
-            bg="pink.700"
-            textAlign="center"
-            width="100%"
-            color="white"
-            py={40}
-            px={3}
-            flexDir="column"
-            alignItems="center"
-          >
-            <Image 
-              src={imageUrl}
-              fallbackSrc="/assets/learn_build_logo.svg"
-              alignSelf="center"
-            />
-            <Heading 
-              as="h1" 
-              fontWeight="700" 
-              fontSize={['50px', '60px']}
-            >
-              {name}
-            </Heading>
+      <Flex flexDir="column" alignItems="center">
+        <Flex
+          bg="pink.700"
+          textAlign="center"
+          width="100%"
+          color="white"
+          py={40}
+          px={3}
+          flexDir="column"
+          alignItems="center"
+        >
+          <Image
+            src={imageUrl}
+            fallbackSrc="/assets/learn_build_logo.svg"
+            alignSelf="center"
+          />
+          <Heading as="h1" fontWeight="700" fontSize={['50px', '60px']}>
+            {name}
+          </Heading>
 
-            <Heading 
-              as="h2" 
-              fontWeight="light"
-            >
-              {description}
-            </Heading>
+          <Heading as="h2" fontWeight="light">
+            {description}
+          </Heading>
 
-            <TogglableButton 
-              enabledText={'Following'}
-              disabledText={'Follow'}
-              disabledVariant="outilne"
-              initialState={false}
-              size="lg"
-              fontSize="xl"
-              props={{ mt: 8 }}
-            />
-          </Flex>
-          <Box
-            width={['95%', '70%']}
-            my={5}
-          >
-            {builds.length === 0 && (
-            <Heading
-              as="h3"
-              fontWeight="light"
-              textAlign="center"
-              my={10}
-            >
-              Nothing yet. Be the first builder for this tag!
-            </Heading>)}
-
-            <Builds
-              builds={builds}
-              tags={tags}
-              header={builds.length > 0 ? `Builds for ${name}` : ''}
-            />
-          </Box>
+          <TogglableButton
+            enabledText="Following"
+            disabledText="Follow"
+            disabledVariant="outilne"
+            initialState={false}
+            size="lg"
+            fontSize="xl"
+            props={{ mt: 8 }}
+          />
         </Flex>
+        <Box width={['95%', '70%']} my={5}>
+          {builds.length === 0 && (
+            <Heading as="h3" fontWeight="light" textAlign="center" my={10}>
+              Nothing yet. Be the first builder for this tag!
+            </Heading>
+          )}
+
+          <Builds
+            builds={builds}
+            tags={tags}
+            header={builds.length > 0 ? `Builds for ${name}` : ''}
+          />
+        </Box>
+      </Flex>
     </div>
   );
 }
@@ -92,17 +79,17 @@ export async function getStaticProps(context) {
 
   // Fetch and filter builds with tag
   const builds = await fetchBuilds();
-  const filteredBuilds = builds.filter((build) => (
+  const filteredBuilds = builds.filter((build) =>
     build.tagIds.some((tagId) => tagId === id)
-  ));
-  
-  return { 
+  );
+
+  return {
     props: {
       builds: filteredBuilds,
       tags,
       id,
       name,
       description,
-    }
+    },
   };
 }
