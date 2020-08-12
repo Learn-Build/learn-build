@@ -47,6 +47,7 @@ function BuildCard({ build, tagNames }) {
           />
         </LinkWrapper>
 
+        {/* TODO(Renzo): Make tag badges link to tag page */}
         <LinkWrapper href={linkHref} as={linkAs}>
           <Box>
             <Flex flexDir="row" wrap="wrap">

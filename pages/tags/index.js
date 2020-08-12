@@ -11,14 +11,10 @@ export default function Tags({ tags }) {
       <NavigationBar />
       <Container desktopWidth={70}>
         <Box>
-        <Heading as="h2">Tags</Heading>
+        <Heading as="h1" mt={4}>Tags</Heading>
           <List styleType="none">
             {tags.map((tag) => (
-              <ListItem key={tag.id}>
-                <Link href="/tags/[tag]" as={`/tags/${tag.name}`}>
-                  <a>{tag.name}</a>
-                </Link>
-              </ListItem>
+              <TagCard tag={tag} key={tag.id} />
             ))}
           </List>
         </Box>
