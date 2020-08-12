@@ -1,4 +1,5 @@
-import { Heading, Box } from "@chakra-ui/core";
+import { useState } from "react";
+import { Icon, Input, InputGroup, Box, InputLeftElement } from "@chakra-ui/core";
 import NavigationBar from "../components/NavigationBar";
 import Container from "../components/Container";
 import ResponsiveHeading from "../components/ResponsiveHeading";
@@ -6,6 +7,18 @@ import Builds from "../components/Builds";
 import { fetchBuilds, fetchTags } from "../clients"
 
 export default function Search({ builds, tags }) {
+  const [query, setQuery] = useState('');
+
+  function handleQueryChange(event) {
+    setQuery(event.target.value);
+  }
+
+  function filterBuilds() {
+    return builds.filter(build => (
+      build.name.toLowerCase().includes(query)
+    ));
+  }
+
   return (
     <div>
       <NavigationBar />
@@ -16,7 +29,16 @@ export default function Search({ builds, tags }) {
 
         <Box>
           <ResponsiveHeading>Search</ResponsiveHeading>
-          <Builds builds={builds} tags={tags} header={''} />
+          <InputGroup>
+            <InputLeftElement children={<Icon name="search" color="gray.400" />} />
+            <Input
+              value={query}
+              placeholder="Find a build to learn..."
+              size="lg"
+              onChange={handleQueryChange}  
+            />
+          </InputGroup>
+          <Builds builds={filterBuilds()} tags={tags} header={''} />
         </Box>
       </Container>
     </div>
