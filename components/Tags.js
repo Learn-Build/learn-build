@@ -1,6 +1,9 @@
+import React from 'react';
 import { Box } from '@chakra-ui/core';
+import PropTypes from 'prop-types';
 import ResponsiveHeading from './ResponsiveHeading';
 import TagCard from './TagCard';
+import { TagListProps } from '../constants/propTypes';
 
 function Tags({ tags, header = 'Tags', showDescription = true }) {
   return (
@@ -12,5 +15,16 @@ function Tags({ tags, header = 'Tags', showDescription = true }) {
     </Box>
   );
 }
+
+Tags.propTypes = {
+  tags: TagListProps.isRequired,
+  header: PropTypes.string,
+  showDescription: PropTypes.bool,
+};
+
+Tags.defaultProps = {
+  header: 'Tags',
+  showDescription: true,
+};
 
 export default Tags;

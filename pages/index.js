@@ -1,3 +1,5 @@
+// FIXME(Renzo): Eslint and prettier are disagreeing so this will have to do
+/* eslint-disable comma-dangle */
 import React from 'react';
 import { Box } from '@chakra-ui/core';
 import NavigationBar from '../components/NavigationBar';
@@ -6,6 +8,7 @@ import Container from '../components/Container';
 import Builds from '../components/Builds';
 import Tags from '../components/Tags';
 import { fetchBuilds, fetchTags } from '../clients';
+import { BuildListProps, TagListProps } from '../constants/propTypes';
 
 // TODO(Renzo): Add footer and another image somewhere
 
@@ -37,6 +40,16 @@ export default function Home({ builds, tags }) {
     </div>
   );
 }
+
+Home.propTypes = {
+  builds: BuildListProps,
+  tags: TagListProps,
+};
+
+Home.defaultProps = {
+  builds: [],
+  tags: [],
+};
 
 // TODO(Renzo): handle promises once data fetching returns actual data
 export async function getStaticProps() {

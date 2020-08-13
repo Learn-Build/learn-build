@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Heading, Grid, Image } from '@chakra-ui/core';
+import PropTypes from 'prop-types';
 
 function Hero({ headerText, subText }) {
   const horizontalGrid = '45% 55%';
@@ -60,5 +61,10 @@ function Hero({ headerText, subText }) {
     </Grid>
   );
 }
+
+Hero.propTypes = {
+  headerText: PropTypes.string.isRequired,
+  subText: PropTypes.string.isRequired,
+};
 
 export default Hero;

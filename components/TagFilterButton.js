@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Button } from '@chakra-ui/core';
+import PropTypes from 'prop-types';
+import { TagProps } from '../constants/propTypes';
 
 function TagFilterButton({ tag, handleChange }) {
   const [selected, setSelected] = useState(false);
@@ -19,5 +21,10 @@ function TagFilterButton({ tag, handleChange }) {
     </Button>
   );
 }
+
+TagFilterButton.propTypes = {
+  tag: TagProps.isRequired,
+  handleChange: PropTypes.func.isRequired,
+};
 
 export default TagFilterButton;

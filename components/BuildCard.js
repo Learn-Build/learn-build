@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Badge,
   Box,
@@ -9,8 +10,10 @@ import {
   Text,
   useToast,
 } from '@chakra-ui/core';
+import PropTypes from 'prop-types';
 import LinkWrapper from './LinkWrapper';
 import CardComponent from './CardComponent';
+import { BuildProps } from '../constants/propTypes';
 
 // TODO(Renzo): Add state to card for interacting with buttons
 
@@ -19,6 +22,14 @@ function BuildCard({ build, tagNames }) {
   const savedToastOptions = {
     title: 'Build saved!',
     description: 'You can find it in your saved builds.',
+    status: 'success',
+    duration: 3000,
+    isClosable: true,
+  };
+
+  const favoritedToastOptions = {
+    title: 'Build favorited!',
+    description: 'You can find it in your favorites',
     status: 'success',
     duration: 3000,
     isClosable: true,
@@ -85,7 +96,7 @@ function BuildCard({ build, tagNames }) {
               isRound
               size="xs"
               icon="star"
-              onClick={() => console.log('Favorited')}
+              onClick={() => toast(favoritedToastOptions)}
             />
             <Text fontSize="xs" alignSelf="center">
               {build.likeCount}
@@ -112,5 +123,15 @@ function BuildCard({ build, tagNames }) {
     </CardComponent>
   );
 }
+
+BuildCard.propTypes = {
+  build: BuildProps,
+  tagNames: PropTypes.arrayOf(PropTypes.string),
+};
+
+BuildCard.defaultProps = {
+  build: {},
+  tagNames: [],
+};
 
 export default BuildCard;

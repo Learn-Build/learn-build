@@ -42,7 +42,7 @@ export default function Tag({ builds, tags, id, name, description, imageUrl }) {
             initialState={false}
             size="lg"
             fontSize="xl"
-            props={{ mt: 8 }}
+            my={5}
           />
         </Flex>
         <Box width={['95%', '70%']} my={5}>
@@ -80,7 +80,7 @@ export async function getStaticProps(context) {
   // Fetch and filter builds with tag
   const builds = await fetchBuilds();
   const filteredBuilds = builds.filter((build) =>
-    build.tagIds.some((tagId) => tagId === id)
+    build.tagIds.some((tagId) => tagId === id),
   );
 
   return {

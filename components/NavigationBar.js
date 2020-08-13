@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import Link from 'next/link';
 import { Box, Heading, Flex, Icon, Stack } from '@chakra-ui/core';
 import NavigationButton from './NavigationButton';
@@ -9,7 +8,7 @@ import NavigationItem from './NavigationItem';
 
 // Taken and modified from here:
 // https://chakra-ui.com/recipes#responsive-header-with-chakra-ui
-function NavigationBar(props) {
+function NavigationBar() {
   const [show, setShow] = useState(false);
   const handleToggle = () => setShow(!show);
 
@@ -25,18 +24,17 @@ function NavigationBar(props) {
       px={{ base: '0.9rem', sm: '4rem' }}
       bg="pink.700"
       color="white"
-      {...props}
     >
       <Flex align="center" mr={5}>
         <Stack isInline>
           <Link href="/">
-            <a>
+            <a href="/">
               <Icon name="logo" size="50px" mr={2} color="pink.300" focusable />
             </a>
           </Link>
           <Heading as="h1" size="md" alignSelf="center">
             <Link href="/">
-              <a>Learn Build</a>
+              <a href="/">Learn Build</a>
             </Link>
           </Heading>
         </Stack>

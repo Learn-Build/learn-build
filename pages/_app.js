@@ -1,3 +1,11 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/jsx-props-no-spreading */
+
+// FIXME(Renzo): this file is required for injecting Chakra UI theme
+// see: https://nextjs.org/docs/advanced-features/custom-app
+//      https://chakra-ui.com/getting-started
+// I'm just going to disable eslint for this file until I find a better fix
+import React from 'react';
 import { ThemeProvider, CSSReset, theme } from '@chakra-ui/core';
 
 const customIcons = {

@@ -46,7 +46,6 @@ export default function Build({ name, description, imageUrl }) {
               enabledText="Favorited"
               disabledText="Favorite"
               size="md"
-              props={{ mb: 3 }}
             />
             <TogglableButton
               enabledText="Saved"
