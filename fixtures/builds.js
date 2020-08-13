@@ -3,7 +3,7 @@
  * will be ID'd so I"ll probably have to change some stuff maybe?
  */
 
-export const BUILDS = [
+const BUILDS = [
   {
     id: '0',
     name: 'Introductory Deep Learning Build',
@@ -41,3 +41,5 @@ export const BUILDS = [
     likeCount: 54,
   },
 ];
+
+export default BUILDS;

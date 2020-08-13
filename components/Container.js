@@ -1,4 +1,6 @@
+import React from 'react';
 import { Grid } from '@chakra-ui/core';
+import PropTypes from 'prop-types';
 
 function Container({
   desktopWidth = 85,
@@ -25,5 +27,20 @@ function Container({
     </Grid>
   );
 }
+
+Container.propTypes = {
+  desktopWidth: PropTypes.number,
+  mobileWidth: PropTypes.number,
+  leftColumn: PropTypes.number,
+  rightColumn: PropTypes.number,
+  children: PropTypes.node.isRequired,
+};
+
+Container.defaultProps = {
+  desktopWidth: 85,
+  mobileWidth: 95,
+  leftColumn: 60,
+  rightColumn: 40,
+};
 
 export default Container;

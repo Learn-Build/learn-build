@@ -1,4 +1,4 @@
-export const TAGS = [
+const TAGS = [
   {
     id: '0',
     name: 'React',
@@ -80,3 +80,5 @@ export const TAGS = [
     description: "Learn Microsoft's dominant language to build anything",
   },
 ];
+
+export default TAGS;

@@ -1,8 +1,10 @@
-import { useState } from 'react';
-import { Box, Grid, Text, Button } from '@chakra-ui/core';
+import React, { useState } from 'react';
+import { Box, Grid, Text } from '@chakra-ui/core';
+import PropTypes from 'prop-types';
 import CardComponent from './CardComponent';
 import LinkWrapper from './LinkWrapper';
 import TogglableButton from './TogglableButton';
+import { TagProps } from '../constants/propTypes';
 
 // TODO(Renzo): Add logic for checking if user already follows tag
 
@@ -52,5 +54,14 @@ function TagCard({ tag, showDescription = true }) {
     </CardComponent>
   );
 }
+
+TagCard.propTypes = {
+  tag: TagProps.isRequired,
+  showDescription: PropTypes.bool,
+};
+
+TagCard.defaultProps = {
+  showDescription: true,
+};
 
 export default TagCard;

@@ -1,6 +1,6 @@
-import { USERS } from '../fixtures/users';
-import { TAGS } from '../fixtures/tags';
-import { BUILDS } from '../fixtures/builds';
+import USERS from '../fixtures/users';
+import TAGS from '../fixtures/tags';
+import BUILDS from '../fixtures/builds';
 
 // TODO(Renzo): Implement proper data fetching once backend is setup
 

@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Button } from '@chakra-ui/core';
+import PropTypes from 'prop-types';
 
 function TogglableButton({
   enabledText = 'Following',
@@ -10,8 +11,8 @@ function TogglableButton({
   size = ['xs', 'xs', 'sm', 'md'],
   fontSize = ['xs', 'sm'],
   variantColor = 'pink',
+  my = 3,
   onClick = () => {},
-  props,
 }) {
   const [enabled, setEnabled] = useState(initialState);
 
@@ -26,11 +27,37 @@ function TogglableButton({
       variantColor={variantColor}
       size={size}
       fontSize={fontSize}
-      {...props}
+      my={my}
     >
       {enabled ? enabledText : disabledText}
     </Button>
   );
 }
+
+TogglableButton.propTypes = {
+  enabledText: PropTypes.string,
+  disabledText: PropTypes.string,
+  enabledVariant: PropTypes.string,
+  disabledVariant: PropTypes.string,
+  initialState: PropTypes.bool,
+  size: PropTypes.arrayOf(PropTypes.string),
+  fontSize: PropTypes.arrayOf(PropTypes.string),
+  variantColor: PropTypes.string,
+  my: PropTypes.number,
+  onClick: PropTypes.func,
+};
+
+TogglableButton.defaultProps = {
+  enabledText: 'Following',
+  disabledText: 'Follow',
+  enabledVariant: 'solid',
+  disabledVariant: 'outline',
+  initialState: false,
+  size: ['xs', 'xs', 'sm', 'md'],
+  fontSize: ['xs', 'sm'],
+  variantColor: 'pink',
+  my: 3,
+  onClick: () => {},
+};
 
 export default TogglableButton;

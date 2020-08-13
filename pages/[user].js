@@ -1,3 +1,5 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Heading, Text } from '@chakra-ui/core';
 import Container from '../components/Container';
 import NavigationBar from '../components/NavigationBar';
@@ -18,6 +20,12 @@ export default function User({ id, name, email }) {
     </div>
   );
 }
+
+User.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+};
 
 export async function getStaticPaths() {
   const users = await fetchUsers();

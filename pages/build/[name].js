@@ -1,20 +1,86 @@
-import { Heading, Text } from '@chakra-ui/core';
+import React from 'react';
+import { Box, Heading, Text, Flex, Image, Stack } from '@chakra-ui/core';
+import PropTypes from 'prop-types';
 import Container from '../../components/Container';
 import NavigationBar from '../../components/NavigationBar';
+import ResponsiveHeading from '../../components/ResponsiveHeading';
+import TogglableButton from '../../components/TogglableButton';
 import { fetchBuilds } from '../../clients';
 
-export default function Build({ id, name, description }) {
+export default function Build({ name, description, imageUrl }) {
+  const desktopWidth = 90;
+
   return (
     <div>
       <NavigationBar />
-      <Container>
-        <Heading>{name}</Heading>
-        <Text>{`Build ID: ${id}`}</Text>
-        <Text>{description}</Text>
+      <Flex
+        width={['95%', `${desktopWidth}%`]}
+        mx="auto"
+        maxH="200px"
+        flexDir="row"
+        borderWidth="1px"
+        boxShadow="sm"
+        px={5}
+        py={3}
+        my={5}
+      >
+        {/* Image */}
+        <Box flex={1}>
+          <Image
+            src={imageUrl}
+            fallbackSrc="/assets/learn_build_logo.svg"
+            height="100%"
+          />
+        </Box>
+
+        {/* Title, description, tags */}
+        <Box flex={3}>
+          <Heading as="h1">{name}</Heading>
+          <Text>{description}</Text>
+        </Box>
+
+        {/* Likes, save buttons */}
+        <Box flex={1}>
+          <Stack py={5} px={5} spacing={5}>
+            <TogglableButton
+              enabledText="Favorited"
+              disabledText="Favorite"
+              size="md"
+            />
+            <TogglableButton
+              enabledText="Saved"
+              disabledText="Save"
+              size="md"
+            />
+          </Stack>
+        </Box>
+      </Flex>
+      <Container desktopWidth={desktopWidth}>
+        {/* Resources */}
+        <Box>
+          <ResponsiveHeading>Resources</ResponsiveHeading>
+        </Box>
+
+        {/* Sidebar - notes and related builds? */}
+        <Box>
+          <ResponsiveHeading>Notes</ResponsiveHeading>
+        </Box>
       </Container>
     </div>
   );
 }
+
+Build.propTypes = {
+  name: PropTypes.string,
+  description: PropTypes.string,
+  imageUrl: PropTypes.string,
+};
+
+Build.defaultProps = {
+  name: 'Build',
+  description: 'This is a build',
+  imageUrl: '/assets/learn_build_logo.svg',
+};
 
 export async function getStaticPaths() {
   const builds = await fetchBuilds();

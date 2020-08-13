@@ -1,4 +1,6 @@
+import React from 'react';
 import { Box } from '@chakra-ui/core';
+import PropTypes from 'prop-types';
 
 function CardComponent({ children }) {
   return (
@@ -14,5 +16,9 @@ function CardComponent({ children }) {
     </Box>
   );
 }
+
+CardComponent.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default CardComponent;

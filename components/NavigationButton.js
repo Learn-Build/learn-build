@@ -1,4 +1,6 @@
+import React from 'react';
 import { Box, Button } from '@chakra-ui/core';
+import PropTypes from 'prop-types';
 
 function NavigationButton({ show, children }) {
   return (
@@ -13,5 +15,10 @@ function NavigationButton({ show, children }) {
     </Box>
   );
 }
+
+NavigationButton.propTypes = {
+  show: PropTypes.bool.isRequired,
+  children: PropTypes.node.isRequired,
+};
 
 export default NavigationButton;
