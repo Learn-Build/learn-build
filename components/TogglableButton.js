@@ -40,7 +40,10 @@ TogglableButton.propTypes = {
   enabledVariant: PropTypes.string,
   disabledVariant: PropTypes.string,
   initialState: PropTypes.bool,
-  size: PropTypes.arrayOf(PropTypes.string),
+  size: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
   fontSize: PropTypes.arrayOf(PropTypes.string),
   variantColor: PropTypes.string,
   my: PropTypes.number,

@@ -12,6 +12,7 @@ const BUILDS = [
     builder: 'Renzo Ledesma',
     tagIds: ['4', '5', '6'],
     likeCount: 54,
+    resourceIds: ['0', '1', '2', '3', '4'],
   },
   {
     id: '1',
@@ -21,6 +22,7 @@ const BUILDS = [
     builder: 'Alpri Else',
     tagIds: ['7', '0', '8', '9'],
     likeCount: 32,
+    resourceIds: [],
   },
   {
     id: '2',
@@ -30,6 +32,7 @@ const BUILDS = [
     builder: 'John Doe',
     tagIds: ['7', '10', '11', '12'],
     likeCount: 78,
+    resourceIds: [],
   },
   {
     id: '3',
@@ -39,6 +42,7 @@ const BUILDS = [
     builder: 'Jackie Doe',
     tagIds: ['13', '14', '15'],
     likeCount: 54,
+    resourceIds: [],
   },
 ];
 

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import { Box, Heading, Text, Flex, Image, Stack } from '@chakra-ui/core';
 import PropTypes from 'prop-types';
@@ -5,9 +6,11 @@ import Container from '../../components/Container';
 import NavigationBar from '../../components/NavigationBar';
 import ResponsiveHeading from '../../components/ResponsiveHeading';
 import TogglableButton from '../../components/TogglableButton';
-import { fetchBuilds } from '../../clients';
+import CardComponent from '../../components/CardComponent';
+import { fetchBuilds, fetchResources } from '../../clients';
+import { ResourceListProps } from '../../constants/propTypes';
 
-export default function Build({ name, description, imageUrl }) {
+export default function Build({ name, description, imageUrl, resources }) {
   const desktopWidth = 90;
 
   return (
@@ -59,6 +62,9 @@ export default function Build({ name, description, imageUrl }) {
         {/* Resources */}
         <Box>
           <ResponsiveHeading>Resources</ResponsiveHeading>
+          {resources.map((resource) => (
+            <CardComponent key={resource.id}>{resource.title}</CardComponent>
+          ))}
         </Box>
 
         {/* Sidebar - notes and related builds? */}
@@ -74,6 +80,7 @@ Build.propTypes = {
   name: PropTypes.string,
   description: PropTypes.string,
   imageUrl: PropTypes.string,
+  resources: ResourceListProps.isRequired,
 };
 
 Build.defaultProps = {
@@ -91,6 +98,18 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const buildName = context.params.name;
   const builds = await fetchBuilds();
-  const buildData = builds.find((t) => t.name === buildName);
-  return { props: buildData };
+  const { name, description, resourceIds } = builds.find(
+    (t) => t.name === buildName,
+  );
+
+  const allResources = await fetchResources();
+  const resources = allResources.filter((resource) => resourceIds.includes(resource.id));
+
+  return {
+    props: {
+      name,
+      description,
+      resources,
+    },
+  };
 }
