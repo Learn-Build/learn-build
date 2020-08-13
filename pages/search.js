@@ -1,12 +1,19 @@
-import { useState } from "react";
-import { Icon, Input, InputGroup, Box, InputLeftElement, Stack } from "@chakra-ui/core";
-import NavigationBar from "../components/NavigationBar";
-import Container from "../components/Container";
-import CardComponent from "../components/CardComponent";
-import ResponsiveHeading from "../components/ResponsiveHeading";
-import Builds from "../components/Builds";
-import TagFilterButton from "../components/TagFilterButton";
-import { fetchBuilds, fetchTags } from "../clients"
+import { useState } from 'react';
+import {
+  Icon,
+  Input,
+  InputGroup,
+  Box,
+  InputLeftElement,
+  Stack,
+} from '@chakra-ui/core';
+import NavigationBar from '../components/NavigationBar';
+import Container from '../components/Container';
+import CardComponent from '../components/CardComponent';
+import ResponsiveHeading from '../components/ResponsiveHeading';
+import Builds from '../components/Builds';
+import TagFilterButton from '../components/TagFilterButton';
+import { fetchBuilds, fetchTags } from '../clients';
 
 export default function Search({ builds, tags }) {
   const [nameQuery, setNameQuery] = useState('');
@@ -23,9 +30,7 @@ export default function Search({ builds, tags }) {
 
   function handleTagFilterChange(tagId) {
     if (tagFilters.includes(tagId)) {
-      setTagFilters(tagFilters.filter((tagFilter) => (
-        tagFilter !== tagId
-      )));
+      setTagFilters(tagFilters.filter((tagFilter) => tagFilter !== tagId));
     } else {
       setTagFilters([...tagFilters, tagId]);
     }
@@ -33,17 +38,15 @@ export default function Search({ builds, tags }) {
   }
 
   function filterBuilds() {
-    return builds.filter((build) => (
-      build.name.toLowerCase().includes(nameQuery)
-    )).filter((build) => (
-      build.builder.toLowerCase().includes(builderQuery)
-    )).filter((build) => {
-      for (let tag of tagFilters) {
-        if (!build.tagIds.some((tagId) => (tagId === tag)))
-          return false;
-      }
-      return true;
-    });
+    return builds
+      .filter((build) => build.name.toLowerCase().includes(nameQuery))
+      .filter((build) => build.builder.toLowerCase().includes(builderQuery))
+      .filter((build) => {
+        for (const tag of tagFilters) {
+          if (!build.tagIds.some((tagId) => tagId === tag)) return false;
+        }
+        return true;
+      });
   }
 
   return (
@@ -53,55 +56,51 @@ export default function Search({ builds, tags }) {
         <Box>
           <ResponsiveHeading>Options</ResponsiveHeading>
           <CardComponent>
-            <ResponsiveHeading
-              as={'h4'}
-              size={'md'}
-              props={{mt: 0}}
-            >
+            <ResponsiveHeading as="h4" size="md" props={{ mt: 0 }}>
               Filter by builder
             </ResponsiveHeading>
 
             <InputGroup>
-              <InputLeftElement children={<Icon name="search" color="gray.400" />} />
+              <InputLeftElement
+                children={<Icon name="search" color="gray.400" />}
+              />
               <Input
                 value={builderQuery}
                 placeholder="Search builder's name here..."
                 size="md"
-                onChange={handleBuilderQueryChange}  
+                onChange={handleBuilderQueryChange}
               />
             </InputGroup>
 
-            <ResponsiveHeading
-              as={'h4'}
-              size={'md'}
-            >
+            <ResponsiveHeading as="h4" size="md">
               Filter by tag
             </ResponsiveHeading>
             <Stack>
-              {tags.map(tag => (
+              {tags.map((tag) => (
                 <TagFilterButton
-                  key={tag.id} 
+                  key={tag.id}
                   tag={tag}
                   handleChange={handleTagFilterChange}
                 />
               ))}
             </Stack>
-            
           </CardComponent>
         </Box>
 
         <Box>
           <ResponsiveHeading>Search</ResponsiveHeading>
           <InputGroup>
-            <InputLeftElement children={<Icon name="search" color="gray.400" />} />
+            <InputLeftElement
+              children={<Icon name="search" color="gray.400" />}
+            />
             <Input
               value={nameQuery}
               placeholder="Find a build to learn..."
               size="lg"
-              onChange={handleNameQueryChange}  
+              onChange={handleNameQueryChange}
             />
           </InputGroup>
-          <Builds builds={filterBuilds()} tags={tags} header={''} />
+          <Builds builds={filterBuilds()} tags={tags} header="" />
         </Box>
       </Container>
     </div>
@@ -113,7 +112,7 @@ export async function getStaticProps() {
   return {
     props: {
       builds: await fetchBuilds(),
-      tags: await fetchTags()
+      tags: await fetchTags(),
     },
   };
 }

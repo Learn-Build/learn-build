@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 import { Box, Heading, Text, Flex, Button, Image, Stack } from "@chakra-ui/core";
 import Container from "../../components/Container";
 import NavigationBar from "../../components/NavigationBar";
 import ResponsiveHeading from "../../components/ResponsiveHeading";
 import TogglableButton from "../../components/TogglableButton";
 import { fetchBuilds } from "../../clients";
+=======
+import { Heading, Text } from '@chakra-ui/core';
+import Container from '../../components/Container';
+import NavigationBar from '../../components/NavigationBar';
+import { fetchBuilds } from '../../clients';
+>>>>>>> master
 
 export default function Build({ id, name, description, imageUrl=null }) {
 

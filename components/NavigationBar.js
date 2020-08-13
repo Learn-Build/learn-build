@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+
 import Link from 'next/link';
 import { Box, Heading, Flex, Icon, Stack } from '@chakra-ui/core';
 import NavigationButton from './NavigationButton';
@@ -30,13 +31,7 @@ function NavigationBar(props) {
         <Stack isInline>
           <Link href="/">
             <a>
-              <Icon 
-                name="logo" 
-                size="50px" 
-                mr={2}
-                color="pink.300"
-                focusable
-              />  
+              <Icon name="logo" size="50px" mr={2} color="pink.300" focusable />
             </a>
           </Link>
           <Heading as="h1" size="md" alignSelf="center">
@@ -47,7 +42,7 @@ function NavigationBar(props) {
         </Stack>
       </Flex>
 
-      <Box display={{ base: "block", md: "none" }} onClick={handleToggle}>
+      <Box display={{ base: 'block', md: 'none' }} onClick={handleToggle}>
         <svg
           fill="white"
           width="12px"
@@ -61,22 +56,17 @@ function NavigationBar(props) {
 
       <Box
         display={[display, display, 'flex', 'flex']}
-        width={{ sm: "full", md: "auto" }}
+        width={{ sm: 'full', md: 'auto' }}
         alignItems="center"
         flexGrow={1}
       >
-        <NavigationItem href="/about">
-          About
-        </NavigationItem>
+        <NavigationItem href="/about">About</NavigationItem>
         <NavigationItem href="/search">Search</NavigationItem>
         <NavigationItem href="/tags">Tags</NavigationItem>
       </Box>
 
       {/* FIXME(Renzo): Setting display to "flex" causes issues in mobile */}
-      <Stack
-        display={['none', 'none', 'flex', 'flex']}
-        isInline
-      >
+      <Stack display={['none', 'none', 'flex', 'flex']} isInline>
         <NavigationButton show={show}>Log in</NavigationButton>
         <NavigationButton show={show}>Sign up</NavigationButton>
       </Stack>

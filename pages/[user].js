@@ -1,7 +1,7 @@
-import Container from "../components/Container";
-import NavigationBar from "../components/NavigationBar";
-import { Heading, Text } from "@chakra-ui/core";
-import { fetchUsers } from "../clients/index";
+import { Heading, Text } from '@chakra-ui/core';
+import Container from '../components/Container';
+import NavigationBar from '../components/NavigationBar';
+import { fetchUsers } from '../clients/index';
 
 export default function User({ id, name, email }) {
   return (
@@ -10,7 +10,10 @@ export default function User({ id, name, email }) {
       <Container>
         <Heading>{`${name}'s Page`}</Heading>
         <Text>{email}</Text>
-        <Text>User ID: {id}</Text>
+        <Text>
+          User ID:
+          {id}
+        </Text>
       </Container>
     </div>
   );
