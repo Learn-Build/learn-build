@@ -1,4 +1,4 @@
-import User from '../models/User'
+import User from '../../models/User'
 
 export default function (req, res) {
   const userData = req.body;
