@@ -1,6 +1,6 @@
-import connect from '../db/connect';
+import connect from '../../db/connect';
 
-module.exports = (req, res) => {
+export default function (req, res) {
   const db = connect().connection;
 
   db.on('error', () => {

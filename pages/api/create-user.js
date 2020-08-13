@@ -1,6 +1,6 @@
-const User = require('../models/User');
+import User from '../models/User'
 
-module.exports = (req, res) => {
+export default function (req, res) {
   const userData = req.body;
 
   const userModel = new User(userData);
