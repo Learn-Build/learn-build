@@ -4,8 +4,12 @@ import CardComponent from './CardComponent';
 import { ResourceProps } from '../constants/propTypes';
 
 function ResourceCard({ resource }) {
+  const cardWidth = '300px';
+  const fullWidth = '100%';
+  const responsiveCardWidth = [fullWidth, fullWidth, fullWidth, cardWidth];
+
   return (
-    <PseudoBox flexBasis={1} minW="300px">
+    <PseudoBox flexBasis={1} minW={responsiveCardWidth}>
       <a href={resource.url} target="_blank" rel="noopener noreferrer">
         <CardComponent
           key={resource.id}

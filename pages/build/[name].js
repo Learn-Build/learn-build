@@ -9,6 +9,7 @@ import TogglableButton from '../../components/TogglableButton';
 import ResourceCard from '../../components/ResourceCard';
 import { fetchBuilds, fetchResources } from '../../clients';
 import { ResourceListProps } from '../../constants/propTypes';
+import { RESPONSIVE_TEXT_ALIGN } from '../../styles/responsiveStyles';
 
 export default function Build({ name, description, imageUrl, resources, notes }) {
   const desktopWidth = 90;
@@ -74,7 +75,7 @@ export default function Build({ name, description, imageUrl, resources, notes })
         <Box>
           <ResponsiveHeading>Resources</ResponsiveHeading>
           <Flex flexWrap="wrap">
-            {resources.length === 0 && noResourcesText}
+            {!resources.length && noResourcesText}
             {resources.map((resource) => (
               <ResourceCard key={resource.id} resource={resource} />
             ))}
@@ -84,7 +85,7 @@ export default function Build({ name, description, imageUrl, resources, notes })
         {/* Sidebar - notes and related builds? */}
         <Box>
           <ResponsiveHeading>Notes</ResponsiveHeading>
-          <Text fontStyle="light">
+          <Text fontStyle="light" textAlign={RESPONSIVE_TEXT_ALIGN} mb={10}>
             {notes || (emptyNotesText)}
           </Text>
         </Box>
@@ -105,7 +106,7 @@ Build.defaultProps = {
   name: 'Build',
   description: 'This is a build',
   imageUrl: '/assets/learn_build_logo.svg',
-  notes: null,
+  notes: '',
 };
 
 export async function getStaticPaths() {
@@ -117,12 +118,10 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const buildName = context.params.name;
   const builds = await fetchBuilds();
+  // TODO(Renzo): extract notes once they are added to schema
   const { name, description, resourceIds } = builds.find(
     (t) => t.name === buildName,
   );
-
-  // TODO(Renzo): figure out how notes are stored
-  const notes = null;
 
   const allResources = await fetchResources();
   const resources = allResources.filter((resource) => resourceIds.includes(resource.id));
@@ -132,7 +131,6 @@ export async function getStaticProps(context) {
       name,
       description,
       resources,
-      notes,
     },
   };
 }
