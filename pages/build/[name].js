@@ -1,19 +1,13 @@
-<<<<<<< HEAD
-import { Box, Heading, Text, Flex, Button, Image, Stack } from "@chakra-ui/core";
-import Container from "../../components/Container";
-import NavigationBar from "../../components/NavigationBar";
-import ResponsiveHeading from "../../components/ResponsiveHeading";
-import TogglableButton from "../../components/TogglableButton";
-import { fetchBuilds } from "../../clients";
-=======
-import { Heading, Text } from '@chakra-ui/core';
+import React from 'react';
+import { Box, Heading, Text, Flex, Image, Stack } from '@chakra-ui/core';
+import PropTypes from 'prop-types';
 import Container from '../../components/Container';
 import NavigationBar from '../../components/NavigationBar';
+import ResponsiveHeading from '../../components/ResponsiveHeading';
+import TogglableButton from '../../components/TogglableButton';
 import { fetchBuilds } from '../../clients';
->>>>>>> master
 
-export default function Build({ id, name, description, imageUrl=null }) {
-
+export default function Build({ name, description, imageUrl }) {
   const desktopWidth = 90;
 
   return (
@@ -32,7 +26,7 @@ export default function Build({ id, name, description, imageUrl=null }) {
       >
         {/* Image */}
         <Box flex={1}>
-          <Image 
+          <Image
             src={imageUrl}
             fallbackSrc="/assets/learn_build_logo.svg"
             height="100%"
@@ -47,20 +41,16 @@ export default function Build({ id, name, description, imageUrl=null }) {
 
         {/* Likes, save buttons */}
         <Box flex={1}>
-          <Stack
-            py={5}
-            px={5}
-            spacing={5}
-          >
-            <TogglableButton 
-              enabledText={'Favorited'}
-              disabledText={'Favorite'}
+          <Stack py={5} px={5} spacing={5}>
+            <TogglableButton
+              enabledText="Favorited"
+              disabledText="Favorite"
               size="md"
               props={{ mb: 3 }}
             />
-            <TogglableButton 
-              enabledText={'Saved'}
-              disabledText={'Save'}
+            <TogglableButton
+              enabledText="Saved"
+              disabledText="Save"
               size="md"
             />
           </Stack>
@@ -69,21 +59,29 @@ export default function Build({ id, name, description, imageUrl=null }) {
       <Container desktopWidth={desktopWidth}>
         {/* Resources */}
         <Box>
-          <ResponsiveHeading>
-            Resources
-          </ResponsiveHeading>
+          <ResponsiveHeading>Resources</ResponsiveHeading>
         </Box>
 
         {/* Sidebar - notes and related builds? */}
         <Box>
-          <ResponsiveHeading>
-            Notes
-          </ResponsiveHeading>
+          <ResponsiveHeading>Notes</ResponsiveHeading>
         </Box>
       </Container>
     </div>
   );
 }
+
+Build.propTypes = {
+  name: PropTypes.string,
+  description: PropTypes.string,
+  imageUrl: PropTypes.string,
+};
+
+Build.defaultProps = {
+  name: 'Build',
+  description: 'This is a build',
+  imageUrl: '/assets/learn_build_logo.svg',
+};
 
 export async function getStaticPaths() {
   const builds = await fetchBuilds();
