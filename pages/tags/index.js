@@ -4,6 +4,7 @@ import Container from '../../components/Container';
 import NavigationBar from '../../components/NavigationBar';
 import Tags from '../../components/Tags';
 import { fetchTags } from '../../clients';
+import { TagListProps } from '../../constants/propTypes';
 
 export default function TagsPage({ tags }) {
   return (
@@ -22,6 +23,10 @@ export default function TagsPage({ tags }) {
     </div>
   );
 }
+
+TagsPage.propTypes = {
+  tags: TagListProps.isRequired,
+};
 
 export async function getStaticProps() {
   return {

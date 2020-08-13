@@ -22,15 +22,9 @@ export default function User({ id, name, email }) {
 }
 
 User.propTypes = {
-  id: PropTypes.string,
-  name: PropTypes.string,
-  email: PropTypes.string,
-};
-
-User.defaultProps = {
-  id: '0',
-  name: 'User',
-  email: 'Email',
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
 };
 
 export async function getStaticPaths() {
