@@ -15,7 +15,7 @@ const BuildSchema = new Schema({
     
   },
   comments: {
-    type: String,
+    type: [String],
     default: '', // again, not sure about defaults
   },
 
@@ -26,9 +26,9 @@ const BuildSchema = new Schema({
   },
 
   tag: {
-    type: String,
+    type: [String],
     required: false,
-    default: ''
+    default: null,
   },
 
 });

@@ -13,14 +13,23 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
-  favorite_build_ids: {
+  builds_created: {
+      type: [String],
+      default: [],
+  },
+  resources_uploaded: {
+      type: [String],
+      default: [],
+  },
+  builds_favorited: {
     type: [String],
     default: [],
   },
-  favorite_resource_ids: {
+  resources_favorited: {
     type: [String],
     default: [],
   },
+  
 });
 
 module.exports = connect().model('User', UserSchema);
