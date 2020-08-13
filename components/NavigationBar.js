@@ -65,7 +65,8 @@ function NavigationBar() {
 
       {/* FIXME(Renzo): Setting display to "flex" causes issues in mobile */}
       <Stack display={['none', 'none', 'flex', 'flex']} isInline>
-        <NavigationButton show={show}>Log in</NavigationButton>
+        <NavigationButton show={show}><a href="/api/login">Log in</a></NavigationButton>
+        <NavigationButton show={show}><a href="/api/logout">Log out</a></NavigationButton>
         <NavigationButton show={show}>Sign up</NavigationButton>
       </Stack>
     </Flex>
