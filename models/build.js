@@ -9,6 +9,7 @@ const BuildSchema = new Schema({
     type: String,
     required: true,
   },
+  
   description: {
     type: String,
     required: true,
@@ -16,7 +17,7 @@ const BuildSchema = new Schema({
   },
   comments: {
     type: [String],
-    default: '', // again, not sure about defaults
+    default: [], 
   },
 
   image_url: {

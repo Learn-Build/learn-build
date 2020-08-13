@@ -19,13 +19,13 @@ const ResourcesSchema = new Schema({
   },
   comments: {
     type: [String],
-    default: '', //uhhhh, is that okay (want blank string)
+    default: [],
   },
 
   image_url: {
-    type: String, //Listed as array in google doc, but not everywhere -- url shouldn't be array ? 
+    type: String, 
     required: false,
-    default: null, //not sure if this is okay either
+    default: '',
   },
 
   tag: {
