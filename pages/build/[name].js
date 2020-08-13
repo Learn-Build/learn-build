@@ -4,14 +4,15 @@ import { Box, Heading, Text, Grid, Image, Stack, Flex } from '@chakra-ui/core';
 import PropTypes from 'prop-types';
 import Container from '../../components/Container';
 import NavigationBar from '../../components/NavigationBar';
+import TagBadges from '../../components/TagBadges';
 import ResponsiveHeading from '../../components/ResponsiveHeading';
 import TogglableButton from '../../components/TogglableButton';
 import ResourceCard from '../../components/ResourceCard';
-import { fetchBuilds, fetchResources } from '../../clients';
+import { fetchBuilds, fetchResources, fetchTags } from '../../clients';
 import { ResourceListProps } from '../../constants/propTypes';
 import { RESPONSIVE_TEXT_ALIGN } from '../../styles/responsiveStyles';
 
-export default function Build({ name, description, imageUrl, resources, notes }) {
+export default function Build({ name, description, imageUrl, resources, notes, tagNames }) {
   const desktopWidth = 90;
   const desktopColumns = '15% 70% 15%';
   const mobileColumns = '100%';
@@ -50,8 +51,9 @@ export default function Build({ name, description, imageUrl, resources, notes })
 
         {/* Title, description, tags */}
         <Box textAlign={['center', 'center', 'center', 'left']}>
-          <Heading as="h1">{name}</Heading>
-          <Text>{description}</Text>
+          <Heading as="h1" size="2xl">{name}</Heading>
+          <Text my={2} mb={3}>{description}</Text>
+          <TagBadges tagNames={tagNames} fontSize={16} flexDir={['column', 'column', 'column', 'row']} />
         </Box>
 
         {/* Likes, save buttons */}
@@ -100,6 +102,7 @@ Build.propTypes = {
   imageUrl: PropTypes.string,
   resources: ResourceListProps.isRequired,
   notes: PropTypes.string,
+  tagNames: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 Build.defaultProps = {
@@ -119,18 +122,23 @@ export async function getStaticProps(context) {
   const buildName = context.params.name;
   const builds = await fetchBuilds();
   // TODO(Renzo): extract notes once they are added to schema
-  const { name, description, resourceIds } = builds.find(
-    (t) => t.name === buildName,
+  const { name, description, resourceIds, tagIds } = builds.find(
+    (build) => build.name === buildName,
   );
 
   const allResources = await fetchResources();
   const resources = allResources.filter((resource) => resourceIds.includes(resource.id));
+
+  const allTags = await fetchTags();
+  const tags = allTags.filter((tag) => tagIds.includes(tag.id));
+  const tagNames = tags.map((tag) => tag.name);
 
   return {
     props: {
       name,
       description,
       resources,
+      tagNames,
     },
   };
 }

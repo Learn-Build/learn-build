@@ -1,8 +1,6 @@
 import React from 'react';
 import {
-  Badge,
   Box,
-  Flex,
   Grid,
   Image,
   Stack,
@@ -13,6 +11,7 @@ import {
 import PropTypes from 'prop-types';
 import LinkWrapper from './LinkWrapper';
 import CardComponent from './CardComponent';
+import TagBadges from './TagBadges';
 import { BuildProps } from '../constants/propTypes';
 
 // TODO(Renzo): Add state to card for interacting with buttons
@@ -67,13 +66,7 @@ function BuildCard({ build, tagNames }) {
         {/* TODO(Renzo): Make tag badges link to tag page */}
         <LinkWrapper href={linkHref} as={linkAs}>
           <Box>
-            <Flex flexDir="row" wrap="wrap">
-              {tagNames.map((tag) => (
-                <Badge key={tag} mr={1} mt={1}>
-                  {tag}
-                </Badge>
-              ))}
-            </Flex>
+            <TagBadges tagNames={tagNames} />
 
             <Box as="h3" fontSize={headerFontSize} fontWeight="bold">
               {build.name}
