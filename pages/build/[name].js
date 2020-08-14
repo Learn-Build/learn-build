@@ -21,7 +21,7 @@ function Build({ name, builder, description, imageUrl, resources, notes, tagName
   const desktopWidth = 90;
 
   const emptyNotesText = 'No notes for this build.';
-  const noResourcesText = 'No resources in this build yet,';
+  const noResourcesText = 'No resources in this build yet.';
 
   const builderPageHref = '/[user]';
   const builderPageAs = `/${builder.id}`;
@@ -40,7 +40,7 @@ function Build({ name, builder, description, imageUrl, resources, notes, tagName
         </Box>
 
         {/* Title, description, tags */}
-        <Box textAlign={['center', 'center', 'center', 'left']}>
+        <Box textAlign={['center', 'center', 'center', 'left']} p={4}>
           <Heading as="h1" size="2xl">{name}</Heading>
           <LinkWrapper href={builderPageHref} as={builderPageAs}>
             <Text>{builder.name}</Text>
@@ -71,8 +71,8 @@ function Build({ name, builder, description, imageUrl, resources, notes, tagName
         {/* Resources */}
         <Box>
           <ResponsiveHeading showDivider>Resources</ResponsiveHeading>
+          {!resources.length && <Text textAlign={RESPONSIVE_TEXT_ALIGN}>{noResourcesText}</Text>}
           <Flex flexWrap="wrap">
-            {!resources.length && <Text textAlign={RESPONSIVE_TEXT_ALIGN}>{noResourcesText}</Text>}
             {resources.map((resource) => (
               <ResourceCard key={resource.id} resource={resource} />
             ))}
