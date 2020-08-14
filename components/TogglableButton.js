@@ -21,7 +21,7 @@ function TogglableButton({
       rightIcon={enabled ? 'check' : 'small-add'}
       onClick={() => {
         setEnabled(!enabled);
-        onClick();
+        onClick(enabled);
       }}
       variant={enabled ? enabledVariant : disabledVariant}
       variantColor={variantColor}

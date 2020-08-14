@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import { Box, Heading, Text, Grid, Image, Stack, Flex } from '@chakra-ui/core';
+import { Box, Heading, Text, Grid, Image, Stack, Flex, useToast } from '@chakra-ui/core';
 import PropTypes from 'prop-types';
 import Container from '../../components/Container';
 import NavigationBar from '../../components/NavigationBar';
@@ -12,8 +12,11 @@ import ResourceCard from '../../components/ResourceCard';
 import { fetchBuilds, fetchResources, fetchUsers, fetchTags } from '../../clients';
 import { ResourceListProps, UserProps } from '../../constants/propTypes';
 import { RESPONSIVE_TEXT_ALIGN } from '../../styles/responsiveStyles';
+import { FAVORITED_TOAST, SAVED_TOAST, UNFAVORITED_TOAST, UNSAVED_TOAST } from '../../constants/toasts';
 
 function Build({ name, builder, description, imageUrl, resources, notes, tagNames }) {
+  const toast = useToast();
+
   const desktopWidth = 90;
   const desktopColumns = '15% 70% 15%';
   const mobileColumns = '100%';
@@ -70,11 +73,13 @@ function Build({ name, builder, description, imageUrl, resources, notes, tagName
               enabledText="Favorited"
               disabledText="Favorite"
               size="md"
+              onClick={(enabled) => (enabled ? toast(UNFAVORITED_TOAST) : toast(FAVORITED_TOAST))}
             />
             <TogglableButton
               enabledText="Saved"
               disabledText="Save"
               size="md"
+              onClick={(enabled) => (enabled ? toast(UNSAVED_TOAST) : toast(SAVED_TOAST))}
             />
           </Stack>
         </Box>
@@ -84,7 +89,7 @@ function Build({ name, builder, description, imageUrl, resources, notes, tagName
         <Box>
           <ResponsiveHeading showDivider>Resources</ResponsiveHeading>
           <Flex flexWrap="wrap">
-            {!resources.length && noResourcesText}
+            {!resources.length && <Text textAlign={RESPONSIVE_TEXT_ALIGN}>{noResourcesText}</Text>}
             {resources.map((resource) => (
               <ResourceCard key={resource.id} resource={resource} />
             ))}

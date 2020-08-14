@@ -12,15 +12,10 @@ import {
 import CardComponent from './CardComponent';
 import ResourceDetails from './ResourceDetails';
 import { ResourceProps } from '../constants/propTypes';
+import { COPIED_TOAST } from '../constants/toasts';
 
 function ResourceCard({ resource }) {
   const toast = useToast();
-  const copiedToastOptions = {
-    title: 'Resource URL copied to clipboard.',
-    status: 'info',
-    duration: 2000,
-    isClosable: true,
-  };
 
   const cardWidth = '300px';
   const fullWidth = '100%';
@@ -28,7 +23,7 @@ function ResourceCard({ resource }) {
 
   async function copyToClipboard(url) {
     await navigator.clipboard.writeText(url);
-    toast(copiedToastOptions);
+    toast(COPIED_TOAST);
   }
 
   return (

@@ -13,26 +13,12 @@ import LinkWrapper from './LinkWrapper';
 import CardComponent from './CardComponent';
 import TagBadges from './TagBadges';
 import { BuildProps } from '../constants/propTypes';
+import { SAVED_TOAST, FAVORITED_TOAST } from '../constants/toasts';
 
-// TODO(Renzo): Add state to card for interacting with buttons
+// TODO(Renzo): Add state to card for interacting with icons, like with TogglableButton
 
 function BuildCard({ build, user, tagNames }) {
   const toast = useToast();
-  const savedToastOptions = {
-    title: 'Build saved!',
-    description: 'You can find it in your saved builds.',
-    status: 'success',
-    duration: 3000,
-    isClosable: true,
-  };
-
-  const favoritedToastOptions = {
-    title: 'Build favorited!',
-    description: 'You can find it in your favorites',
-    status: 'success',
-    duration: 3000,
-    isClosable: true,
-  };
 
   const linkHref = '/build/[name]';
   const linkAs = `/build/${build.name}`;
@@ -89,7 +75,7 @@ function BuildCard({ build, user, tagNames }) {
               isRound
               size="xs"
               icon="star"
-              onClick={() => toast(favoritedToastOptions)}
+              onClick={() => toast(FAVORITED_TOAST)}
             />
             <Text fontSize="xs" alignSelf="center">
               {build.likeCount}
@@ -101,7 +87,7 @@ function BuildCard({ build, user, tagNames }) {
               isRound
               size="xs"
               icon="add"
-              onClick={() => toast(savedToastOptions)}
+              onClick={() => toast(SAVED_TOAST)}
             />
             <Text
               fontSize="xs"
