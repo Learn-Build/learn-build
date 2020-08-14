@@ -27,6 +27,8 @@ export default function Home({ builds, tags, users }) {
       <Hero
         headerText="Self-teaching done right."
         subText="Start building your way to learn."
+        heroImgSrc="/assets/student_studying_mini.jpg"
+        heroImgAlt="Student learning online"
       />
       <Container>
         <Box>
