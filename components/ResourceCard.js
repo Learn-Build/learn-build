@@ -12,7 +12,7 @@ import {
 import CardComponent from './CardComponent';
 import ResourceDetails from './ResourceDetails';
 import { ResourceProps } from '../constants/propTypes';
-import { COPIED_TOAST } from '../constants/toasts';
+import { COPIED_TOAST, SAVED_RESOURCE } from '../constants/toasts';
 
 function ResourceCard({ resource }) {
   const toast = useToast();
@@ -49,6 +49,12 @@ function ResourceCard({ resource }) {
             <ResourceDetails
               resource={resource}
               copyToClipboard={copyToClipboard}
+            />
+            <IconButton
+              icon="small-add"
+              size="sm"
+              variant="ghost"
+              onClick={() => toast(SAVED_RESOURCE)}
             />
           </Stack>
           <Stack isInline isReversed>

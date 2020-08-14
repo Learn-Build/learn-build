@@ -28,6 +28,14 @@ export const UNFAVORITED_TOAST = {
   isClosable: true,
 };
 
+export const SAVED_RESOURCE = {
+  title: 'Resource saved!',
+  description: 'You can find it in your saved resources.',
+  status: 'success',
+  duration: '3000',
+  isClosable: true,
+};
+
 export const COPIED_TOAST = {
   title: 'Resource URL copied to clipboard.',
   status: 'info',

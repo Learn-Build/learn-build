@@ -3,6 +3,7 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { ResourceProps } from '../constants/propTypes';
+import { SAVED_RESOURCE } from '../constants/toasts';
 
 const {
   useDisclosure,
@@ -15,12 +16,15 @@ const {
   ModalCloseButton,
   ModalBody,
   Text,
+  Stack,
+  useToast,
 } = require('@chakra-ui/core');
 
 function ResourceDetails({ resource, copyToClipboard }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const buttonRef = useRef();
   const { title, url, description } = resource;
+  const toast = useToast();
 
   return (
     <>
@@ -53,12 +57,18 @@ function ResourceDetails({ resource, copyToClipboard }) {
               <ModalCloseButton />
               <ModalBody>
                 <Text>{description}</Text>
-                <IconButton
-                  icon="copy"
-                  size="sm"
-                  mt={3}
-                  onClick={() => copyToClipboard(resource.url)}
-                />
+                <Stack isInline mt={3}>
+                  <IconButton
+                    icon="copy"
+                    size="sm"
+                    onClick={() => copyToClipboard(resource.url)}
+                  />
+                  <IconButton
+                    icon="small-add"
+                    size="sm"
+                    onClick={() => toast(SAVED_RESOURCE)}
+                  />
+                </Stack>
               </ModalBody>
             </ModalContent>
           </Modal>
