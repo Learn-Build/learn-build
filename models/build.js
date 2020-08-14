@@ -1,6 +1,4 @@
-import connect from '../db/connect';
-
-const mongoose = require('mongoose');
+import mongoose from 'mongoose'
 
 const { Schema } = mongoose;
 
@@ -9,19 +7,19 @@ const BuildSchema = new Schema({
     type: String,
     required: true,
   },
-  
+
   description: {
     type: String,
     required: true,
-    
+
   },
   comments: {
     type: [String],
-    default: [], 
+    default: [],
   },
 
   image_url: {
-    type: String, 
+    type: String,
     required: false,
     default: null,
   },
@@ -34,4 +32,4 @@ const BuildSchema = new Schema({
 
 });
 
-module.exports = connect().model('Build', BuildSchema);
+export default mongoose.models.Build || mongoose.model('Build', BuildSchema);

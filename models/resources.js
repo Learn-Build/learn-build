@@ -1,10 +1,8 @@
-import connect from '../db/connect';
-
-const mongoose = require('mongoose');
+import mongoose from 'mongoose'
 
 const { Schema } = mongoose;
 
-const ResourcesSchema = new Schema({
+const ResourceSchema = new Schema({
   title: {
     type: String,
     required: true,
@@ -31,8 +29,9 @@ const ResourcesSchema = new Schema({
   tag: {
     type: [String],
     required: false,
+    default: []
   },
 
 });
 
-module.exports = connect().model('Resources', ResourcesSchema);
+export default mongoose.models.Resource || mongoose.model('Resource', ResourceSchema);
