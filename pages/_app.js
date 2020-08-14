@@ -7,6 +7,8 @@
 // I'm just going to disable eslint for this file until I find a better fix
 import React from 'react';
 import { ThemeProvider, CSSReset, theme } from '@chakra-ui/core';
+// import { Carousel, CarouselItem } from 'react-bootstrap';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 const customIcons = {
   logo: {
