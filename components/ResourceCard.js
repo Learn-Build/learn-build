@@ -1,26 +1,63 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import { PseudoBox, Heading, Text } from '@chakra-ui/core';
+import {
+  PseudoBox,
+  Heading,
+  Text,
+  Stack,
+  Flex,
+  IconButton,
+  useToast,
+} from '@chakra-ui/core';
 import CardComponent from './CardComponent';
 import { ResourceProps } from '../constants/propTypes';
 
 function ResourceCard({ resource }) {
+  const toast = useToast();
+  const copiedToastOptions = {
+    title: 'Resource URL copied to clipboard.',
+    status: 'info',
+    duration: 2000,
+    isClosable: true,
+  };
+
   const cardWidth = '300px';
   const fullWidth = '100%';
   const responsiveCardWidth = [fullWidth, fullWidth, fullWidth, cardWidth];
 
+  async function copyToClipboard(url) {
+    await navigator.clipboard.writeText(url);
+    toast(copiedToastOptions);
+  }
+
   return (
     <PseudoBox flexBasis={1} minW={responsiveCardWidth}>
-      <a href={resource.url} target="_blank" rel="noopener noreferrer">
-        <CardComponent
-          key={resource.id}
-          _hover={{ shadow: 'lg', backgroundColor: 'pink.100' }}
-        >
+      <CardComponent
+        key={resource.id}
+        _hover={{ shadow: 'lg', backgroundColor: 'pink.100' }}
+      >
+        <a href={resource.url} target="_blank" rel="noopener noreferrer">
           <Heading as="h4" size="md">
             {resource.title}
           </Heading>
           <Text color="gray.500">{new URL(resource.url).hostname}</Text>
-        </CardComponent>
-      </a>
+        </a>
+        <Flex justifyContent="space-between" mt={2}>
+          <Stack isInline>
+            <IconButton
+              icon="copy"
+              size="sm"
+              variant="ghost"
+              onClick={() => copyToClipboard(resource.url)}
+            />
+          </Stack>
+          <Stack isInline isReversed>
+            <a href={resource.url} target="_blank" rel="noopener noreferrer">
+              <IconButton icon="external-link" size="sm" />
+            </a>
+          </Stack>
+        </Flex>
+      </CardComponent>
     </PseudoBox>
   );
 }

@@ -75,7 +75,7 @@ export default function Build({ name, description, imageUrl, resources, notes, t
       <Container desktopWidth={desktopWidth} leftColumn={70} rightColumn={30}>
         {/* Resources */}
         <Box>
-          <ResponsiveHeading>Resources</ResponsiveHeading>
+          <ResponsiveHeading showDivider>Resources</ResponsiveHeading>
           <Flex flexWrap="wrap">
             {!resources.length && noResourcesText}
             {resources.map((resource) => (
@@ -86,7 +86,7 @@ export default function Build({ name, description, imageUrl, resources, notes, t
 
         {/* Sidebar - notes and related builds? */}
         <Box>
-          <ResponsiveHeading>Notes</ResponsiveHeading>
+          <ResponsiveHeading showDivider>Notes</ResponsiveHeading>
           <Text fontStyle="light" textAlign={RESPONSIVE_TEXT_ALIGN} mb={10}>
             {notes || (emptyNotesText)}
           </Text>
