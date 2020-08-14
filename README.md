@@ -8,7 +8,7 @@ looking to change career paths? **Or, maybe even more importantly, what about pe
 who simply can't afford the price tag of a college degree?**
 
 ### The problem
-Take Sally for example. Sally wants to start learning about Web Development, so
+Take Sally for example. Sally wants to start learning about web development, so
 she googles "intro to web dev." What she gets back is pages and pages of resources
 to look at, but now she has no idea where to start. If she wants guidance on where
 to begin, she might consult random users on reddit or an obscure forum, but for the
