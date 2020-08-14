@@ -78,7 +78,7 @@ function ValSection({ headerText, subText }) {
           pr={[phSm, phSm, 0, 0]}
           pt={[pvSm, pvSm, 2, 2]}
           pb={[pvLg, pvLg, 0, 0]}>
-          Learning comes in all shapes and sizes. With all the pages and pages provided by a single Google search, can we narrow it down to the most effective tools out there?
+          Learning comes in all shapes and sizes. With all of the pages and pages provided by a single Google search, can we narrow it down to the most effective tools out there?
         </Heading>
 
         <Divider/>
@@ -99,7 +99,7 @@ function ValSection({ headerText, subText }) {
           pr={[phSm, phSm, 0, 0]}
           pt={[pvSm, pvSm, 2, 2]}
           pb={[pvLg, pvLg, 0, 0]}>
-          Sharing is caring. We care about discovering new pathways to learn, the latest tools to gain knowledge, and expanding our horizons.
+          Sharing is caring. Especially when it comes to what we know. We care about discovering new pathways to learn, studying with the latest tools, and expanding our horizons.
         </Heading>
 
         <Divider/>
@@ -120,7 +120,7 @@ function ValSection({ headerText, subText }) {
           pr={[phSm, phSm, 0, 0]}
           pt={[pvSm, pvSm, 2, 2]}
           pb={[pvLg, pvLg, 0, 0]}>
-          Community and collaboration work hand-in-hand. Learn Build connects personal and academic interests, and by simplifying ways to learn, we hope to further inspire the student within all of us.
+          Community and collaboration work hand-in-hand. Learn Build connects personal interests and academic interests. By simplifying ways to learn, we hope to further inspire the student within all of us.
         </Heading>
       </Box>
 
