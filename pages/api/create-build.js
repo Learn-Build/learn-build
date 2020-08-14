@@ -5,7 +5,7 @@ export default async function(req, res) {
     await connect()
 
     try {
-        const createdBuild = await BuildRepository.createdBuild(req.body)
+        const createdBuild = await BuildRepository.createBuild(req.body)
 
         res.send(createdBuild);
     } catch(e) {

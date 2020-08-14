@@ -13,6 +13,18 @@ const ResourceRepository = {
       })
         
     },
+
+    getById: async (id) => {
+        return new Promise((resolve, reject) => {
+            Resource.findById(id, (err, resource) => {
+                if (err) {
+                    reject(err);
+                }
+                resolve(resource);
+            });
+        })
+    },
+
     createResource: (resource) => {
       return new Promise((resolve, reject) => {
         const resourceModel = new Resource(resource)

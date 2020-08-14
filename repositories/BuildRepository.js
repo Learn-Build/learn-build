@@ -12,6 +12,19 @@ const BuildRepository = {
       })
 
     },
+
+    getById: async (id) => {
+      return new Promise((resolve, reject) => {
+          Build.findById(id, (err, build) => {
+              if (err) {
+                  reject(err);
+              }
+              resolve(build);
+          });
+      })
+  },
+
+
     createBuild: (build) => {
       return new Promise((resolve, reject) => {
         const buildModel = new Build(build)

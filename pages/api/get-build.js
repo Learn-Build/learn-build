@@ -4,10 +4,10 @@ import connect from '../../db/connectToMongo'
 export default async function(req, res) {
     await connect()
 
-    const title = req.query.title
-    console.log('title', title)
+    const _id = req.query._id
+    console.log('id', _id)
 
-    const build = await BuildRepository.getByTitle(title)
+    const build = await BuildRepository.getById(_id)
     console.log(build);
     res.send(build);
   };
