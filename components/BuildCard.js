@@ -31,7 +31,7 @@ function BuildCard({ build, user, tagNames }) {
   const toast = useToast();
 
   const linkHref = '/build/[name]';
-  const linkAs = `/build/${build.name}`;
+  const linkAs = `/build/${build.title}`;
 
   const desktopColumns = '15% 75% 10%';
   const mobileColumns = '13% 72% 15%';
@@ -70,7 +70,7 @@ function BuildCard({ build, user, tagNames }) {
             <TagBadges tagNames={tagNames} />
 
             <Box as="h3" fontSize={headerFontSize} fontWeight="bold">
-              {build.name}
+              {build.title}
             </Box>
 
             {/* TODO(Renzo): Make username link to user's page */}
@@ -95,7 +95,7 @@ function BuildCard({ build, user, tagNames }) {
               }}
             />
             <Text ml={2} fontSize="xs" alignSelf="center">
-              {build.likeCount + (favorited ? 1 : 0)}
+              {build.favoriteCount + (favorited ? 1 : 0)}
             </Text>
           </Stack>
 

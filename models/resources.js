@@ -1,4 +1,5 @@
-import mongoose from 'mongoose'
+/* eslint-disable operator-linebreak */
+import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
@@ -17,21 +18,20 @@ const ResourceSchema = new Schema({
   },
   comments: {
     type: [String],
+    required: false,
     default: [],
   },
-
   image_url: {
-    type: String, 
+    type: String,
     required: false,
     default: '',
   },
-
-  tag: {
+  tags: {
     type: [String],
     required: false,
-    default: []
+    default: [],
   },
-
 });
 
-export default mongoose.models.Resource || mongoose.model('Resource', ResourceSchema);
+export default mongoose.models.Resource ||
+  mongoose.model('Resource', ResourceSchema);

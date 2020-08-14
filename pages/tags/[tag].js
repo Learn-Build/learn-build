@@ -91,7 +91,11 @@ Tag.defaultProps = {
 };
 
 export async function getStaticPaths() {
-  const tags = await fetchTags();
+  const allTagsData = await fetchTags().then((r) => r.data);
+  const tags = allTagsData.map((t) => ({
+    ...t,
+    id: t._id,
+  }));
   const paths = tags.map((tag) => `/tags/${tag.name}`);
   // TODO(Renzo): Create custom fallback page
   return { paths, fallback: false };
@@ -100,16 +104,32 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   // Fetch tag information
   const tagName = context.params.tag;
-  const tags = await fetchTags();
+  const allTagsData = await fetchTags().then((r) => r.data);
+  const tags = allTagsData.map((t) => ({
+    ...t,
+    id: t._id,
+  }));
   // TODO(Renzo): Get image URL once in data
   const { id, name, description } = tags.find((t) => t.name === tagName);
 
   // Fetch and filter builds with tag
-  const builds = await fetchBuilds();
+  const allBuildsData = await fetchBuilds().then((r) => r.data);
+  const builds = allBuildsData.map((b) => ({
+    ...b,
+    id: b._id,
+    userId: b.user_id,
+    favoriteCount: b.favorite_count,
+    resourceIds: [],
+    tagIds: [],
+  }));
   // eslint-disable-next-line prettier/prettier
   const filteredBuilds = builds.filter((build) => build.tagIds.some((tagId) => tagId === id));
 
-  const users = await fetchUsers();
+  const allUsersData = await fetchUsers().then((r) => r.data);
+  const users = allUsersData.map((u) => ({
+    ...u,
+    id: u._id,
+  }));
 
   return {
     props: {

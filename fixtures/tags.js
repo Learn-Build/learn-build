@@ -22,17 +22,20 @@ const TAGS = [
   {
     id: '4',
     name: 'Deep Learning',
-    description: 'Deep Learning',
+    description:
+      'Deep learning is a machine learning technique that teaches computers to learn by example.',
   },
   {
     id: '5',
     name: 'Artificial Intelligence',
-    description: 'Artificial Intelligence',
+    description:
+      'Artificial intelligence (AI) is wide-ranging branch of computer science concerned with building smart machines capable of performing tasks that typically require human intelligence.',
   },
   {
     id: '6',
     name: 'Computer Science',
-    description: 'Computer Science',
+    description:
+      'Computer Science is the study of computers and computational systems.',
   },
   {
     id: '7',
@@ -42,7 +45,8 @@ const TAGS = [
   {
     id: '8',
     name: 'JavaScript',
-    description: 'JavaScript',
+    description:
+      'JavaScript (JS) is a lightweight, interpreted, or just-in-time compiled programming language with first-class functions.',
   },
   {
     id: '9',

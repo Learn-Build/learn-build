@@ -1,42 +1,47 @@
-
-import Resource from '../models/resources'
+/* eslint-disable implicit-arrow-linebreak */
+import Resource from '../models/resources';
 
 const ResourceRepository = {
-    getByTitle: async (title) => {
-      return new Promise((resolve, reject) => {
-        Resource.findOne({ title: title }, (err, resource) => {
-          if (err) {
-            reject(err)
-          }
-          resolve(resource)
-        })
-      })
-        
-    },
+  getAll: async (limit) =>
+    new Promise((resolve, reject) => {
+      Resource.find({}, (err, resources) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(resources);
+      }).limit(limit);
+    }),
 
-    getById: async (id) => {
-        return new Promise((resolve, reject) => {
-            Resource.findById(id, (err, resource) => {
-                if (err) {
-                    reject(err);
-                }
-                resolve(resource);
-            });
-        })
-    },
+  getByTitle: async (title) =>
+    new Promise((resolve, reject) => {
+      Resource.findOne({ title }, (err, resource) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(resource);
+      });
+    }),
 
-    createResource: (resource) => {
-      return new Promise((resolve, reject) => {
-        const resourceModel = new Resource(resource)
-        resourceModel.save((err, resource) => {
-            if (err) {
-                reject(err)
-            }
-            resolve(resource)
-        })
-      })
-        
-    }
-}
+  getById: async (id) =>
+    new Promise((resolve, reject) => {
+      Resource.findById(id, (err, resource) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(resource);
+      });
+    }),
 
-export default ResourceRepository
+  createResource: (resource) =>
+    new Promise((resolve, reject) => {
+      const resourceModel = new Resource(resource);
+      resourceModel.save((err, resource) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(resource);
+      });
+    }),
+};
+
+export default ResourceRepository;

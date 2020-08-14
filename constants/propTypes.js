@@ -10,11 +10,11 @@ export const TagListProps = PropTypes.arrayOf(TagProps);
 
 export const BuildProps = PropTypes.shape({
   id: PropTypes.string,
-  name: PropTypes.string,
+  title: PropTypes.string,
   description: PropTypes.string,
   user: PropTypes.string,
   tagIds: PropTypes.arrayOf(PropTypes.string),
-  likeCount: PropTypes.number,
+  favoriteCount: PropTypes.number,
 });
 
 export const BuildListProps = PropTypes.arrayOf(BuildProps);

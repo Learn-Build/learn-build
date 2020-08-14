@@ -3,9 +3,10 @@ import { Box, Button } from '@chakra-ui/core';
 import PropTypes from 'prop-types';
 
 function NavigationButton({ show, children }) {
+  const showDisplayFlex = show ? 'block' : 'none';
   return (
     <Box
-      display={{ sm: show ? 'block' : 'none', md: 'block' }}
+      display={[showDisplayFlex, showDisplayFlex, showDisplayFlex, 'block']}
       mt={{ base: 4, md: 0 }}
       mr={2}
     >

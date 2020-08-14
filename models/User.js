@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const { Schema } = mongoose;
 
 const UserSchema = new Schema({
@@ -6,19 +7,19 @@ const UserSchema = new Schema({
     type: String,
     required: true,
     unique: true,
-    lowercase: true
+    lowercase: true,
   },
   name: {
     type: String,
     required: true,
   },
   builds_created: {
-      type: [String],
-      default: [],
+    type: [String],
+    default: [],
   },
   resources_uploaded: {
-      type: [String],
-      default: [],
+    type: [String],
+    default: [],
   },
   builds_favorited: {
     type: [String],

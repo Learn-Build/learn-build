@@ -10,7 +10,9 @@ function NavigationBar() {
   const [show, setShow] = useState(false);
   const handleToggle = () => setShow(!show);
 
-  const display = show ? 'block' : 'none';
+  const displayBlock = show ? 'block' : 'none';
+  const displayFlex = show ? 'flex' : 'none';
+  const displayGrid = show ? 'grid' : 'none';
 
   return (
     <Flex
@@ -19,7 +21,7 @@ function NavigationBar() {
       justify="space-between"
       wrap="wrap"
       py="0.8rem"
-      px={{ base: '0.9rem', sm: '4rem' }}
+      px={{ base: '1.5rem', sm: '4rem' }}
       bg="pink.700"
       color="white"
     >
@@ -38,10 +40,10 @@ function NavigationBar() {
         </Stack>
       </Flex>
 
-      <Box display={['block', 'block', 'block', 'none']} onClick={handleToggle}>
+      <Box display={['block', 'block', 'flex', 'none']} onClick={handleToggle}>
         <svg
           fill="white"
-          width="20px"
+          width="23px"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -51,10 +53,11 @@ function NavigationBar() {
       </Box>
 
       <Box
-        display={[display, display, display, 'flex']}
+        display={[displayFlex, displayBlock, displayFlex, 'flex']}
         width={{ sm: 'full', md: 'auto' }}
         alignItems="center"
         flexGrow={1}
+        flexDir={['column', 'column', 'row', 'row']}
       >
         <NavigationItem href="/about">About</NavigationItem>
         <NavigationItem href="/search">Search</NavigationItem>

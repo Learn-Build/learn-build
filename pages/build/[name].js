@@ -15,13 +15,13 @@ import { ResourceListProps, UserProps } from '../../constants/propTypes';
 import { RESPONSIVE_TEXT_ALIGN } from '../../styles/responsiveStyles';
 import { FAVORITED_TOAST, SAVED_TOAST, UNFAVORITED_TOAST, UNSAVED_TOAST } from '../../constants/toasts';
 
-function Build({ name, builder, description, imageUrl, resources, notes, tagNames }) {
+function Build({ title, builder, description, imageUrl, resources, notes, tagNames }) {
   const toast = useToast();
 
   const desktopWidth = 90;
 
   const emptyNotesText = 'No notes for this build.';
-  const noResourcesText = 'No resources in this build yet,';
+  const noResourcesText = 'No resources in this build yet.';
 
   const builderPageHref = '/[user]';
   const builderPageAs = `/${builder.id}`;
@@ -40,8 +40,8 @@ function Build({ name, builder, description, imageUrl, resources, notes, tagName
         </Box>
 
         {/* Title, description, tags */}
-        <Box textAlign={['center', 'center', 'center', 'left']}>
-          <Heading as="h1" size="2xl">{name}</Heading>
+        <Box textAlign={['center', 'center', 'center', 'left']} p={4}>
+          <Heading as="h1" size="2xl">{title}</Heading>
           <LinkWrapper href={builderPageHref} as={builderPageAs}>
             <Text>{builder.name}</Text>
           </LinkWrapper>
@@ -71,8 +71,8 @@ function Build({ name, builder, description, imageUrl, resources, notes, tagName
         {/* Resources */}
         <Box>
           <ResponsiveHeading showDivider>Resources</ResponsiveHeading>
+          {!resources.length && <Text textAlign={RESPONSIVE_TEXT_ALIGN}>{noResourcesText}</Text>}
           <Flex flexWrap="wrap">
-            {!resources.length && <Text textAlign={RESPONSIVE_TEXT_ALIGN}>{noResourcesText}</Text>}
             {resources.map((resource) => (
               <ResourceCard key={resource.id} resource={resource} />
             ))}
@@ -92,7 +92,7 @@ function Build({ name, builder, description, imageUrl, resources, notes, tagName
 }
 
 Build.propTypes = {
-  name: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   builder: UserProps.isRequired,
   description: PropTypes.string.isRequired,
   imageUrl: PropTypes.string,
@@ -107,32 +107,62 @@ Build.defaultProps = {
 };
 
 export async function getStaticPaths() {
-  const builds = await fetchBuilds();
-  const paths = builds.map((build) => `/build/${build.name}`);
+  const allBuildsData = await fetchBuilds().then((r) => r.data);
+  const builds = allBuildsData.map((b) => ({
+    ...b,
+    id: b._id,
+    userId: b.user_id,
+    favoriteCount: b.favorite_count,
+    resourceIds: [],
+    tagIds: [],
+  }));
+  const paths = builds.map((build) => `/build/${build.title}`);
   return { paths, fallback: false };
 }
 
 export async function getStaticProps(context) {
-  const buildName = context.params.name;
-  const builds = await fetchBuilds();
+  const buildTitle = context.params.name;
+  const allBuildsData = await fetchBuilds().then((r) => r.data);
+  const builds = allBuildsData.map((b) => ({
+    ...b,
+    id: b._id,
+    userId: b.user_id,
+    favoriteCount: b.favorite_count,
+    resourceIds: [],
+    tagIds: [],
+  }));
   // TODO(Renzo): extract notes once they are added to schema
-  const { name, userId, description, resourceIds, tagIds } = builds.find(
-    (build) => build.name === buildName,
+  const { title, userId, description, resourceIds, tagIds } = builds.find(
+    (build) => build.title === buildTitle,
   );
 
-  const allResources = await fetchResources();
+  const allResourcesData = await fetchResources().then((r) => r.data);
+  const allResources = allResourcesData.map((r) => ({
+    ...r,
+    tagIds: r.tags,
+    imageUrl: r.image_url,
+  }));
   const resources = allResources.filter((resource) => resourceIds.includes(resource.id));
 
-  const allTags = await fetchTags();
+  const allTagsData = await fetchTags().then((r) => r.data);
+  const allTags = allTagsData.map((t) => ({
+    ...t,
+    id: t._id,
+  }));
+
   const tags = allTags.filter((tag) => tagIds.includes(tag.id));
   const tagNames = tags.map((tag) => tag.name);
 
-  const allUsers = await fetchUsers();
-  const builder = allUsers.find((user) => user.id === userId);
+  const allUsersData = await fetchUsers().then((r) => r.data);
+  const users = allUsersData.map((u) => ({
+    ...u,
+    id: u._id,
+  }));
+  const builder = users.find((user) => user.id === userId);
 
   return {
     props: {
-      name,
+      title,
       builder,
       description,
       resources,
