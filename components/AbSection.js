@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Box, Heading, Grid, Image, Flex, Stack, Divider } from '@chakra-ui/core';
 import PropTypes from 'prop-types';
-import { Transition, CSSTransition } from 'react-transition-group';
-import AnimateHeight from 'react-animate-height';
+// import { Transition, CSSTransition } from 'react-transition-group';
+// import AnimateHeight from 'react-animate-height';
 
 // About/mission section icons
 function ImgIcon({ imgSrc, imgAlt }) {

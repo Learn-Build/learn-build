@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Carousel, CarouselItem } from 'react-bootstrap';
+// import { Carousel, CarouselItem } from 'react-bootstrap';
 //import 'react-bootstrap';
 //import Carousel from 'react-bootstrap/lib/Carousel';
 import { Box, Heading, Grid, Image, Stack, Text, Divider } from '@chakra-ui/core';

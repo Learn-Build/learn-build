@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Box, Heading, SimpleGrid, Image, Flex, Stack, Text } from '@chakra-ui/core';
 import PropTypes from 'prop-types';
-import { Transition, CSSTransition } from 'react-transition-group';
-import AnimateHeight from 'react-animate-height';
+// import { Transition, CSSTransition } from 'react-transition-group';
+// import AnimateHeight from 'react-animate-height';
 
 // People section icons
 function PplIcon({ imgSrc, imgAlt, name, pos }) {
