@@ -1,4 +1,5 @@
 import tag from '..models/tag'
+import Resource from '../models/resources'
 import ResourceRepository from './ResourceRepository'
 
 
@@ -9,7 +10,7 @@ const TagRepository = {
           //call getByTitle?
           resource = ResourceRepository.getByTitle(resname); //lhs is json
           //get the tag document
-          tagarray = resource.tag
+          tagarray = resource.tag.type;
           resolve(tagarray);
         })
       },
@@ -20,10 +21,14 @@ const TagRepository = {
     
     
     addToResource: async (tagname, resname) => {
-        //call getByTitle from ResourceRepository?
-        //.updateOne(tags: tags.push(tagname))
-
-
+        
+        tagarray = getResTag(resname);
+        updated_array = tagarray.push(tagname);
+        
+        updatedListing = {tag: updated_array};
+        Resource.updateOne({title: resname}, {$set: updatedListing});
+        
+    
     },
 
 
