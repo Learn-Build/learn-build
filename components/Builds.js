@@ -28,26 +28,28 @@ function Builds({ builds, tags, users, header = 'Builds' }) {
   return (
     <div>
       <ResponsiveHeading>{header}</ResponsiveHeading>
-      {builds.map((build) => (
-        <BuildCard
-          key={build.id}
-          build={build}
-          user={getUserProps(build)}
-          tagNames={getTagNames(build)}
-        />
-      ))}
+      {builds &&
+        builds.map((build) => (
+          <BuildCard
+            key={build.id}
+            build={build}
+            user={getUserProps(build)}
+            tagNames={getTagNames(build)}
+          />
+        ))}
     </div>
   );
 }
 
 Builds.propTypes = {
-  builds: BuildListProps.isRequired,
+  builds: PropTypes.oneOfType([PropTypes.number, BuildListProps]),
   tags: TagListProps.isRequired,
   users: UserListProps.isRequired,
   header: PropTypes.string,
 };
 
 Builds.defaultProps = {
+  builds: null,
   header: 'Builds',
 };
 
