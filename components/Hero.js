@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Heading, Grid, Image } from '@chakra-ui/core';
 import PropTypes from 'prop-types';
 
-function Hero({ headerText, subText }) {
+function Hero({ headerText, subText, heroImgSrc, heroImgAlt }) {
   const horizontalGrid = '45% 55%';
   const stackGrid = '100%';
   const responsiveGrid = [stackGrid, stackGrid, horizontalGrid, horizontalGrid];
@@ -53,8 +53,8 @@ function Hero({ headerText, subText }) {
 
       <Image
         pr={30}
-        src="/assets/student_studying_mini.jpg"
-        alt="Student learning online"
+        src={heroImgSrc}
+        alt={heroImgAlt}
         htmlWidth={4735}
         htmlHeight={3757}
       />
@@ -65,6 +65,8 @@ function Hero({ headerText, subText }) {
 Hero.propTypes = {
   headerText: PropTypes.string.isRequired,
   subText: PropTypes.string.isRequired,
+  heroImgSrc: PropTypes.string.isRequired,
+  heroImgAlt: PropTypes.string.isRequired,
 };
 
 export default Hero;
