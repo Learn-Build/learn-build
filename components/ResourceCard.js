@@ -10,6 +10,7 @@ import {
   useToast,
 } from '@chakra-ui/core';
 import CardComponent from './CardComponent';
+import ResourceDetails from './ResourceDetails';
 import { ResourceProps } from '../constants/propTypes';
 
 function ResourceCard({ resource }) {
@@ -50,10 +51,14 @@ function ResourceCard({ resource }) {
               variant="ghost"
               onClick={() => copyToClipboard(resource.url)}
             />
+            <ResourceDetails
+              resource={resource}
+              copyToClipboard={copyToClipboard}
+            />
           </Stack>
           <Stack isInline isReversed>
             <a href={resource.url} target="_blank" rel="noopener noreferrer">
-              <IconButton icon="external-link" size="sm" />
+              <IconButton icon="external-link" size="sm" variant="ghost" />
             </a>
           </Stack>
         </Flex>
