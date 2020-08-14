@@ -1,7 +1,5 @@
-//var MongoClient = require('mongodb').MongoClient;
 const {MongoClient} = require('mongodb');
 const uri = "mongodb+srv://admin:root@cluster0.ma9zx.mongodb.net/squirrel?retryWrites=true&w=majority"
-//var url = "mongodb+srv://admin:root@cluster0.ma9zx.mongodb.net/squirrel?retryWrites=true&w=majority";
 
 async function main(){
 
