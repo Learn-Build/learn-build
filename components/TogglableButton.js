@@ -28,6 +28,7 @@ function TogglableButton({
       size={size}
       fontSize={fontSize}
       my={my}
+      py={3}
     >
       {enabled ? enabledText : disabledText}
     </Button>
@@ -44,7 +45,10 @@ TogglableButton.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),
   ]),
-  fontSize: PropTypes.arrayOf(PropTypes.string),
+  fontSize: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
   variantColor: PropTypes.string,
   my: PropTypes.number,
   onClick: PropTypes.func,
