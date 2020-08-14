@@ -1,7 +1,4 @@
-import connect from '../db/connect';
-
 const mongoose = require('mongoose');
-
 const { Schema } = mongoose;
 
 const UserSchema = new Schema({
@@ -31,7 +28,6 @@ const UserSchema = new Schema({
     type: [String],
     default: [],
   },
-  
 });
 
-module.exports = connect().model('User', UserSchema);
+export default mongoose.models.User || mongoose.model('User', UserSchema);
