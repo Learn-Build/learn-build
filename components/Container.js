@@ -22,6 +22,7 @@ function Container({
       margin="auto"
       templateColumns={responsiveColumns}
       width={responsiveWidth}
+      mb={10}
     >
       {children}
     </Grid>

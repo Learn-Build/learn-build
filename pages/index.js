@@ -7,12 +7,16 @@ import Hero from '../components/Hero';
 import Container from '../components/Container';
 import Builds from '../components/Builds';
 import Tags from '../components/Tags';
-import { fetchBuilds, fetchTags } from '../clients';
-import { BuildListProps, TagListProps } from '../constants/propTypes';
+import { fetchBuilds, fetchTags, fetchUsers } from '../clients';
+import {
+  BuildListProps,
+  TagListProps,
+  UserListProps,
+} from '../constants/propTypes';
 
 // TODO(Renzo): Add footer and another image somewhere
 
-export default function Home({ builds, tags }) {
+export default function Home({ builds, tags, users }) {
   // TODO(Renzo): Limit the amount of builds shown
   // TODO(Renzo): Limit the amount of tags shown - trending tags?
   const tagsToShow = 5;
@@ -26,7 +30,12 @@ export default function Home({ builds, tags }) {
       />
       <Container>
         <Box>
-          <Builds header="Popular Builds" builds={builds} tags={tags} />
+          <Builds
+            header="Popular Builds"
+            builds={builds}
+            tags={tags}
+            users={users}
+          />
         </Box>
 
         <Box>
@@ -42,21 +51,22 @@ export default function Home({ builds, tags }) {
 }
 
 Home.propTypes = {
-  builds: BuildListProps,
-  tags: TagListProps,
-};
-
-Home.defaultProps = {
-  builds: [],
-  tags: [],
+  builds: BuildListProps.isRequired,
+  tags: TagListProps.isRequired,
+  users: UserListProps.isRequired,
 };
 
 // TODO(Renzo): handle promises once data fetching returns actual data
 export async function getStaticProps() {
+  const allBuildsData = await fetchBuilds();
+  const allTagsData = await fetchTags();
+  const allUsersData = await fetchUsers();
+
   return {
     props: {
-      builds: await fetchBuilds(),
-      tags: await fetchTags(),
+      builds: allBuildsData,
+      tags: allTagsData,
+      users: allUsersData,
     },
   };
 }
