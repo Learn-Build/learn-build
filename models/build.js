@@ -11,7 +11,7 @@ const BuildSchema = new Schema({
     type: String,
     required: true,
   },
-  userId: {
+  user_id: {
     type: String,
     required: true,
   },
@@ -25,7 +25,7 @@ const BuildSchema = new Schema({
     required: false,
     default: null,
   },
-  favoriteCount: {
+  favorite_count: {
     type: Number,
     required: false,
     default: 0,
