@@ -67,7 +67,7 @@ function PplSection() {
             imgSrc={"/assets/kayla.jpg"}
             imgAlt={"Kayla Raflores, child"}
             name={"Kayla Raflores"}
-            pos={"child"}
+            pos={"Software Engineer"}
           />
           <PplIcon
             imgSrc={"/assets/chris.jpg"}
