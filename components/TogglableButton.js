@@ -21,7 +21,7 @@ function TogglableButton({
       rightIcon={enabled ? 'check' : 'small-add'}
       onClick={() => {
         setEnabled(!enabled);
-        onClick();
+        onClick(enabled);
       }}
       variant={enabled ? enabledVariant : disabledVariant}
       variantColor={variantColor}
@@ -40,7 +40,10 @@ TogglableButton.propTypes = {
   enabledVariant: PropTypes.string,
   disabledVariant: PropTypes.string,
   initialState: PropTypes.bool,
-  size: PropTypes.arrayOf(PropTypes.string),
+  size: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
   fontSize: PropTypes.arrayOf(PropTypes.string),
   variantColor: PropTypes.string,
   my: PropTypes.number,

@@ -29,13 +29,13 @@ User.propTypes = {
 
 export async function getStaticPaths() {
   const users = await fetchUsers();
-  const paths = users.map((user) => `/${user.name}`);
+  const paths = users.map((user) => `/${user.id}`);
   return { paths, fallback: false };
 }
 
 export async function getStaticProps(context) {
-  const userName = context.params.user;
+  const userId = context.params.user;
   const users = await fetchUsers();
-  const userData = users.find((t) => t.name === userName);
+  const userData = users.find((t) => t.id === userId);
   return { props: userData };
 }
