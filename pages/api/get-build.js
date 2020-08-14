@@ -8,6 +8,6 @@ export default async function(req, res) {
     console.log('title', title)
 
     const build = await BuildRepository.getByTitle(title)
-    console.log(build)
+    console.log(build);
     res.send(build);
   };

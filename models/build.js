@@ -1,4 +1,4 @@
-import connect from '../db/connect';
+import connect from '../db/connectToMongo';
 
 const mongoose = require('mongoose');
 
@@ -34,4 +34,4 @@ const BuildSchema = new Schema({
 
 });
 
-module.exports = mongoose.models.Resource || mongoose.model('Resource', ResourceSchema);
+module.exports = mongoose.models.Build || mongoose.model('Build', BuildSchema);
