@@ -10,6 +10,7 @@
     "lint": "eslint '**/*.js' --fix --ignore-pattern node_modules/ --ignore-pattern .next --no-error-on-unmatched-pattern"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^0.15.0",
     "@chakra-ui/core": "^0.8.0",
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
