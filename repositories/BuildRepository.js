@@ -3,7 +3,7 @@ import build from '../models/build'
 const BuildRepository = {
     getByTitle: async (title) => {
       return new Promise((resolve, reject) => {
-        Resource.findOne({ title: title }, (err, build) => {
+        build.findOne({ title: title }, (err, build) => {
           if (err) {
             reject(err)
           }
@@ -12,7 +12,7 @@ const BuildRepository = {
       })
 
     },
-    createResource: (build) => {
+    createBuild: (build) => {
       return new Promise((resolve, reject) => {
         const buildModel = new build(build)
         buildModel.save((err, build) => {
@@ -26,4 +26,4 @@ const BuildRepository = {
     }
 }
 
-export default ResourceRepository
+export default BuildRepository
