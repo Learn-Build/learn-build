@@ -1,9 +1,9 @@
-import build from '../models/build'
+import Build from '../models/build'
 
 const BuildRepository = {
     getByTitle: async (title) => {
       return new Promise((resolve, reject) => {
-        build.findOne({ title: title }, (err, build) => {
+        Build.findOne({ title: title }, (err, build) => {
           if (err) {
             reject(err)
           }
@@ -14,7 +14,7 @@ const BuildRepository = {
     },
     createBuild: (build) => {
       return new Promise((resolve, reject) => {
-        const buildModel = new build(build)
+        const buildModel = new Build(build)
         buildModel.save((err, build) => {
             if (err) {
                 reject(err)

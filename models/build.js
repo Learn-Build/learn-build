@@ -1,6 +1,4 @@
-import connect from '../db/connectToMongo';
-
-const mongoose = require('mongoose');
+import mongoose from 'mongoose'
 
 const { Schema } = mongoose;
 
@@ -34,4 +32,4 @@ const BuildSchema = new Schema({
 
 });
 
-module.exports = mongoose.models.Build || mongoose.model('Build', BuildSchema);
+export default mongoose.models.Build || mongoose.model('Build', BuildSchema);
