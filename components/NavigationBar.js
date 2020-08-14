@@ -4,8 +4,6 @@ import { Box, Heading, Flex, Icon, Stack } from '@chakra-ui/core';
 import NavigationButton from './NavigationButton';
 import NavigationItem from './NavigationItem';
 
-// TODO(Renzo): replace search with search bar or move elsewhere
-
 // Taken and modified from here:
 // https://chakra-ui.com/recipes#responsive-header-with-chakra-ui
 function NavigationBar() {
@@ -40,10 +38,10 @@ function NavigationBar() {
         </Stack>
       </Flex>
 
-      <Box display={{ base: 'block', md: 'none' }} onClick={handleToggle}>
+      <Box display={['block', 'block', 'block', 'none']} onClick={handleToggle}>
         <svg
           fill="white"
-          width="12px"
+          width="20px"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -53,7 +51,7 @@ function NavigationBar() {
       </Box>
 
       <Box
-        display={[display, display, 'flex', 'flex']}
+        display={[display, display, display, 'flex']}
         width={{ sm: 'full', md: 'auto' }}
         alignItems="center"
         flexGrow={1}
@@ -64,9 +62,13 @@ function NavigationBar() {
       </Box>
 
       {/* FIXME(Renzo): Setting display to "flex" causes issues in mobile */}
-      <Stack display={['none', 'none', 'flex', 'flex']} isInline>
-        <NavigationButton show={show}><a href="/api/login">Log in</a></NavigationButton>
-        <NavigationButton show={show}><a href="/api/logout">Log out</a></NavigationButton>
+      <Stack display={['none', 'none', 'none', 'flex']} isInline>
+        <NavigationButton show={show}>
+          <a href="/api/login">Log in</a>
+        </NavigationButton>
+        <NavigationButton show={show}>
+          <a href="/api/logout">Log out</a>
+        </NavigationButton>
         <NavigationButton show={show}>Sign up</NavigationButton>
       </Stack>
     </Flex>
