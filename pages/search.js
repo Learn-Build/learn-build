@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
 import {
   Icon,
@@ -13,10 +14,14 @@ import CardComponent from '../components/CardComponent';
 import ResponsiveHeading from '../components/ResponsiveHeading';
 import Builds from '../components/Builds';
 import TagFilterButton from '../components/TagFilterButton';
-import { fetchBuilds, fetchTags } from '../clients';
-import { BuildListProps, TagListProps } from '../constants/propTypes';
+import { fetchBuilds, fetchTags, fetchUsers } from '../clients';
+import {
+  BuildListProps,
+  TagListProps,
+  UserListProps,
+} from '../constants/propTypes';
 
-export default function Search({ builds, tags }) {
+export default function Search({ builds, tags, users }) {
   const [nameQuery, setNameQuery] = useState('');
   const [builderQuery, setBuilderQuery] = useState('');
   const [tagFilters, setTagFilters] = useState([]);
@@ -37,11 +42,14 @@ export default function Search({ builds, tags }) {
     }
   }
 
+  // TODO(Renzo?): refactor this horrible mess
   function filterBuilds() {
     return builds
       .filter((build) => build.name.toLowerCase().includes(nameQuery))
-      .filter((build) => build.builder.toLowerCase().includes(builderQuery))
-      .filter((build) => {
+      .filter((build) => users
+        .find((user) => build.userId === user.id)
+        .name.toLowerCase()
+        .includes(builderQuery)).filter((build) => {
         // TODO(Renzo?): I'm not smart enough to refactor this with array-only methods so... todo
         // eslint-disable-next-line no-restricted-syntax
         for (const tag of tagFilters) {
@@ -102,7 +110,7 @@ export default function Search({ builds, tags }) {
               onChange={handleNameQueryChange}
             />
           </InputGroup>
-          <Builds builds={filterBuilds()} tags={tags} header="" />
+          <Builds builds={filterBuilds()} tags={tags} users={users} header="" />
         </Box>
       </Container>
     </div>
@@ -110,21 +118,17 @@ export default function Search({ builds, tags }) {
 }
 
 Search.propTypes = {
-  builds: BuildListProps,
-  tags: TagListProps,
+  builds: BuildListProps.isRequired,
+  tags: TagListProps.isRequired,
+  users: UserListProps.isRequired,
 };
-
-Search.defaultProps = {
-  builds: [],
-  tags: [],
-};
-
 // TODO(Renzo): handle promises once data fetching returns actual data
 export async function getStaticProps() {
   return {
     props: {
       builds: await fetchBuilds(),
       tags: await fetchTags(),
+      users: await fetchUsers(),
     },
   };
 }

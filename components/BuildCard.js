@@ -16,7 +16,7 @@ import { BuildProps } from '../constants/propTypes';
 
 // TODO(Renzo): Add state to card for interacting with buttons
 
-function BuildCard({ build, tagNames }) {
+function BuildCard({ build, user, tagNames }) {
   const toast = useToast();
   const savedToastOptions = {
     title: 'Build saved!',
@@ -74,7 +74,7 @@ function BuildCard({ build, tagNames }) {
 
             {/* TODO(Renzo): Make username link to user's page */}
             <Box as="h2" fontSize={bodyFontSize} color="gray.500">
-              {build.builder}
+              {user.name}
             </Box>
 
             <Box as="p" fontSize={bodyFontSize}>
@@ -119,6 +119,10 @@ function BuildCard({ build, tagNames }) {
 
 BuildCard.propTypes = {
   build: BuildProps,
+  user: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+  }).isRequired,
   tagNames: PropTypes.arrayOf(PropTypes.string),
 };
 

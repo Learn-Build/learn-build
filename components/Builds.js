@@ -2,9 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ResponsiveHeading from './ResponsiveHeading';
 import BuildCard from './BuildCard';
-import { BuildListProps, TagListProps } from '../constants/propTypes';
+import {
+  BuildListProps,
+  TagListProps,
+  UserListProps,
+} from '../constants/propTypes';
 
-function Builds({ builds, tags, header = 'Builds' }) {
+function Builds({ builds, tags, users, header = 'Builds' }) {
   // FIXME(Renzo): change this when data fetching actually pulls data?
   function getTagNames(build) {
     const { tagIds } = build;
@@ -15,25 +19,35 @@ function Builds({ builds, tags, header = 'Builds' }) {
     return tagNames;
   }
 
+  function getUserProps(build) {
+    const { userId } = build;
+    const userData = users.find((user) => user.id === userId);
+    return { id: userData.id, name: userData.name };
+  }
+
   return (
     <div>
       <ResponsiveHeading>{header}</ResponsiveHeading>
       {builds.map((build) => (
-        <BuildCard key={build.id} build={build} tagNames={getTagNames(build)} />
+        <BuildCard
+          key={build.id}
+          build={build}
+          user={getUserProps(build)}
+          tagNames={getTagNames(build)}
+        />
       ))}
     </div>
   );
 }
 
 Builds.propTypes = {
-  builds: BuildListProps,
-  tags: TagListProps,
+  builds: BuildListProps.isRequired,
+  tags: TagListProps.isRequired,
+  users: UserListProps.isRequired,
   header: PropTypes.string,
 };
 
 Builds.defaultProps = {
-  builds: [],
-  tags: [],
   header: 'Builds',
 };
 

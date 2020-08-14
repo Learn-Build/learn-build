@@ -9,7 +9,7 @@ const BUILDS = [
     name: 'Introductory Deep Learning Build',
     description:
       'Learn the basics of deep learning, starting from nothing to finishing your first project.',
-    builder: 'Renzo Ledesma',
+    userId: '1',
     tagIds: ['4', '5', '6'],
     likeCount: 54,
     resourceIds: ['0', '1', '2', '3', '4'],
@@ -19,7 +19,7 @@ const BUILDS = [
     name: 'Free Beginner to Advanced React Tutorial Build',
     description:
       'A curated collection of free online React resources to get you from complete beginner to React software engineer.',
-    builder: 'Alpri Else',
+    userId: '2',
     tagIds: ['7', '0', '8', '9'],
     likeCount: 32,
     resourceIds: [],
@@ -29,7 +29,7 @@ const BUILDS = [
     name: 'UI UX Beginner Crash Course',
     description:
       'The best free video tutorials on getting into UI/UX design as a software engineer.',
-    builder: 'John Doe',
+    userId: '7',
     tagIds: ['7', '10', '11', '12'],
     likeCount: 78,
     resourceIds: [],
@@ -39,7 +39,7 @@ const BUILDS = [
     name: 'Unity Intermediate Game Development Build',
     description:
       'Build upon Unity/C# fundamentals by following these video tutorials.',
-    builder: 'Jackie Doe',
+    userId: '6',
     tagIds: ['13', '14', '15'],
     likeCount: 54,
     resourceIds: [],

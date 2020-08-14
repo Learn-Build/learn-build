@@ -4,12 +4,23 @@ import PropTypes from 'prop-types';
 import NavigationBar from '../../components/NavigationBar';
 import Builds from '../../components/Builds';
 import TogglableButton from '../../components/TogglableButton';
-import { fetchBuilds, fetchTags } from '../../clients';
-import { BuildListProps, TagListProps } from '../../constants/propTypes';
+import { fetchBuilds, fetchTags, fetchUsers } from '../../clients';
+import {
+  BuildListProps,
+  TagListProps,
+  UserListProps,
+} from '../../constants/propTypes';
 
 // TODO(Renzo): Determine if user is following tag initially
 
-export default function Tag({ builds, tags, name, description, imageUrl }) {
+export default function Tag({
+  builds,
+  tags,
+  users,
+  name,
+  description,
+  imageUrl,
+}) {
   return (
     <div>
       <NavigationBar />
@@ -57,6 +68,7 @@ export default function Tag({ builds, tags, name, description, imageUrl }) {
           <Builds
             builds={builds}
             tags={tags}
+            users={users}
             header={builds.length > 0 ? `Builds for ${name}` : ''}
           />
         </Box>
@@ -68,6 +80,7 @@ export default function Tag({ builds, tags, name, description, imageUrl }) {
 Tag.propTypes = {
   builds: BuildListProps.isRequired,
   tags: TagListProps.isRequired,
+  users: UserListProps.isRequired,
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   imageUrl: PropTypes.string,
@@ -96,10 +109,13 @@ export async function getStaticProps(context) {
   // eslint-disable-next-line prettier/prettier
   const filteredBuilds = builds.filter((build) => build.tagIds.some((tagId) => tagId === id));
 
+  const users = await fetchUsers();
+
   return {
     props: {
       builds: filteredBuilds,
       tags,
+      users,
       name,
       description,
     },
