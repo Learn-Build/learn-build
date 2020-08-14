@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
@@ -7,29 +7,34 @@ const BuildSchema = new Schema({
     type: String,
     required: true,
   },
-
   description: {
     type: String,
     required: true,
-
   },
-  comments: {
-    type: [String],
-    default: [],
+  userId: {
+    type: String,
+    required: true,
   },
-
   image_url: {
     type: String,
     required: false,
     default: null,
   },
-
-  tag: {
+  tags: {
     type: [String],
     required: false,
     default: null,
   },
-
+  favoriteCount: {
+    type: Number,
+    required: false,
+    default: 0,
+  },
+  resources: {
+    type: [String],
+    required: false,
+    default: null,
+  },
 });
 
 export default mongoose.models.Build || mongoose.model('Build', BuildSchema);

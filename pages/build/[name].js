@@ -15,7 +15,7 @@ import { ResourceListProps, UserProps } from '../../constants/propTypes';
 import { RESPONSIVE_TEXT_ALIGN } from '../../styles/responsiveStyles';
 import { FAVORITED_TOAST, SAVED_TOAST, UNFAVORITED_TOAST, UNSAVED_TOAST } from '../../constants/toasts';
 
-function Build({ name, builder, description, imageUrl, resources, notes, tagNames }) {
+function Build({ title, builder, description, imageUrl, resources, notes, tagNames }) {
   const toast = useToast();
 
   const desktopWidth = 90;
@@ -41,7 +41,7 @@ function Build({ name, builder, description, imageUrl, resources, notes, tagName
 
         {/* Title, description, tags */}
         <Box textAlign={['center', 'center', 'center', 'left']} p={4}>
-          <Heading as="h1" size="2xl">{name}</Heading>
+          <Heading as="h1" size="2xl">{title}</Heading>
           <LinkWrapper href={builderPageHref} as={builderPageAs}>
             <Text>{builder.name}</Text>
           </LinkWrapper>
@@ -92,7 +92,7 @@ function Build({ name, builder, description, imageUrl, resources, notes, tagName
 }
 
 Build.propTypes = {
-  name: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   builder: UserProps.isRequired,
   description: PropTypes.string.isRequired,
   imageUrl: PropTypes.string,
@@ -108,16 +108,16 @@ Build.defaultProps = {
 
 export async function getStaticPaths() {
   const builds = await fetchBuilds();
-  const paths = builds.map((build) => `/build/${build.name}`);
+  const paths = builds.map((build) => `/build/${build.title}`);
   return { paths, fallback: false };
 }
 
 export async function getStaticProps(context) {
-  const buildName = context.params.name;
+  const buildTitle = context.params.name;
   const builds = await fetchBuilds();
   // TODO(Renzo): extract notes once they are added to schema
-  const { name, userId, description, resourceIds, tagIds } = builds.find(
-    (build) => build.name === buildName,
+  const { title, userId, description, resourceIds, tagIds } = builds.find(
+    (build) => build.title === buildTitle,
   );
 
   const allResources = await fetchResources();
@@ -132,7 +132,7 @@ export async function getStaticProps(context) {
 
   return {
     props: {
-      name,
+      title,
       builder,
       description,
       resources,
