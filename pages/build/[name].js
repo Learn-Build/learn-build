@@ -1,7 +1,8 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import { Box, Heading, Text, Grid, Image, Stack, Flex, useToast } from '@chakra-ui/core';
+import { Box, Heading, Text, Image, Stack, Flex, useToast } from '@chakra-ui/core';
 import PropTypes from 'prop-types';
+import HeaderGrid from '../../components/HeaderGrid';
 import Container from '../../components/Container';
 import NavigationBar from '../../components/NavigationBar';
 import TagBadges from '../../components/TagBadges';
@@ -18,15 +19,6 @@ function Build({ name, builder, description, imageUrl, resources, notes, tagName
   const toast = useToast();
 
   const desktopWidth = 90;
-  const desktopColumns = '15% 70% 15%';
-  const mobileColumns = '100%';
-
-  const responsiveColumns = [
-    mobileColumns,
-    mobileColumns,
-    mobileColumns,
-    desktopColumns,
-  ];
 
   const emptyNotesText = 'No notes for this build.';
   const noResourcesText = 'No resources in this build yet,';
@@ -37,16 +29,7 @@ function Build({ name, builder, description, imageUrl, resources, notes, tagName
   return (
     <div>
       <NavigationBar />
-      <Grid
-        templateColumns={responsiveColumns}
-        width={['95%', `${desktopWidth}%`]}
-        mx="auto"
-        borderWidth="1px"
-        boxShadow="sm"
-        px={5}
-        py={3}
-        my={5}
-      >
+      <HeaderGrid>
         {/* Image */}
         <Box mx="auto" p={1}>
           <Image
@@ -83,7 +66,7 @@ function Build({ name, builder, description, imageUrl, resources, notes, tagName
             />
           </Stack>
         </Box>
-      </Grid>
+      </HeaderGrid>
       <Container desktopWidth={desktopWidth} leftColumn={70} rightColumn={30}>
         {/* Resources */}
         <Box>

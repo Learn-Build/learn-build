@@ -11,7 +11,7 @@ const RESOURCES = [
   },
   {
     id: '1',
-    title: 'Introduction to Deep Learning',
+    title: 'Introduction to Deep Learning 1',
     url:
       'https://medium.com/towards-artificial-intelligence/deep-learning-series-chapter-1-introduction-to-deep-learning-d790feb974e2',
     description: 'A brief intro to deep learning without mathematics involved',
@@ -21,7 +21,7 @@ const RESOURCES = [
   },
   {
     id: '2',
-    title: 'Introduction to Deep Learning',
+    title: 'Introduction to Deep Learning 2',
     url:
       'https://medium.com/towards-artificial-intelligence/deep-learning-series-chapter-1-introduction-to-deep-learning-d790feb974e2',
     description: 'A brief intro to deep learning without mathematics involved',
@@ -31,7 +31,7 @@ const RESOURCES = [
   },
   {
     id: '3',
-    title: 'Introduction to Deep Learning',
+    title: 'Introduction to Deep Learning 3',
     url:
       'https://medium.com/towards-artificial-intelligence/deep-learning-series-chapter-1-introduction-to-deep-learning-d790feb974e2',
     description: 'A brief intro to deep learning without mathematics involved',
@@ -41,7 +41,7 @@ const RESOURCES = [
   },
   {
     id: '4',
-    title: 'Introduction to Deep Learning',
+    title: 'Introduction to Deep Learning 4',
     url:
       'https://medium.com/towards-artificial-intelligence/deep-learning-series-chapter-1-introduction-to-deep-learning-d790feb974e2',
     description: 'A brief intro to deep learning without mathematics involved',

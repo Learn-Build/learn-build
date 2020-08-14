@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable implicit-arrow-linebreak */
+import React, { useState } from 'react';
 import {
   Box,
   Grid,
@@ -12,12 +13,21 @@ import PropTypes from 'prop-types';
 import LinkWrapper from './LinkWrapper';
 import CardComponent from './CardComponent';
 import TagBadges from './TagBadges';
+import TogglableIcon from './TogglableIcon';
 import { BuildProps } from '../constants/propTypes';
-import { SAVED_TOAST, FAVORITED_TOAST } from '../constants/toasts';
+import {
+  SAVED_TOAST,
+  FAVORITED_TOAST,
+  UNSAVED_TOAST,
+  UNFAVORITED_TOAST,
+} from '../constants/toasts';
 
-// TODO(Renzo): Add state to card for interacting with icons, like with TogglableButton
+// TODO(Renzo): Determine initial state through user information
 
 function BuildCard({ build, user, tagNames }) {
+  const [favorited, setFavorited] = useState(false);
+  const [saved, setSaved] = useState(false);
+
   const toast = useToast();
 
   const linkHref = '/build/[name]';
@@ -34,6 +44,11 @@ function BuildCard({ build, user, tagNames }) {
 
   const headerFontSize = ['md', 'md', 'lg', 'xl'];
   const bodyFontSize = ['xs', 'xs', 'sm', 'sm'];
+
+  function sendToasts(enabled, constructive, destructive) {
+    if (enabled) toast(destructive);
+    else toast(constructive);
+  }
 
   return (
     <CardComponent>
@@ -71,30 +86,35 @@ function BuildCard({ build, user, tagNames }) {
 
         <Stack>
           <Stack isInline>
-            <IconButton
-              isRound
-              size="xs"
-              icon="star"
-              onClick={() => toast(FAVORITED_TOAST)}
+            <TogglableIcon
+              enabledIcon="star"
+              disabledIcon="star"
+              onClick={(enabled) => {
+                sendToasts(enabled, FAVORITED_TOAST, UNFAVORITED_TOAST);
+                setFavorited(!favorited);
+              }}
             />
-            <Text fontSize="xs" alignSelf="center">
-              {build.likeCount}
+            <Text ml={2} fontSize="xs" alignSelf="center">
+              {build.likeCount + (favorited ? 1 : 0)}
             </Text>
           </Stack>
 
           <Stack isInline>
-            <IconButton
-              isRound
-              size="xs"
-              icon="add"
-              onClick={() => toast(SAVED_TOAST)}
+            <TogglableIcon
+              enabledIcon="check"
+              disabledIcon="small-add"
+              onClick={(enabled) => {
+                sendToasts(enabled, SAVED_TOAST, UNSAVED_TOAST);
+                setSaved(!enabled);
+              }}
             />
             <Text
               fontSize="xs"
               alignSelf="center"
               display={['none', 'block', 'block', 'block']}
+              ml={2}
             >
-              Save
+              {saved ? 'Saved' : 'Save'}
             </Text>
           </Stack>
         </Stack>
