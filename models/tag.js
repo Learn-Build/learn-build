@@ -1,5 +1,3 @@
-import connect from '../db/connectToMongo';
-
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
@@ -13,12 +11,12 @@ const TagSchema = new Schema({
     type: String,
     required: true,
   },
-  
+
   image_url: {
-    type: String, 
+    type: String,
     required: false,
     default: null,
   },
 });
 
-module.exports = connect().model('Tag', TagSchema);
+export default mongoose.models.Tag || mongoose.model('Tag', TagSchema);
