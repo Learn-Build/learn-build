@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose'
 
 const { Schema } = mongoose;
 
@@ -29,8 +29,9 @@ const ResourceSchema = new Schema({
   tag: {
     type: [String],
     required: false,
+    default: []
   },
 
 });
 
-module.exports = mongoose.models.Resource || mongoose.model('Resource', ResourceSchema);
+export default mongoose.models.Resource || mongoose.model('Resource', ResourceSchema);

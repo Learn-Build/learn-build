@@ -2,9 +2,28 @@ import Resource from '../models/Resource'
 
 const ResourceRepository = {
     getByTitle: async (title) => {
-        const resource = await Resource.findOne({ title }).exec()
-        return resource
+      return new Promise((resolve, reject) => {
+        Resource.findOne({ title: title }, (err, resource) => {
+          if (err) {
+            reject(err)
+          }
+          resolve(resource)
+        })
+      })
+        
     },
+    createResource: (resource) => {
+      return new Promise((resolve, reject) => {
+        const resourceModel = new Resource(resource)
+        resourceModel.save((err, resource) => {
+            if (err) {
+                reject(err)
+            }
+            resolve(resource)
+        })
+      })
+        
+    }
 }
 
 export default ResourceRepository
