@@ -7,7 +7,7 @@ import PplSection from '../components/PplSection';
 import NavigationBar from '../components/NavigationBar';
 
 export default function About() {
-  const missionSt = "We are believers of a community built on learning. Learn Build exists as a crowdsourcing platform for educational resources. We integrate self-learning with sharing and collaboration; users share and collaborate on 'builds' — educational pathways covering various topics.";
+  const missionSt = "We are believers of a community built on learning. Learn Build exists as a crowdsourcing platform for educational resources. Users share and collaborate on 'builds' — educational pathways covering various topics.";
   const valueSt = "Learning, Sharing, Community";
 
   return (
