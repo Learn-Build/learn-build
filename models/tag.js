@@ -1,4 +1,4 @@
-import connect from '../db/connect';
+import connect from '../db/connectToMongo';
 
 const mongoose = require('mongoose');
 
