@@ -35,7 +35,6 @@ const BuildRepository = {
   createBuild: (build) =>
     new Promise((resolve, reject) => {
       const buildModel = new Build(build);
-      // eslint-disable-next-line no-shadow
       buildModel.save((err, build) => {
         if (err) {
           reject(err);
