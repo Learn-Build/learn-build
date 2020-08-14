@@ -1,6 +1,6 @@
 import auth0 from '../../utils/auth0';
 import UserRepository from '../../repositories/UserRepository'
-import connect from '../../db/connect'
+import connect from '../../db/connectToMongo'
 
 export default async function callback(req, res) {
   await connect()
