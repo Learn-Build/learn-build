@@ -64,8 +64,8 @@ export default function User({
                 {`${name} hasn't uploaded any resources... yet.`}
               </Text>
             )}
-            {uploadedResources &&
-              uploadedResources.map((resource) => (
+            {uploadedResources
+              && uploadedResources.map((resource) => (
                 <ResourceCard key={resource.id} resource={resource} />
               ))}
           </Text>
@@ -100,8 +100,8 @@ export default function User({
                 {`${name} hasn't favorited any resources... yet.`}
               </Text>
             )}
-            {favoritedResources &&
-              favoritedResources.map((resource) => (
+            {favoritedResources
+              && favoritedResources.map((resource) => (
                 <ResourceCard key={resource.id} resource={resource} />
               ))}
           </Text>
@@ -133,62 +133,69 @@ User.defaultProps = {
 // TODO(Renzo): add fallback page at some point?
 
 export async function getStaticPaths() {
-  const users = await fetchUsers();
+  const allUsersData = await fetchUsers().then((r) => r.data);
+  const users = allUsersData.map((u) => ({
+    ...u,
+    id: u._id,
+  }));
   const paths = users.map((user) => `/${user.id}`);
   return { paths, fallback: false };
 }
 
 export async function getStaticProps(context) {
   const userId = context.params.user;
-  const users = await fetchUsers();
-  const {
-    id,
-    name,
-    email,
-    buildsCreated,
-    resourcesUploaded,
-    buildsFavorited,
-    resourcesFavorited,
-  } = users.find((t) => t.id === userId);
+  const allUsersData = await fetchUsers().then((r) => r.data);
+  const users = allUsersData.map((u) => ({
+    ...u,
+    id: u._id,
+  }));
+  const { id, name, email, buildsFavorited, resourcesFavorited } = users.find(
+    (t) => t.id === userId,
+  );
 
   // Get builds if available
-  const allBuilds = await fetchBuilds();
-  let createdBuilds = null;
+  const allBuildsData = await fetchBuilds().then((r) => r.data);
+  const allBuilds = allBuildsData.map((b) => ({
+    ...b,
+    id: b._id,
+    userId: b.user_id,
+    favoriteCount: b.favorite_count,
+    resourceIds: [],
+    tagIds: [],
+  }));
+
   let favoritedBuilds = null;
 
-  if (buildsCreated) {
-    createdBuilds = allBuilds.filter((build) => buildsCreated.includes(build.id),
-    );
-  }
   if (buildsFavorited) {
-    favoritedBuilds = allBuilds.filter((build) => buildsFavorited.includes(build.id),
+    favoritedBuilds = allBuilds.filter((build) =>
+      buildsFavorited.includes(build.id),
     );
   }
 
   // Get resources if available
   const allResources = await fetchResources();
-  let uploadedResources = null;
   let favoritedResources = null;
 
-  if (resourcesUploaded) {
-    uploadedResources = allResources.filter((resource) => resourcesUploaded.includes(resource.id),
-    );
-  }
   if (resourcesFavorited) {
-    favoritedResources = allResources.filter((resource) => resourcesFavorited.includes(resource.id),
+    favoritedResources = allResources.filter((resource) =>
+      resourcesFavorited.includes(resource.id),
     );
   }
+
+  const allTagsData = await fetchTags().then((r) => r.data);
+  const tags = allTagsData.map((t) => ({
+    ...t,
+    id: t._id,
+  }));
 
   return {
     props: {
       id,
       name,
       email,
-      createdBuilds,
       favoritedBuilds,
-      uploadedResources,
       favoritedResources,
-      tags: await fetchTags(),
+      tags,
       users,
     },
   };
