@@ -29,9 +29,15 @@ TagsPage.propTypes = {
 };
 
 export async function getStaticProps() {
+  const allTagsData = await fetchTags().then((r) => r.data);
+  const tags = allTagsData.map((t) => ({
+    ...t,
+    id: t._id,
+  }));
+
   return {
     props: {
-      tags: await fetchTags(),
+      tags,
     },
   };
 }

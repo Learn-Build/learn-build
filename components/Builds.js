@@ -29,8 +29,8 @@ function Builds({ builds, tags, users, header = 'Builds' }) {
   return (
     <div>
       <ResponsiveHeading>{header}</ResponsiveHeading>
-      {builds
-        && builds.map((build) => (
+      {builds &&
+        builds.map((build) => (
           <BuildCard
             key={build.id}
             build={build}

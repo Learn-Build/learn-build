@@ -45,7 +45,7 @@ export default function Search({ builds, tags, users }) {
   // TODO(Renzo?): refactor this horrible mess
   function filterBuilds() {
     return builds
-      .filter((build) => build.name.toLowerCase().includes(nameQuery))
+      .filter((build) => build.title.toLowerCase().includes(nameQuery))
       .filter((build) => users
         .find((user) => build.userId === user.id)
         .name.toLowerCase()
@@ -124,11 +124,33 @@ Search.propTypes = {
 };
 // TODO(Renzo): handle promises once data fetching returns actual data
 export async function getStaticProps() {
+  const allBuildsData = await fetchBuilds().then((r) => r.data);
+  const builds = allBuildsData.map((b) => ({
+    ...b,
+    id: b._id,
+    userId: b.user_id,
+    favoriteCount: b.favorite_count,
+    resourceIds: [],
+    tagIds: [],
+  }));
+
+  const allTagsData = await fetchTags().then((r) => r.data);
+  const tags = allTagsData.map((t) => ({
+    ...t,
+    id: t._id,
+  }));
+
+  const allUsersData = await fetchUsers().then((r) => r.data);
+  const users = allUsersData.map((u) => ({
+    ...u,
+    id: u._id,
+  }));
+
   return {
     props: {
-      builds: await fetchBuilds(),
-      tags: await fetchTags(),
-      users: await fetchUsers(),
+      builds,
+      tags,
+      users,
     },
   };
 }

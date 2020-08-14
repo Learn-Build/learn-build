@@ -107,28 +107,58 @@ Build.defaultProps = {
 };
 
 export async function getStaticPaths() {
-  const builds = await fetchBuilds();
+  const allBuildsData = await fetchBuilds().then((r) => r.data);
+  const builds = allBuildsData.map((b) => ({
+    ...b,
+    id: b._id,
+    userId: b.user_id,
+    favoriteCount: b.favorite_count,
+    resourceIds: [],
+    tagIds: [],
+  }));
   const paths = builds.map((build) => `/build/${build.title}`);
   return { paths, fallback: false };
 }
 
 export async function getStaticProps(context) {
   const buildTitle = context.params.name;
-  const builds = await fetchBuilds();
+  const allBuildsData = await fetchBuilds().then((r) => r.data);
+  const builds = allBuildsData.map((b) => ({
+    ...b,
+    id: b._id,
+    userId: b.user_id,
+    favoriteCount: b.favorite_count,
+    resourceIds: [],
+    tagIds: [],
+  }));
   // TODO(Renzo): extract notes once they are added to schema
   const { title, userId, description, resourceIds, tagIds } = builds.find(
     (build) => build.title === buildTitle,
   );
 
-  const allResources = await fetchResources();
+  const allResourcesData = await fetchResources().then((r) => r.data);
+  const allResources = allResourcesData.map((r) => ({
+    ...r,
+    tagIds: r.tags,
+    imageUrl: r.image_url,
+  }));
   const resources = allResources.filter((resource) => resourceIds.includes(resource.id));
 
-  const allTags = await fetchTags();
+  const allTagsData = await fetchTags().then((r) => r.data);
+  const allTags = allTagsData.map((t) => ({
+    ...t,
+    id: t._id,
+  }));
+
   const tags = allTags.filter((tag) => tagIds.includes(tag.id));
   const tagNames = tags.map((tag) => tag.name);
 
-  const allUsers = await fetchUsers();
-  const builder = allUsers.find((user) => user.id === userId);
+  const allUsersData = await fetchUsers().then((r) => r.data);
+  const users = allUsersData.map((u) => ({
+    ...u,
+    id: u._id,
+  }));
+  const builder = users.find((user) => user.id === userId);
 
   return {
     props: {
