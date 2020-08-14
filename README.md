@@ -1,5 +1,4 @@
-# [Learn Build](https://learn-build.vercel.app/)
-## Self-teaching done right.
+# [Learn Build](https://learn-build.vercel.app/). Self-teaching done right.
 ### First, some questions
 How do we learn new things? As students at the University of Illinois at Urbana-
 Champaign, we all have at least one thing in common: we're paying tens of thousands
