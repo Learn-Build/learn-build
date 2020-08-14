@@ -9,19 +9,19 @@ const BuildSchema = new Schema({
     type: String,
     required: true,
   },
-  
+
   description: {
     type: String,
     required: true,
-    
+
   },
   comments: {
     type: [String],
-    default: [], 
+    default: [],
   },
 
   image_url: {
-    type: String, 
+    type: String,
     required: false,
     default: null,
   },
@@ -34,4 +34,4 @@ const BuildSchema = new Schema({
 
 });
 
-module.exports = connect().model('Build', BuildSchema);
+module.exports = mongoose.models.Resource || mongoose.model('Resource', ResourceSchema);
