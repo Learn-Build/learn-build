@@ -13,6 +13,7 @@ function Builds({ builds, tags, users, header = 'Builds' }) {
   function getTagNames(build) {
     const { tagIds } = build;
     const tagNames = tagIds.map((id) => {
+      // eslint-disable-next-line no-underscore-dangle
       const foundTag = tags.find((tag) => tag.id === id);
       return foundTag.name;
     });
@@ -28,8 +29,8 @@ function Builds({ builds, tags, users, header = 'Builds' }) {
   return (
     <div>
       <ResponsiveHeading>{header}</ResponsiveHeading>
-      {builds &&
-        builds.map((build) => (
+      {builds
+        && builds.map((build) => (
           <BuildCard
             key={build.id}
             build={build}

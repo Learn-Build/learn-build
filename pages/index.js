@@ -58,15 +58,33 @@ Home.propTypes = {
 
 // TODO(Renzo): handle promises once data fetching returns actual data
 export async function getStaticProps() {
-  const allBuildsData = await fetchBuilds();
-  const allTagsData = await fetchTags();
-  const allUsersData = await fetchUsers();
+  const allBuildsData = await fetchBuilds().then((r) => r.data);
+  const builds = allBuildsData.map((b) => ({
+    ...b,
+    id: b._id,
+    userId: b.user_id,
+    favoriteCount: b.favorite_count,
+    resourceIds: [],
+    tagIds: [],
+  }));
+
+  const allTagsData = await fetchTags().then((r) => r.data);
+  const tags = allTagsData.map((t) => ({
+    ...t,
+    id: t._id,
+  }));
+
+  const allUsersData = await fetchUsers().then((r) => r.data);
+  const users = allUsersData.map((u) => ({
+    ...u,
+    id: u._id,
+  }));
 
   return {
     props: {
-      builds: allBuildsData,
-      tags: allTagsData,
-      users: allUsersData,
+      builds,
+      tags,
+      users,
     },
   };
 }
