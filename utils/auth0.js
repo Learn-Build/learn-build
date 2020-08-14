@@ -9,8 +9,8 @@ export default initAuth0({
   clientId: process.env.AUTH0_CLIENT_ID,
   clientSecret: process.env.AUTH0_CLIENT_SECRET,
   scope: 'openid profile email',
-  redirectUri: isDevMode ? 'http://localhost:3000/api/callback' : `${process.env.VERCEL_URL}/api/callback`,
-  postLogoutRedirectUri: isDevMode ? 'http://localhost:3000/' : `${process.env.VERCEL_URL}/`,
+  redirectUri: isDevMode ? 'http://localhost:3000/api/callback' : `http://${process.env.VERCEL_URL}/api/callback`,
+  postLogoutRedirectUri: isDevMode ? 'http://localhost:3000/' : `http://${process.env.VERCEL_URL}/`,
   session: {
     // The secret used to encrypt the cookie.
     cookieSecret: process.env.SECRET,
