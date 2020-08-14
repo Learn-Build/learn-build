@@ -3,7 +3,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const isDevMode = process.env.VERCEL_URL === undefined
-
+console.log(process.env.VERCEL_URL)
 export default initAuth0({
   domain: process.env.AUTH0_DOMAIN,
   clientId: process.env.AUTH0_CLIENT_ID,
