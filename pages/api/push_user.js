@@ -12,7 +12,7 @@ async function main(){
 
     await createListing (client, 
       {
-        name: "Edward Elric",
+        name: "Edward Elric",   //@TODO: implement user input (not hardcoding). Have createlisting take a json object variable in the correct User format (@Alpri?)
         email: "eelric@central.edu"
       }  
     );
